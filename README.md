@@ -4,26 +4,16 @@ This README would normally document whatever steps are necessary to get your app
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Classwork
+* Homework Assignments
+* General nonsense!
 
-### How do I get set up? ###
+### What are we studying? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Node.JS / Express backend web systems
+* Database: to be decided, probably modularized to allow usage of multiple options
+* Frontend: ReactJS
+* Test engine: Webpack
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+### What's completed? ###
+* Test React/Express/NodeJS app built! New items added to it.
