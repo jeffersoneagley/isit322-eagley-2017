@@ -8,9 +8,14 @@ class App extends Component {
         super();
         this.state = {
             file: 'Get Nine Result will be placed here',
-            foo : 'waiting for server'
+            foo : 'waiting for server',
+            nine: '0'
         }
     };
+
+    getNine = () => {
+        this.setState({nine: '9'});
+    }
 
     bar = () => {
         const that = this;
@@ -33,9 +38,16 @@ class App extends Component {
                     <h2>Welcome to React</h2>
                 </div>
                 <p className="App-intro">
-                    state: {this.state.foo} file: {this.state.file}
+                    state: {this.state.foo}
+                </p>
+                <p className="App-intro">
+                    file: {this.state.file}
+                </p>
+                <p className="App-intro">
+                    nine: {this.state.nine}
                 </p>
                 <button onClick={this.bar}>Bar</button>
+                <button id="buttonNine" onClick={this.getNine}>GetNine</button>
             </div>
         );
     }
