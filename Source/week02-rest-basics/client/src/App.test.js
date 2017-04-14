@@ -19,12 +19,22 @@ describe('my basic rest test', function () {
         const wrapper = shallow(<App />);
         const nineSign = <p className="App-intro">nine: 0</p>;
         expect(wrapper.contains(nineSign)).toEqual(true);
-    })
+    });
 
     it('renders getnine button click message', () => {
         const wrapper = shallow(<App />);
         wrapper.find('#buttonNine').simulate('click');
         const nineSign = <p className="App-intro">nine: 9</p>;
         expect(wrapper.contains(nineSign)).toEqual(true);
-    })
-})
+    });
+
+    it('renders getFoo button click message', () => {
+        const wrapper = shallow(<App />);
+        wrapper.find('#buttonFoo').simulate('click', {
+                target: {'foo': 'bar'}
+            }
+        );
+        const expectedRes = <p className="App-intro">state: bar</p>;
+        expect(wrapper.contains(expectedRes)).toEqual(true);
+    });
+});

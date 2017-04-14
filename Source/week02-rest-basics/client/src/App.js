@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import 'whatwg-fetch'
+import 'whatwg-fetch';
+var fetch = require('./mocks/fetch').fetch;
 
 class App extends Component {
     constructor() {
@@ -17,7 +18,7 @@ class App extends Component {
         this.setState({nine: '9'});
     }
 
-    bar = () => {
+    getFoo = () => {
         const that = this;
         fetch('/api/foo')
             .then(function (response) {
@@ -46,7 +47,7 @@ class App extends Component {
                 <p className="App-intro">
                     nine: {this.state.nine}
                 </p>
-                <button onClick={this.bar}>Bar</button>
+                <button id="buttonFoo" onClick={this.bar}>Bar</button>
                 <button id="buttonNine" onClick={this.getNine}>GetNine</button>
             </div>
         );
