@@ -13,7 +13,8 @@ describe('my basic rest test', function () {
         {name: 'six', short: '6'},
         {name: 'seven', short: '7'},
         {name: 'eight', short: '8'},
-        {name: 'nine', short: '9'}
+        {name: 'nine', short: '9'}//,
+        //{name: 'foo', short: 'bar'}
 
     ];
     simNames.forEach((val) => {
@@ -31,22 +32,17 @@ describe('my basic rest test', function () {
         expect(wrapper.contains(welcome)).toEqual(true);
     });
 
-
-    it('renders getnine target', () => {
-        const wrapper = shallow(<App />);
-        const numberElement = <p className="App-intro">nine: 0</p>;
-        expect(wrapper.contains(numberElement)).toEqual(true);
-    });
-
     var doGetTest = (val) => {
         it('renders get' + val.upperName + " button click message", () => {
             const wrapper = shallow(<App />);
             wrapper.find('#button' + val.upperName).simulate('click');
-            const numberElement = <p id={"para" + val.name}>{val.name}:
-                {val.short}</p>;
+            //console.log(wrapper.find('#para' + val.name));
+            const numberElement = <p id={"para" + val.name}>
+                {val.name}: {val.short}
+            </p>;
             expect(wrapper.contains(numberElement)).toEqual(true);
         })
-    }
+    };
 
     simNames.forEach((val) => {
         doGetTest(val);
@@ -115,13 +111,13 @@ describe('my basic rest test', function () {
     //     expect(wrapper.contains(numberElement)).toEqual(true);
     // });
 
-    it('renders getFoo button click message', () => {
-        const wrapper = shallow(<App />);
-        wrapper.find('#buttonFoo').simulate('click', {
-                target: {'foo': 'bar'}
-            }
-        );
-        const expectedRes = <p className="App-intro">state: bar</p>;
-        expect(wrapper.contains(expectedRes)).toEqual(true);
-    });
+    // it('renders getFoo button click message', () => {
+    //     const wrapper = shallow(<App />);
+    //     wrapper.find('#buttonFoo').simulate('click', {
+    //             target: {'foo': 'bar'}
+    //         }
+    //     );
+    //     const expectedRes = <p className="App-intro">state: bar</p>;
+    //     expect(wrapper.contains(expectedRes)).toEqual(true);
+    // });
 });

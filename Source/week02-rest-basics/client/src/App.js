@@ -13,7 +13,8 @@ var nameDummies = [
     'six',
     'seven',
     'eight',
-    'nine'
+    'nine',
+    'foo'
 ];
 
 class App extends Component {
@@ -36,39 +37,39 @@ class App extends Component {
 
     getOne = () => {
         this.setState({one: '1'});
-    }
+    };
 
     getTwo = () => {
         this.setState({two: '2'});
-    }
+    };
 
     getThree = () => {
         this.setState({three: '3'});
-    }
+    };
 
     getFour = () => {
         this.setState({four: '4'});
-    }
+    };
 
     getFive = () => {
         this.setState({five: '5'});
-    }
+    };
 
     getSix = () => {
         this.setState({six: '6'});
-    }
+    };
 
     getSeven = () => {
         this.setState({seven: '7'});
-    }
+    };
 
     getEight = () => {
         this.setState({eight: '8'});
-    }
+    };
 
     getNine = () => {
         this.setState({nine: '9'});
-    }
+    };
 
     getFoo = () => {
         const that = this;
@@ -111,10 +112,7 @@ class App extends Component {
                     file: {this.state.file}
                 </p>
                 {this.getParagraphs()}
-                {/*<p className="App-intro">*/}
-                {/*nine: {this.state.nine}*/}
-                {/*</p>*/}
-                <button id="buttonFoo" onClick={this.bar}>Bar</button>
+                <button id="buttonFoo" onClick={this.getFoo}>Bar</button>
                 <button id="buttonOne" onClick={this.getOne}>GetOne</button>
                 <button id="buttonTwo" onClick={this.getTwo}>GetTwo</button>
                 <button id="buttonThree" onClick={this.getThree}>GetThree</button>
