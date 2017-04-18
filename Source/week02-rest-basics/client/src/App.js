@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import 'whatwg-fetch';
-import SmallNumbers from "./components/SmallNumbers";
+import SmallNumbers from "./components/SmallNumber/SmallNumbers";
 
 //fetch = require('./mocks/fetch').fetch(this); //uncomment for test
 
