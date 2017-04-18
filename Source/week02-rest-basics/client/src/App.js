@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import 'whatwg-fetch';
-var fetch = require('./mocks/fetch').fetch;
+
+//fetch = require('./mocks/fetch').fetch(this); //uncomment for test
 
 var nameDummies = [
     'one',
@@ -14,7 +15,8 @@ var nameDummies = [
     'seven',
     'eight',
     'nine',
-    'foo'
+    'foo',
+    'file'
 ];
 
 class App extends Component {
@@ -105,12 +107,6 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo"/>
                     <h2>Welcome to React</h2>
                 </div>
-                <p className="App-intro">
-                    state: {this.state.foo}
-                </p>
-                <p className="App-intro">
-                    file: {this.state.file}
-                </p>
                 {this.getParagraphs()}
                 <button id="buttonFoo" onClick={this.getFoo}>Bar</button>
                 <button id="buttonOne" onClick={this.getOne}>GetOne</button>
