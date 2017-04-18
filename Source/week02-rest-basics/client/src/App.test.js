@@ -22,15 +22,9 @@ describe('my basic rest test', function () {
         val.upperName = val.name.charAt(0).toUpperCase() + val.name.slice(1);
     });
 
-    it('renders without crashing', () => {
+    it('renders App without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<App />, div);
-    });
-
-    it('renders and reads H1 text', () => {
-        const wrapper = shallow(<Header />);
-        const welcome = <h2>Welcome to React</h2>;
-        expect(wrapper.contains(welcome)).toEqual(true);
     });
 
     var doGetTest = (val) => {

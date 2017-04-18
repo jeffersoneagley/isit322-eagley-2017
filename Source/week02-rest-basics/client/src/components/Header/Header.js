@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import logo from '../../logo.svg';
-import '../../App.css';
+import './Header.css';
 import 'whatwg-fetch';
 
 
@@ -13,7 +13,7 @@ class Header extends Component {
         return (
             <div className="App-header">
                 <img src={logo} className="App-logo" alt="logo"/>
-                <h2>Welcome to React</h2>
+                <h2>Welcome to Jefferson's React site</h2>
             </div>
         );
     }
