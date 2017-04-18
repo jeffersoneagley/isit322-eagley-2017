@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:30026",
   "dependencies": {
+    "bower": "^1.8.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "whatwg-fetch": "^2.0.2"

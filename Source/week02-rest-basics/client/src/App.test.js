@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import Header from './components/Header';
 import {shallow} from 'enzyme';
 
 describe('my basic rest test', function () {
@@ -27,7 +28,7 @@ describe('my basic rest test', function () {
     });
 
     it('renders and reads H1 text', () => {
-        const wrapper = shallow(<App />);
+        const wrapper = shallow(<Header />);
         const welcome = <h2>Welcome to React</h2>;
         expect(wrapper.contains(welcome)).toEqual(true);
     });
