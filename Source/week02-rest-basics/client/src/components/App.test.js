@@ -6,15 +6,6 @@ import {shallow} from 'enzyme';
 
 describe('my basic rest test', function () {
     var simNames = [
-        // {name: 'one', short: '1'},
-        // {name: 'two', short: '2'},
-        // {name: 'three', short: '3'},
-        // {name: 'four', short: '4'},
-        // {name: 'five', short: '5'},
-        // {name: 'six', short: '6'},
-        // {name: 'seven', short: '7'},
-        // {name: 'eight', short: '8'},
-        // {name: 'nine', short: '9'}//,
         //{name: 'foo', short: 'bar'}
 
     ];

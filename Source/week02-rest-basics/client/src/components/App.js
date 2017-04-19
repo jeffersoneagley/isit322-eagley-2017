@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../App.css';
+import './App.css';
 import 'whatwg-fetch';
 import SmallNumbers from "./SmallNumber/SmallNumbers";
 
@@ -12,6 +12,10 @@ class App extends Component {
             file: 'Get Nine Result will be placed here',
             foo : 'waiting for server'
         }
+        this.nameDummies = [
+            'foo',
+            'file'
+        ]
     };
 
     getFoo = () => {
@@ -27,24 +31,25 @@ class App extends Component {
         });
     };
 
-    // getParagraph = (index) => {
-    //     return (<p id={"para" + index} key={"para" + index}>
-    //         {index}: {this.state[index]}
-    //     </p>);
-    // };
+    getParagraph = (index) => {
+        return (<p id={"para" + index} key={"para" + index}>
+            {index}: {this.state[index]}
+        </p>);
+    };
 
-    // getParagraphs = () => {
-    //     var res = [];
-    //     for (var val in nameDummies) {
-    //         res.push(this.getParagraph(nameDummies[val]));
-    //     }
-    //     return res;
-    // };
+    getParagraphs = () => {
+        var res = [];
+        for (var val in this.nameDummies) {
+            res.push(this.getParagraph(this.nameDummies[val]));
+        }
+        return res;
+    };
 
     render() {
         return (
             <div className="App">
                 <SmallNumbers/>
+                {this.getParagraphs()}
                 <button id="buttonFoo" onClick={this.getFoo}>Bar</button>
             </div>
         );
