@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "./App.css";
 import "whatwg-fetch";
-import GetFoo from "GetFoo";
+import GetFoo from "./GetFoo";
 
 //fetch = require('./mocks/fetch').fetch(this); //uncomment for test
 
@@ -10,7 +10,7 @@ class App extends Component {
         super();
 
         this.quiet = false;
-        this.debug('GetFoo constructor called');
+        this.debug('App constructor called');
     };
 
     debug = (message) => {
@@ -19,28 +19,14 @@ class App extends Component {
         }
     };
 
-    getParagraph = (index) => {
-        return (<p id={"para" + index} key={"para" + index}>
-            {index}: {this.state[index]}
-        </p>);
-    };
-
-    getParagraphs = () => {
-        var res = [];
-        for (var val in this.nameDummies) {
-            res.push(this.getParagraph(this.nameDummies[val]));
-        }
-        return res;
-    };
-
     render() {
         return (
             <div className="App">
                 {this.getParagraphs()}
-                {GetFoo.getFooButton()}
+                <GetFoo />
             </div>
         );
-    }
+    };
 }
 
 export default App;

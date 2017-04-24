@@ -11,6 +11,8 @@ class GetFoo extends Component {
             'foo',
             'file'
         ];
+        this.quiet = false;
+        this.debug('GetFoo constructor called');
     };
 
     getFoo = () => {
