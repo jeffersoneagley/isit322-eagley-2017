@@ -1,7 +1,7 @@
 node_modules
 ncp-debug.log
 npm-debug.log
-bower_component
+bower-components
 src/config/configSec.js
 
 .DS_STORE
@@ -33,3 +33,5 @@ chrome-user-data
 *.iml
 
 bundle.js
+Source/week02-rest-basics/server/public/images/
+Source/week02-rest-basics/server/public/javascripts/
