@@ -1,34 +1,22 @@
-import React, {Component} from 'react';
-import './App.css';
-import 'whatwg-fetch';
-import SmallNumbers from "./SmallNumber/SmallNumbers";
+import React, {Component} from "react";
+import "./App.css";
+import "whatwg-fetch";
+import GetFoo from "GetFoo";
 
 //fetch = require('./mocks/fetch').fetch(this); //uncomment for test
 
 class App extends Component {
     constructor() {
         super();
-        this.state = {
-            file: 'Get Nine Result will be placed here',
-            foo : 'waiting for server'
-        }
-        this.nameDummies = [
-            'foo',
-            'file'
-        ]
+
+        this.quiet = false;
+        this.debug('GetFoo constructor called');
     };
 
-    getFoo = () => {
-        const that = this;
-        fetch('/api/foo')
-            .then(function (response) {
-                return response.json();
-            }).then(function (json) {
-            console.log('parsed json', json);
-            that.setState(foo => (json));
-        }).catch(function (ex) {
-            console.log('parsing failed', ex);
-        });
+    debug = (message) => {
+        if (!this.quiet) {
+            console.log(message);
+        }
     };
 
     getParagraph = (index) => {
@@ -48,9 +36,8 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <SmallNumbers/>
                 {this.getParagraphs()}
-                <button id="buttonFoo" onClick={this.getFoo}>Bar</button>
+                {GetFoo.getFooButton()}
             </div>
         );
     }

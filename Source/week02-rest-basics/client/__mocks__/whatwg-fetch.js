@@ -7,7 +7,7 @@ import getData from "./mock-data";
 const whatwgFetch = jest.genMockFromModule('whatwg-fetch');
 
 var fetch = function (url) {
-    var objectState = getData(url);
+    var objectStnslookup bitbucket.org 8.8.8.8ate = getData(url);
 
     var response = {};
     response.json = function () {
