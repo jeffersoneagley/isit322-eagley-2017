@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import Header from './Header/Header';
+import App from '../src/components/App';
+import Header from '../src/components/Header/Header';
 import {shallow} from 'enzyme';
 
 describe('my basic rest test', function () {

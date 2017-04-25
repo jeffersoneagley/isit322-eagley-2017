@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import Paragraph from "./paragraph";
 
 class GetFoo extends Component {
     constructor() {
@@ -12,7 +13,7 @@ class GetFoo extends Component {
             'file'
         ];
         this.quiet = false;
-        this.debug('GetFoo constructor called');
+
     };
 
     getFoo = () => {
@@ -30,29 +31,21 @@ class GetFoo extends Component {
         });
     };
 
-    getParagraph = (index) => {
-        return (<p id={"para" + index} key={"para" + index}>
-            {index}: {this.state[index]}
-        </p>);
-    };
-
-    getParagraphs = () => {
-        var res = [];
-        for (var val in this.nameDummies) {
-            res.push(this.getParagraph(this.nameDummies[val]));
+    debug = (message) => {
+        if (!this.quiet) {
+            console.log(message);
         }
-        return res;
     };
 
-    getFooButton = () => {
+    GetButton = () => {
         return (<button id="buttonFoo" onClick={this.getFoo}>Bar</button>);
     };
 
     render() {
         return (
-            <div className="App-header">
-                {this.getParagraphs()}<br/>
-                {this.getFooButton()}
+            <div>
+                <Paragraph stator={this.state} nameList={this.nameDummies}/>
+                {this.GetButton()}
             </div>
         );
     }

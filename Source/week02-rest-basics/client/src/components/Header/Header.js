@@ -1,13 +1,10 @@
-import React, {Component} from 'react';
-import logo from '../../logo.svg';
-import './Header.css';
-import 'whatwg-fetch';
+import React, {Component} from "react";
+import logo from "../../logo.svg";
+import "./Header.css";
+import "whatwg-fetch";
 
 
 class Header extends Component {
-    constructor() {
-        super();
-    };
 
     render() {
         return (

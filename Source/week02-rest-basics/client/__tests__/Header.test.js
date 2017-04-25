@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from './Header';
+import Header from '../src/components/Header/Header';
 import {shallow} from 'enzyme';
 
 describe('Header test suite', function () {

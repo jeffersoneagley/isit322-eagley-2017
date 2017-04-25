@@ -1,6 +1,6 @@
-import React from 'react';
-import {shallow} from 'enzyme';
-import SmallNumbers from "./SmallNumbers";
+import React from "react";
+import {shallow} from "enzyme";
+import SmallNumbers from "../src/components/SmallNumber/SmallNumbers";
 
 describe('Checking for functionality per SmallNumber assignment', function () {
     var simNames = [
@@ -22,11 +22,9 @@ describe('Checking for functionality per SmallNumber assignment', function () {
         it('renders get' + val.upperName + " button click message", () => {
             const wrapper = shallow(<SmallNumbers />);
             wrapper.find('#button' + val.upperName).simulate('click');
-            //console.log(wrapper.find('#para' + val.name));
-            const numberElement = <p id={"para" + val.name}>
-                {val.name}: {val.short}
-            </p>;
-            expect(wrapper.contains(numberElement)).toEqual(true);
+            const numberElement = val.name + ": " + val.short;
+            console.log(wrapper)
+            expect(wrapper.find('p').someWhere(w => w.text().contains(val.name))).toEqual(true);
         })
     };
 
