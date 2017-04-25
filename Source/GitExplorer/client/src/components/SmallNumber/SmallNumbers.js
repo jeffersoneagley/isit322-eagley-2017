@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import "../App.css";
+import "../../css/App.css";
 import numbersInit from "./numbers-data";
 import Paragraph from "../paragraph";
 

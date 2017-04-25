@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import logo from "../../logo.svg";
-import "./Header.css";
+import logo from "../../img/Fish_icon_grey.svg";
+import "../../css/Header/Header.css";
 import "whatwg-fetch";
 
 

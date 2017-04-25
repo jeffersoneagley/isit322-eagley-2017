@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import "./App.css";
+import "../css/App.css";
 import "whatwg-fetch";
 import GetFoo from "./GetFoo";
 import SmallNumbers from "./SmallNumber/SmallNumbers";
