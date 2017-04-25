@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "../src/components/App";
+import GetFoo from "../src/components/GetFoo";
+import Paragraph from "../src/components/paragraph";
 import {shallow} from "enzyme";
 
 describe('my basic rest test', function () {
@@ -12,19 +13,20 @@ describe('my basic rest test', function () {
         val.upperName = val.name.charAt(0).toUpperCase() + val.name.slice(1);
     });
 
-    it('renders App without crashing', () => {
+    it('renders module without crashing', () => {
         const div = document.createElement('div');
-        ReactDOM.render(<App />, div);
+        ReactDOM.render(<GetFoo />, div);
     });
 
     var doGetTest = (val) => {
         it('renders get' + val.upperName + " button click message", () => {
-            const wrapper = shallow(<App />);
+            const wrapper = shallow(<GetFoo />);
             wrapper.find('#button' + val.upperName).simulate('click');
-            const numberElement = <p id={"para" + val.name}>
-                {val.name}: {val.short}
-            </p>;
-            expect(wrapper.find('#para' + val.name)).toEqual(true);
+            const para = wrapper.find(Paragraph).dive();
+            // console.log(para);
+            
+            expect(para.find('#para' + val.name).contains(val.name)).toEqual(true);
+            expect(para.find('#para' + val.name).contains(val.short)).toEqual(true);
         })
     };
 

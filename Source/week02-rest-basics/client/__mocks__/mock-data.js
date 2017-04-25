@@ -9,16 +9,18 @@ const getData = (url) => {
                 foo   : 'bar',
                 file  : 'api.js'
             };
+
         case '/api/user':
             return {
                 error   : {},
                 response: {},
                 body    : JSON.stringify({
-                    login: 'Gonk'
+                    login: 'Robin Dudette'
                 })
             };
+
         default:
-            return {};
+            return {}
     }
 };
 

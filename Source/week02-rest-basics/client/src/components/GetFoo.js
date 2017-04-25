@@ -20,10 +20,10 @@ class GetFoo extends Component {
         const that = this;
         fetch('/api/foo')
             .then(function (response) {
-                that.debug('GETONE-FETCH-ONE');
+                console.log('GETONE-FETCH-ONE');
                 return response.json();
             }).then(function (json) {
-            that.debug('GETONE-FETCH-TWO');
+            console.log('GETONE-FETCH-TWO');
             console.log('parsed json', json);
             that.setState(foo => (json));
         }).catch(function (ex) {
