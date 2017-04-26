@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import "../css/App.css";
-import "whatwg-fetch";
 import GetFoo from "./GetFoo";
 import SmallNumbers from "./SmallNumber/SmallNumbers";
+import GetUserInfo from "./GitGood/GetUserInfo";
 
 //fetch = require('./mocks/fetch').fetch(this); //uncomment for test
 
@@ -11,7 +11,7 @@ class App extends Component {
         super();
 
         this.quiet = false;
-        this.debug('App constructor called');
+        // this.debug('App constructor called');
 
     };
 
@@ -24,6 +24,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
+                <GetUserInfo/>
                 <GetFoo/>
                 <SmallNumbers/>
             </div>
