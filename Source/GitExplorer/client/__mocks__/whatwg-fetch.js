@@ -16,10 +16,17 @@ var fetch = function (url) {
         return objectState;
     };
 
-    console.log("FETCH STATER", objectState);
+    var quiet = true;
+    var debug = (message) => {
+        if (!quiet) {
+            console.log(message);
+        }
+    };
+
+    debug("FETCH STATER", objectState);
     return {
         then: function (func) {
-            console.log('FETCH TEST ONE', func(response));
+            debug('FETCH TEST ONE', func(response));
             return {
                 then: function (func) {
                     //func(JSON.stringify(stater));

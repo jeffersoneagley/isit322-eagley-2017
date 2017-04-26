@@ -9,6 +9,14 @@ describe('my basic rest test', function () {
         {name: 'foo', short: 'bar'}
 
     ];
+
+    // var quiet = true;
+    // var debug = (message) => {
+    //     if (!quiet) {
+    //         console.log(message);
+    //     }
+    // };
+
     simNames.forEach((val) => {
         val.upperName = val.name.charAt(0).toUpperCase() + val.name.slice(1);
     });
