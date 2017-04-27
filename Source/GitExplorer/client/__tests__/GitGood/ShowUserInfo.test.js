@@ -25,7 +25,7 @@ describe('Test suite for ShowUserInfo functionality', function () {
     });
 
     for (var item in data.nameList) {
-        it('Shows dummy user data', () => {
+        it('Shows dummy user\'s ' + item, () => {
             let result = false;
             const wrapper = mount(<ShowUserInfo
                 userReceived={data.gitUser}
