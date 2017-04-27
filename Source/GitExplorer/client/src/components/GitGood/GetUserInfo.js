@@ -1,9 +1,10 @@
 import React, {Component} from "react";
-import Paragraph from "../paragraph";
+import ShowUserInfo from "./ShowUserInfo";
+import Debug from "../Debug/Debug";
 
 class GetUserInfo extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             gitUser     : {},
@@ -15,16 +16,10 @@ class GetUserInfo extends Component {
             'display_name'
         ];
 
-        this.quiet = true;
-        // this.debug('GetUserInfo constructor called');
-        this.getUser();
+        this.debug = new Debug();
+        this.debug.speakUp();
     };
 
-    debug = (message) => {
-        if (!this.quiet) {
-            console.log(message);
-        }
-    };
 
     getUser = () => {
 
@@ -32,40 +27,34 @@ class GetUserInfo extends Component {
         fetch('/api/user')
             .then(function (response) {
                 // YOU WRITE IT
-                that.debug(response);
+                that.debug.log(response);
                 return response.json();
             }).then(function (json) {
             // DISPLAY WITH LOGGER AS NEEDED
-            that.debug('JSON recieved, saving state')
-            that.debug(json);
+            that.debug.log('JSON recieved, saving state')
+            that.debug.log(json);
             // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
-            var body = JSON.parse(json.body);
+            let body = JSON.parse(json.body);
             // var body = json.body;
-            that.debug('setting state');
-            that.debug(body)
+            that.debug.log('setting state');
+            that.debug.log(body);
             that.setState({gitUser: body, userReceived: true});
-            // that.debug('setting state: ' + JSON.stringify(json));
+            // that.debug.log('setting state: ' + JSON.stringify(json));
         }).catch(function (ex) {
             // DISPLAY WITH LOGGER
-            that.debug(ex);
+            that.debug.log(ex);
         });
     };
 
-    userRetrieved = () => {
-        if (this.state.userReceived) {
-            return <Paragraph stator={this.state.gitUser} nameList={this.nameList}/>;
-        } else {
-            return <p>No user data received yet</p>;
-        }
-    }
-
     render() {
-        this.debug('render getuserinfo');
+        this.debug.log('render getuserinfo');
         return (
-            <div >
-                <h3>GetUserInfo</h3>
-                {this.userRetrieved()}
-            </div>
+            <ShowUserInfo
+                userReceived={this.state.userReceived}
+                nameList={this.nameList}
+                gitUser={this.state.gitUser}
+                onGetUserButtonClicked={this.getUser}
+            />
         );
     };
 }

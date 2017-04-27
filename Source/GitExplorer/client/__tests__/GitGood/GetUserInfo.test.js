@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 // import Paragraph from "../src/components/paragraph";
-import mockData from "../__mocks__/mock-data";
-import GetUserInfo from "../src/components/GitGood/GetUserInfo";
+import mockData from "../../__mocks__/mock-data";
+import GetUserInfo from "../../src/components/GitGood/GetUserInfo";
 
 describe('Test suite for GetUserInfo functionality', function () {
     var simNames = JSON.parse(mockData('/api/user').body);
