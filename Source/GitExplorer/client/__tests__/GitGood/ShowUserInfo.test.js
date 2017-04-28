@@ -35,7 +35,7 @@ describe('Test suite for ShowUserInfo functionality', function () {
                     result = true;
                 }}
             />);
-
+            expect(wrapper.find(data.gitUser[data.nameList[item]]).count > 0).toEqual(true);
             expect(wrapper.find(data.nameList[item]).count > 0).toEqual(true);
         });
     }

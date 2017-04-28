@@ -7,7 +7,7 @@ import GetUserInfo from "../../src/components/GitGood/GetUserInfo";
 describe('Test suite for GetUserInfo functionality', function () {
     var simNames = JSON.parse(mockData('/api/user').body);
 
-    it('renders App without crashing', () => {
+    it('renders component without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<GetUserInfo />, div);
     });
