@@ -11,13 +11,13 @@ const types = ['paragraph', 'text'];
 
 export default [
     {
-        id    : 'login',
-        label : 'loginName',
+        id    : 'username',
+        label : 'username',
         type  : types[DEFAULT],
         sample: 'login-' + unknown
     }, {
-        id    : 'avatar_url',
-        label : 'Avatar Url',
+        id    : 'display_name',
+        label : 'display name',
         type  : types[DEFAULT],
         sample: 'ai' + unknown
     },
