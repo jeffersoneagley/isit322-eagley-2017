@@ -1,28 +1,31 @@
 import React, {Component} from "react";
 import ShowUserInfo from "./ShowUserInfo";
 import Debug from "../Debug/Debug";
+import fieldDefinitions from "./field-definitions";
 
 class GetUserInfo extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            gitUser     : {},
+            gitUser     : this.gitUserInit(),
             userReceived: false
         };
-
-        this.nameList = [
-            'username',
-            'display_name'
-        ];
 
         this.debug = new Debug();
         this.debug.speakUp();
     };
 
+    gitUserInit = () => {
+        const tempGitUser = {};
+        for (let value of fieldDefinitions) {
+            tempGitUser[value.id] = value.sample;
+        }
+        return tempGitUser;
+    }
 
-    getUser = () => {
-
+    getUser = (event) => {
+        event.preventDefault();
         const that = this;
         fetch('/api/user')
             .then(function (response) {
@@ -31,7 +34,7 @@ class GetUserInfo extends Component {
                 return response.json();
             }).then(function (json) {
             // DISPLAY WITH LOGGER AS NEEDED
-            that.debug.log('JSON recieved, saving state')
+            that.debug.log('JSON recieved, saving state');
             that.debug.log(json);
             // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
             let body = JSON.parse(json.body);
@@ -50,8 +53,7 @@ class GetUserInfo extends Component {
         this.debug.log('render getuserinfo');
         return (
             <ShowUserInfo
-                userReceived={this.state.userReceived}
-                nameList={this.nameList}
+                fields={fieldDefinitions}
                 gitUser={this.state.gitUser}
                 onGetUserButtonClicked={this.getUser}
             />

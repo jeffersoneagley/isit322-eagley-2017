@@ -1,30 +1,48 @@
 import React, {Component} from "react";
-import Paragraph from "../paragraph";
 import Debug from "../Debug/Debug";
+import ElfElements from "../Elf/ElfElement";
+const logger = new Debug(true);
 
 class ShowUserInfo extends Component {
     constructor(props) {
         super(props);
 
-        this.debug = new Debug();
+        logger.log('ShowUserInfo props.' + JSON.stringify(this.props.userData, null, 4));
     };
 
-    processUserData = () => {
-        if (this.props && this.props.userReceived) {
-            return <Paragraph stator={this.props.gitUser} nameList={this.props.nameList}/>;
-        } else {
-            return <p>No user data received yet</p>;
-        }
-    }
+    getForm = (field, index) => {
+        return (
+            <div className="ElfFormRow" key={field.id}>
+                <label className="ElfFormLabel" htmlFor={field.id}>{field.label}:</label>
+                <ElfElements {...field}
+                             value={this.props.gitUser[field.id]}
+                             onChange={this.props.onChange}
+                />
+            </div>
+        )
+    };
+
+
+    // processUserData = () => {
+    //     if (this.props && this.props.userReceived) {
+    //         return <Paragraph stator={this.props.gitUser} nameList={this.props.nameList}/>;
+    //     } else {
+    //         return <p>No user data received yet</p>;
+    //     }
+    // };
 
     render() {
-        this.debug.log('render getuserinfo');
+        logger.log('render getuserinfo');
         return (
-            <div >
-                <h3>GetUserInfo</h3>
-                {this.processUserData()}
+            <form className="Form">
+                <h3>ShowUserInfo</h3>
+                {
+                    this.props.fields.map((field, index) => {
+                        return this.getForm(field, index)
+                    })
+                }
                 <button onClick={this.props.onGetUserButtonClicked}>Get User</button>
-            </div>
+            </form>
         );
     };
 }

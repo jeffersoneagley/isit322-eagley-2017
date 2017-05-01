@@ -5,9 +5,9 @@ class debug {
         this.noisy = noisy;
     }
 
-    log = (message) => {
+    log = (message, message2 = '', message3 = '') => {
         if (this.noisy) {
-            console.log(message);
+            console.log(message, message2, message3);
         }
     };
 
@@ -17,6 +17,11 @@ class debug {
 
     speakUp = () => {
         this.noisy = true;
+    }
+
+    //added for compatibility with Charlie code
+    setQuiet = (newValue) => {
+        this.noisy = !newValue;
     }
 }
 export default debug;
