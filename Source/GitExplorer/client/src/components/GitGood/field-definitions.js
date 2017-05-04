@@ -3,7 +3,7 @@
  */
 
 /*eslint no-unused-vars: "off" */
-const unknown = 'unknown';
+const unknown = '-unknown';
 const PARAGRAPH = 0;
 const TEXT = 1;
 const DEFAULT = PARAGRAPH;
@@ -11,32 +11,32 @@ const types = ['paragraph', 'text'];
 
 export default [
     {
-        id    : 'username',
-        label : 'username',
+        id    : 'login',
+        label : 'loginName',
         type  : types[DEFAULT],
-        sample: 'login - ' + unknown
+        sample: 'login' + unknown
     }, {
-        id    : 'display_name',
-        label : 'display name',
+        id    : 'avatar_url',
+        label : 'Avatar Url',
         type  : types[DEFAULT],
-        sample: 'ai - ' + unknown
+        sample: 'ai' + unknown
     },
     {
         id    : 'url',
         label : 'Url',
         type  : types[DEFAULT],
-        sample: 'url - ' + unknown
+        sample: 'url' + unknown
     },
     {
         id    : 'html_url',
         label : 'HTML Url',
         type  : types[DEFAULT],
-        sample: 'htmlUrl - ' + unknown
+        sample: 'htmlUrl' + unknown
     },
     {
         id    : 'followers_url',
         label : 'Followers URL',
         type  : types[DEFAULT],
-        sample: 'followersUrl - ' + unknown
+        sample: 'followersUrl' + unknown
     }
 ]

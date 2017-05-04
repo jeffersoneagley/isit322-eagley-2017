@@ -24,18 +24,20 @@ function handleInputDataType(data) {
     }
 }
 
-function processObjectType(key, input) {
-    switch (typeof(input)) {
-        case 'number':
-            return
-    }
-}
-
 function processObjectToArray(input) {
+    // debug(input)
     var arr = [];
     for (var entry in input) {
-        if (input.hasOwnProperty(entry)) {
-            arr.push();
+        if (input.hasOwnProperty(entry) &&
+            input[entry] !== null) {
+            // debug(entry)
+            var currentEntry = Object.keys(input[entry]);
+            arr.push({
+                id    : currentEntry,
+                label : currentEntry + '-name',
+                type  : 'paragraph',
+                sample: currentEntry + '-unknown'
+            });
         }
     }
     return arr;
@@ -46,6 +48,7 @@ function handleInput(input) {
     debug(data);
     var arr = processObjectToArray(data);
     debug(arr);
+    console.log(arr)
 }
 
-readFile('bitbucket-user.json').then(handleInput, console.error);
+readFile('git-user.json').then(handleInput, console.error);

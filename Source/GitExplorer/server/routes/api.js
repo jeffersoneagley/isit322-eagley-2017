@@ -12,7 +12,8 @@ router.get('/foo', function (request, response, next) {
 // EXISTING CODE OMITTED HERE
 router.get('/user', function (req, res, next) {
     var options = {
-        url    : 'https://api.bitbucket.org/2.0/users/jeffersoneagley',
+        // url    : 'https://api.bitbucket.org/2.0/users/jeffersoneagley',
+        url    : 'https://api.github.com/users/charliecalvert',
         headers: {
             'User-Agent': 'request'
         }

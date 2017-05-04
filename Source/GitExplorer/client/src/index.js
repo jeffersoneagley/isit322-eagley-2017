@@ -1,13 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/App";
 import "./css/index.css";
-import Header from "./components/Header/Header";
+import Header from "./components/Header/ElfHeader";
 
 ReactDOM.render(
     <div>
         <Header/>
-        <App />
     </div>,
     document.getElementById('root')
 );

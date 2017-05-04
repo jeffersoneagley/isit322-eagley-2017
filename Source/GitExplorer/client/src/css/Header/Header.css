@@ -22,3 +22,27 @@
         transform: rotate(360deg);
     }
 }
+
+.elf-header-menu {
+    background-color: cyan;
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+.elf-header-menu > li {
+    float: left;
+}
+
+.elf-header-menu > li a {
+    color: white;
+    display: block;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.elf-header-menu > li a:hover {
+    background-color: royalblue;
+}
