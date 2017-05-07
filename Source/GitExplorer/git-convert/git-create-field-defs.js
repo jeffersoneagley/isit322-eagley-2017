@@ -1,7 +1,7 @@
-var debug = require('debug')('git-convert');
+let debug = require('debug')('git-convert');
 debug('this is a test');
 
-var fs = require("fs");
+let fs = require("fs");
 
 function readFile(fileName) {
     return new Promise(function (resolve, reject) {
@@ -12,8 +12,6 @@ function readFile(fileName) {
 }
 
 function handleInputDataType(data) {
-    debug('processing data inputted to json');
-    debug(typeof (data))
     switch (typeof (data)) {
         case "string":
             return JSON.parse(data);
@@ -24,30 +22,40 @@ function handleInputDataType(data) {
     }
 }
 
+function makeEntryFromDataType(entry, value) {
+    let result = {
+        id    : entry,
+        label : entry + '-name',
+        type  : 'paragraph',
+        sample: entry + '-unknown'
+    };
+    switch (typeof (value)) {
+        case 'datetime':
+            result.type = 'year';
+            break;
+        default:
+            result.type = 'paragraph';
+    }
+
+    return result;
+}
+
 function processObjectToArray(input) {
-    // debug(input)
-    var arr = [];
-    for (var entry in input) {
+    let arr = [];
+    for (let entry in input) {
         if (input.hasOwnProperty(entry) &&
             input[entry] !== null) {
-            // debug(entry)
-            var currentEntry = Object.keys(input[entry]);
-            arr.push({
-                id    : currentEntry,
-                label : currentEntry + '-name',
-                type  : 'paragraph',
-                sample: currentEntry + '-unknown'
-            });
+            let currentEntry = input[entry];
+            // debug(entry);
+            arr.push(makeEntryFromDataType(entry, currentEntry));
         }
     }
     return arr;
 }
 
 function handleInput(input) {
-    var data = handleInputDataType(input);
-    debug(data);
-    var arr = processObjectToArray(data);
-    debug(arr);
+    let data = handleInputDataType(input);
+    let arr = processObjectToArray(data);
     console.log(arr)
 }
 
