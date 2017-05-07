@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {mount} from "enzyme";
 // import Paragraph from "../src/components/paragraph";
 import mockData from "../../__mocks__/mock-data";
 import GetUserInfo from "../../src/components/GitGood/GetUserInfo";
-import ElfDebug from "../ElfDebug"
 
 describe('Test suite for GetUserInfo functionality', function () {
     var simNames = JSON.parse(mockData('/api/user').body);
@@ -11,6 +11,26 @@ describe('Test suite for GetUserInfo functionality', function () {
     it('renders component without crashing', () => {
         const div = document.createElement('div');
         ReactDOM.render(<GetUserInfo />, div);
+    });
+
+    function getDefault(id, value) {
+        it.only('Renders' + value + ' paragraph containing ' + value, () => {
+            const wrapper = mount(<GetUserInfo/>);
+            const testCase = <p className="ElfFormParagraph" id={id}>{value}</p>;
+            console.log(wrapper.find('[class=EfFormParagraph]'));
+            console.log('deeeeeeeeerppp');
+            expect(wrapper.containsMatchingElement(testCase)).toEqual(true);
+        })
+    }
+
+    it('Renders paragraph containing avatar_url', () => {
+        const wrapper = mount(<GetUserInfo/>);
+        const testCase = <p id="avatar_url" className="EflFormParagraph"/>
+        expect(wrapper.containsMatchingElement(testCase)).toEqual(true);
+    });
+
+    it('calls component render tests', () => {
+        getDefault('avatar_url', 'ai-unknown');
     });
 
 
