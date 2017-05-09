@@ -1,17 +1,18 @@
-var express = require('express');
-var router = express.Router();
-var request = require('request');
+let express = require('express');
+let router = express.Router();
+let request = require('request');
+let GistTest = require('./gist-test');
 
 /* GET home page. */
 router.get('/foo', function (request, response, next) {
-    var message = {'result': 'success', 'foo': 'bar', 'file': 'api.js'};
+    let message = {'result': 'success', 'foo': 'bar', 'file': 'api.js'};
     console.log('Foo called on server with message:', message);
     response.send(message);
 });
 
 // EXISTING CODE OMITTED HERE
 router.get('/user', function (req, res, next) {
-    var options = {
+    let options = {
         // url    : 'https://api.bitbucket.org/2.0/users/jeffersoneagley',
         url    : 'https://api.github.com/users/charliecalvert',
         headers: {
@@ -30,5 +31,11 @@ router.get('/user', function (req, res, next) {
     });
 
 });
+router.use('/git', GistTest);
+
+router.get('/', (request, response, next) => {
+    response.send('<p>this is an API</p>')
+});
+
 
 module.exports = router;
