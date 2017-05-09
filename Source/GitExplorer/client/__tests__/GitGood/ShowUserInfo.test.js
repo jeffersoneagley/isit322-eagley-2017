@@ -2,21 +2,27 @@ import React from "react";
 import ReactDOM from "react-dom";
 // import Paragraph from "../src/components/paragraph";
 import ShowUserInfo from "../../src/components/GitGood/ShowUserInfo";
-import {mount, shallow} from "enzyme";
+import {mount} from "enzyme";
+import fieldDefMocks from "../../__mocks__/mock-field-definitions";
 
 describe('Test suite for ShowUserInfo functionality', function () {
 
-    let data = {};
+    let fieldDefinitions = [];
+    let gitUser = {};
+
+    function gitUserInit() {
+        const tempGitUser = {};
+        for (let value of fieldDefinitions) {
+            if (fieldDefinitions.hasOwnProperty(value)) {
+                tempGitUser[value.id] = value.sample;
+            }
+        }
+        return tempGitUser;
+    };
 
     beforeEach(function () {
-        data = {
-            gitUser     : {
-                'username'    : 'testuser',
-                'display_name': 'Test User'
-            },
-            userReceived: true,
-            nameList    : ['username', 'display_name']
-        }
+        fieldDefinitions = fieldDefMocks;
+        gitUser = gitUserInit();
     });
 
     it('renders component without crashing', () => {
@@ -24,28 +30,27 @@ describe('Test suite for ShowUserInfo functionality', function () {
         ReactDOM.render(<ShowUserInfo />, div);
     });
 
-    for (var item in data.nameList) {
-        it('Shows dummy user\'s ' + item, () => {
-            let result = false;
-            const wrapper = mount(<ShowUserInfo
-                userReceived={data.gitUser}
-                nameList={data.nameList}
-                gitUser={data.gitUser}
-                onGetUserButtonClicked={function () {
-                    result = true;
-                }}
-            />);
-            expect(wrapper.find(data.gitUser[data.nameList[item]]).count > 0).toEqual(true);
-            expect(wrapper.find(data.nameList[item]).count > 0).toEqual(true);
-        });
-    }
+    // for (let item in data.nameList) {
+    //
+    //     it('Shows dummy user\'s ' + item, () => {
+    //         let result = false;
+    //         const wrapper = mount(<ShowUserInfo
+    //             fields={fieldDefinitions}
+    //             gitUser={gitUser}
+    //             onGetUserButtonClicked={function () {
+    //                 result = true;
+    //             }}
+    //         />);
+    //         expect(wrapper.find(data.gitUser[data.nameList[item]]).count > 0).toEqual(true);
+    //         expect(wrapper.find(data.nameList[item]).count > 0).toEqual(true);
+    //     });
+    // }
 
     it('simulates button click', () => {
         let result = false;
-        const wrapper = shallow(<ShowUserInfo
-            userReceived={data.gitUser}
-            nameList={data.nameList}
-            gitUser={data.gitUser}
+        const wrapper = mount(<ShowUserInfo
+            fields={fieldDefinitions}
+            gitUser={gitUser}
             onGetUserButtonClicked={function () {
                 result = true;
             }}
