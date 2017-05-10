@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Debug from "../Debug/Debug";
 import ElfElements from "../Elf/ElfElement";
-const logger = new Debug(true);
+const logger = new Debug(false);
 
 class ShowUserInfo extends Component {
     constructor(props) {
@@ -11,12 +11,12 @@ class ShowUserInfo extends Component {
     };
 
     getForm = (field, index) => {
-        logger.log(index, field)
+        logger.log(index, field);
         return (
             <div className="ElfFormRow" key={field.id}>
                 <label className="ElfFormLabel" htmlFor={field.id}>{field.label}:</label>
                 <ElfElements {...field}
-                             value={this.props.gitUser[field.id]}
+                             value={this.props.gitUser[field.id] || field.sample}
                              onChange={this.props.onChange}
                 />
             </div>
@@ -24,9 +24,9 @@ class ShowUserInfo extends Component {
     };
 
     fillFields = () => {
-        if (this.props.fields && this.props.fields.length > 0) {
-            logger.log('found fields ' + this.props.fields.length())
-            this.props.fields.map((field, index) => {
+        if (this.props.fields !== undefined) {
+            logger.log(typeof (this.props.fields));
+            return this.props.fields.map((field, index) => {
                 return this.getForm(field, index)
             })
         }
@@ -42,7 +42,7 @@ class ShowUserInfo extends Component {
         return (
             <form className="Form">
                 <h3>ShowUserInfo</h3>
-                {this.fillFields}
+                {this.fillFields()}
                 <button onClick={this.clickMe}>Get User</button>
             </form>
         );

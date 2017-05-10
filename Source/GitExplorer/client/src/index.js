@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./css/index.css";
-import Header from "./components/Header/ElfHeader";
+import DataMaven from "./components/DataMaven";
 
 ReactDOM.render(
     <div>
-        <Header/>
+        <DataMaven/>
     </div>,
     document.getElementById('root')
 );

@@ -32,6 +32,7 @@ let createGist = function (response) {
     }).catch((err) => {
         console.log(err);
         result = err;
+        response.status(500).send(err);
     });
 };
 

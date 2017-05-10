@@ -1,9 +1,14 @@
 import React, {Component} from "react";
-import ShowUserInfo from "./ShowUserInfo";
-import Debug from "../Debug/Debug";
-import fieldDefinitions from "./field-definitions";
+import Debug from "./Debug/Debug";
+import fieldDefinitions from "./GitGood/field-definitions";
+import GetFoo from "./GetFoo";
+import SmallNumbers from "./SmallNumber/SmallNumbers";
+import numbersInit from "./SmallNumber/numbers-data";
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import ElfHeader from "./Header/ElfHeader";
+import GetUserInfo from "./GitGood/GetUserInfo";
 
-class GetUserInfo extends Component {
+class DataMaven extends Component {
     constructor(props) {
         super(props);
 
@@ -78,13 +83,27 @@ class GetUserInfo extends Component {
     render() {
         this.debug.log('render getuserinfo');
         return (
-            <ShowUserInfo
-                fields={fieldDefinitions}
-                gitUser={this.state.gitUser}
-                onGetUserButtonClicked={this.getUser}
-            />
+            <div className="App">
+                <Router>
+                    <div>
+                        <ElfHeader/>
+                        <Route exact path="/" render={(props) => (
+                            <GetUserInfo {...props}
+                                         gitUser={this.state.gitUser}
+                                         fieldDefinitions={fieldDefinitions}
+                                         getUser={this.getUser}
+                            />
+                        )}/>
+                        <Route exact path="/get-foo" component={GetFoo}/>
+                        <Route path="/get-numbers" render={(props) => (
+                            <SmallNumbers {...props} numbers={numbersInit}/>
+                        )}/>
+                    </div>
+                </Router>
+            </div>
         );
     };
 }
+//<Route exact path="/" component={GetUserInfo}/>
 
-export default GetUserInfo;
+export default DataMaven;

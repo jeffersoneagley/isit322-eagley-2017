@@ -34,7 +34,7 @@ router.get('/user', function (req, res, next) {
 router.use('/git', GistTest);
 
 router.get('/', (request, response, next) => {
-    response.send('<p>this is an API</p>')
+    response.status(200).send('<p>this is an API</p>')
 });
 
 
