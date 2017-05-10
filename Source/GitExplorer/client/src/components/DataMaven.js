@@ -91,7 +91,7 @@ class DataMaven extends Component {
                             <GetUserInfo {...props}
                                          gitUser={this.state.gitUser}
                                          fieldDefinitions={fieldDefinitions}
-                                         getUser={this.getUser}
+                                         onGetUserButtonClicked={this.getUser}
                             />
                         )}/>
                         <Route exact path="/get-foo" component={GetFoo}/>

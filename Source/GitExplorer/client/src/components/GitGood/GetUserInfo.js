@@ -56,7 +56,7 @@ class GetUserInfo extends Component {
             <ShowUserInfo
                 fields={this.props.fieldDefinitions}
                 gitUser={this.props.gitUser}
-                onGetUserButtonClicked={this.props.getUser}
+                onGetUserButtonClicked={this.props.onGetUserButtonClicked}
             />
         );
     };

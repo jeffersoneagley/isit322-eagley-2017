@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 // import Paragraph from "../src/components/paragraph";
 import ShowUserInfo from "../../src/components/GitGood/ShowUserInfo";
-import {mount} from "enzyme";
 import fieldDefMocks from "../../__mocks__/mock-field-definitions";
+import {mount} from "enzyme";
 
 describe('Test suite for ShowUserInfo functionality', function () {
 
