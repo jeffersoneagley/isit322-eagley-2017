@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Debug from "./Debug/Debug";
-import fieldDefinitions from "./GitGood/field-definitions";
+// import fieldDefinitions from "./GitGood/field-definitions";
+import fieldGenerator from "./GitGood/GitFieldGenerator";
 import GetFoo from "./GetFoo";
 import GetGist from "./GitGood/Gist/GetGist";
 import SmallNumbers from "./SmallNumber/SmallNumbers";
@@ -14,22 +15,22 @@ class DataMaven extends Component {
         super(props);
 
         this.state = {
-            gitUser     : this.gitUserInit(),
-            gitGist     : {},
-            userReceived: false
+            fieldDefinitions: [],
+            gitUser         : [],
+            gitGist         : {},
+            userReceived    : false
         };
-
         this.debug = new Debug();
         this.debug.speakUp();
     };
 
-    gitUserInit = () => {
-        const tempGitUser = {};
-        for (let value of fieldDefinitions) {
-            tempGitUser[value.id] = value.sample;
-        }
-        return tempGitUser;
-    };
+    // gitUserInit = () => {
+    //     const tempGitUser = {};
+    //     for (let value of fieldDefinitions) {
+    //         tempGitUser[value.id] = value.sample;
+    //     }
+    //     return tempGitUser;
+    // };
 
     getUser = (event) => {
         event.preventDefault();
@@ -48,7 +49,9 @@ class DataMaven extends Component {
             // var body = json.body;
             that.debug.log('setting state');
             that.debug.log(body);
-            that.setState({gitUser: body, userReceived: true});
+
+            let fields = fieldGenerator.GetFields(body);
+            that.setState({gitUser: body, userReceived: true, fieldDefinitions: fields});
             // that.debug.log('setting state: ' + JSON.stringify(json));
         }).catch(function (ex) {
             // DISPLAY WITH LOGGER
@@ -69,11 +72,9 @@ class DataMaven extends Component {
             that.debug.log('JSON recieved, saving state');
             that.debug.log(json);
             // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
-            let body = JSON.parse(json.body);
+            let body = typeof (json) === 'string' ? JSON.parse(json) : json;
             // var body = json.body;
-            that.debug.log('setting state');
-            that.debug.log(body);
-            that.setState({gitUser: body, userReceived: true});
+            that.setState({gitGist: body});
             // that.debug.log('setting state: ' + JSON.stringify(json));
         }).catch(function (ex) {
             // DISPLAY WITH LOGGER
@@ -91,7 +92,7 @@ class DataMaven extends Component {
                         <Route exact path="/" render={(props) => (
                             <GetUserInfo {...props}
                                          gitUser={this.state.gitUser}
-                                         fieldDefinitions={fieldDefinitions}
+                                         fieldDefinitions={this.state.fieldDefinitions}
                                          onGetUserButtonClicked={this.getUser}
                             />
                         )}/>
@@ -99,7 +100,12 @@ class DataMaven extends Component {
                         <Route path="/get-numbers" render={(props) => (
                             <SmallNumbers {...props} numbers={numbersInit}/>
                         )}/>
-                        <Route exact path="/get-gist" component={GetGist}/>
+                        <Route exact path="/get-gist" render={(props) => (
+                            <GetGist {...props}
+                                     onGetUserButtonClicked={this.getGist}
+                                     gitGist={this.state.gitGist || 'no gists'}
+                            />
+                        )}/>
                     </div>
                 </Router>
             </div>
