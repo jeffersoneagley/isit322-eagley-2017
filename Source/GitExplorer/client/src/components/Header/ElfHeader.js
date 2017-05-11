@@ -14,6 +14,7 @@ class ElfHeader extends Component {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/get-foo">BarFoo</Link></li>
                     <li><Link to="/get-numbers">Numbers</Link></li>
+                    <li><Link to="/get-gist">Numbers</Link></li>
                 </ul>
 
                 <img src={logo} className="App-logo" alt="logo"/>

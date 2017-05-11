@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Debug from "./Debug/Debug";
 import fieldDefinitions from "./GitGood/field-definitions";
 import GetFoo from "./GetFoo";
+import GetGist from "./GitGood/Gist/GetGist";
 import SmallNumbers from "./SmallNumber/SmallNumbers";
 import numbersInit from "./SmallNumber/numbers-data";
 import {BrowserRouter as Router, Route} from "react-router-dom";
@@ -98,6 +99,7 @@ class DataMaven extends Component {
                         <Route path="/get-numbers" render={(props) => (
                             <SmallNumbers {...props} numbers={numbersInit}/>
                         )}/>
+                        <Route exact path="/get-gist" component={GetGist}/>
                     </div>
                 </Router>
             </div>
