@@ -27,7 +27,7 @@ class ParagraphButtonPanel extends Component {
         </div>;
         console.log(buttons);
         return myRoot;
-    }
+    };
 
     render() {
         return this.makeButtonPanel();

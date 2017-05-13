@@ -60,7 +60,7 @@ class SmallNumbers extends Component {
             <button id="buttonEight" onClick={this.getEight}>GetEight</button>,
             <button id="buttonNine" onClick={this.getNine}>GetNine</button>
         ];
-    }
+    };
 
     render() {
         return (
