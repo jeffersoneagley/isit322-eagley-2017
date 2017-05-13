@@ -12,7 +12,7 @@ class ElfHeader extends Component {
             <div className="App-header">
                 <ElfHeaderMenu/>
                 <img src={logo} className="App-logo" alt="logo"/>
-                <h2>Welcome to Jefferson's React site</h2>
+                <h2>Welcome to Jefferson's Git Explorer</h2>
             </div>
         );
     }
