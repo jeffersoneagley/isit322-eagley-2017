@@ -26,10 +26,13 @@ class GetGist extends Component {
             <form className="Form">
                 <h3>Git gist</h3>
                 <p>
-                    url: {this.props.gitGist.url}
+                    url: {this.props.newGist.url || ''}
                 </p>
                 <p>
-                    desc: {this.props.gitGist.description}
+                    desc: {this.props.newGist.description || ''}
+                </p>
+                <p>
+                    {this.props.newGist.files || ''}
                 </p>
                 <button onClick={this.clickMe}>Create Gist</button>
             </form>

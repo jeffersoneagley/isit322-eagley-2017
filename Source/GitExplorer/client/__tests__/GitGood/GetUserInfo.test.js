@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {mount} from "enzyme";
 // import Paragraph from "../src/components/paragraph";
-import mockData from "../../__mocks__/mock-data";
 import GetUserInfo from "../../src/components/GitGood/GetUserInfo";
 import fieldDefMocks from "../../__mocks__/mock-field-definitions";
 
@@ -26,7 +25,7 @@ describe('Test suite for GetUserInfo functionality', function () {
     });
 
 
-    let simNames = JSON.parse(mockData('/api/user').body);
+    // let simNames = JSON.parse(mockData('/api/user').body);
 
     it('renders component without crashing', () => {
         const div = document.createElement('div');

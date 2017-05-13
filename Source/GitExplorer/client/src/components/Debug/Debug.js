@@ -13,11 +13,11 @@ class debug {
 
     shutUp = () => {
         this.noisy = false;
-    }
+    };
 
     speakUp = () => {
         this.noisy = true;
-    }
+    };
 
     //added for compatibility with Charlie code
     setQuiet = (newValue) => {

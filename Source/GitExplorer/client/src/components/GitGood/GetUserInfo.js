@@ -8,7 +8,7 @@ class GetUserInfo extends Component {
 
         // this.state = {
         //     gitUser     : this.gitUserInit(),
-        //     gitGist     : {},
+        //     newGist     : {},
         //     userReceived: false
         // };
 

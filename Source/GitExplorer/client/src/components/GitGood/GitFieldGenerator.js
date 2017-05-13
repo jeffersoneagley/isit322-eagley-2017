@@ -3,11 +3,12 @@
 class GitFieldGenerator {
 
     constructor() {
-        let GetFields = function (input) {
-            let data = this.handleInputDataType(input);
-            let arr = this.processObjectToArray(data);
-            return arr;
-        };
+        this.getFields = this.getFields.bind(this);
+        // this.getFields = function (input) {
+        //     let data = this.handleInputDataType(input);
+        //     let arr = this.processObjectToArray(data);
+        //     return arr;
+        // };
     }
 
     handleInputDataType = (data) => {
@@ -52,11 +53,16 @@ class GitFieldGenerator {
         return arr;
     };
 
-    // getFields = (input) => {
-    //     let data = this.handleInputDataType(input);
-    //     let arr = this.processObjectToArray(data);
-    //     return arr;
-    // };
+    /**
+     * Feed this a git url so that it can generate field defintions on the fly
+     * @param input {object} git data
+     * @return {array} returns an array of field definitions
+     */
+    getFields = (input) => {
+        let data = this.handleInputDataType(input);
+        let arr = this.processObjectToArray(data);
+        return arr;
+    };
 }
 
 export default GitFieldGenerator;

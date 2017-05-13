@@ -12,7 +12,6 @@ let gh = new GitHub();
 
 let createGist = function (response) {
     let gist = gh.getGist(); // not a gist yet
-    let result = {};
     gist.create({
         public     : true,
         description: 'My first gist',
@@ -31,9 +30,40 @@ let createGist = function (response) {
         response.status(200).send(retrievedGist);
     }).catch((err) => {
         console.log(err);
-        result = err;
         response.status(500).send(err);
     });
+};
+
+let getGistList = function (response) {
+    gh.getUser().listGists()
+        .then(function ({data}) {
+            // Promises!
+            response.status(200).send(data);
+        }).catch((err) => {
+        console.log(err);
+        response.status(500).send(err);
+    });
+};
+
+let getGistById = function (request, response) {
+    try {
+        if (request.body.id !== undefined) {
+            console.log(request.body.id);
+            gh.getGist(request.body.id).read().then( function ({data}) {
+                console.log(data);
+                response.status(200).send(data)
+                }
+            ).catch((err) => {
+                console.log(err);
+                response.status(500).send(err);
+            })
+
+        } else {
+            response.status(401).send('invalid data')
+        }
+    } catch (exc) {
+        console.log(exc);
+    }
 };
 
 // basic auth
@@ -53,9 +83,22 @@ let getGitHub = function () {
     return ghres;
 };
 
+router.get('/gistList', (request, response, next) => {
+    console.log('gistList requested on server');
+    gh = getGitHub();
+    getGistList(response);
+});
+
+router.post('/getGistHeaderById', (request, response, next) => {
+    console.log('getGistHeaderById requested on server');
+    console.log(request.body);
+    gh = getGitHub();
+    getGistById(request, response)
+});
+
 router.get('/createGist', function (request, response, next) {
     // let message = {'result': 'success', 'foo': 'bar', 'file': 'api.js'};
-    console.log('createGist called on server with');
+    console.log('createGist called on server');
     gh = getGitHub();
     createGist(response);
     // response.status(200).send(gistResult);

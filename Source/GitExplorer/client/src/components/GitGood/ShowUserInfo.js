@@ -1,7 +1,11 @@
 import React, {Component} from "react";
 import Debug from "../Debug/Debug";
 import ElfElements from "../Elf/ElfElement";
+import GitFieldGenerator from "./GitFieldGenerator";
+
+const gitFieldGenerator = new GitFieldGenerator();
 const logger = new Debug(false);
+let fieldDefinitions = [];
 /**
  * A component for display of a git user's info
  */
@@ -39,9 +43,10 @@ class ShowUserInfo extends Component {
      * calls getform for each field passed
      */
     fillFields = () => {
-        if (this.props.fields !== undefined) {
-            logger.log(typeof (this.props.fields));
-            return this.props.fields.map((field, index) => {
+        fieldDefinitions = gitFieldGenerator.getFields(this.props.gitUser);
+        if (fieldDefinitions !== undefined) {
+            logger.log(typeof (fieldDefinitions));
+            return fieldDefinitions.map((field, index) => {
                 return this.getForm(field, index)
             })
         }

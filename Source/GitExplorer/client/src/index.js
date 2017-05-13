@@ -4,8 +4,6 @@ import "./css/index.css";
 import DataMaven from "./components/DataMaven";
 
 ReactDOM.render(
-    <div>
-        <DataMaven/>
-    </div>,
+    <DataMaven/>,
     document.getElementById('root')
 );

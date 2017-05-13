@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 let request = require('request');
-let GistTest = require('./gist-test');
+let GistTest = require('./api-git');
 
 /* GET home page. */
 router.get('/foo', function (request, response, next) {
