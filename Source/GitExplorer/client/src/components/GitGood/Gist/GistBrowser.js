@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import Debug from "../../Debug/Debug";
-import GetGist from "./GetGist";
+import GetGist from "./GistNew";
 import GistList from "./GistList";
+import GistView from "./GistView";
 const logger = new Debug(false);
 /**
  * A component for display of a git user's info
@@ -17,7 +18,7 @@ class GistBrowser extends Component {
         logger.log('render GetGist');
         return (
             <div>
-
+                <GistView {...this.props} />
                 <GetGist {...this.props}
                          onGetUserButtonClicked={function (e) {
                              this.props.getGist(e);

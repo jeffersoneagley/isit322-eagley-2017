@@ -2,23 +2,9 @@ import React, {Component} from "react";
 import Debug from "../../Debug/Debug";
 const logger = new Debug(false);
 /**
- * A component for display of a git user's info
+ * A component for display of a single gist
  */
-class GetGist extends Component {
-    /**
-     * Make a new ShowUserInfo object
-     * @param props: expects onGetUserButtonClicked, fieldDefinitions, & gitUser state
-     */
-    constructor(props) {
-        super(props);
-
-        logger.log('GetGist props.' + JSON.stringify(this.props, null, 4));
-    };
-
-    clickMe = (event) => {
-        console.log('clicked');
-        this.props.onGetUserButtonClicked(event);
-    };
+class GistView extends Component {
 
     render() {
         logger.log('render GetGist');
@@ -34,10 +20,9 @@ class GetGist extends Component {
                 <p>
                     {this.props.newGist.files || ''}
                 </p>
-                <button onClick={this.clickMe}>Create Gist</button>
             </form>
         );
     };
 }
 
-export default GetGist;
+export default GistView;
