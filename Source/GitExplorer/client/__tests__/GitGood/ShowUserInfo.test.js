@@ -1,11 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 // import Paragraph from "../src/components/paragraph";
-import ShowUserInfo from "../../src/components/GitGood/ShowUserInfo";
-import fieldDefMocks from "../../__mocks__/mock-field-definitions";
-import {mount} from "enzyme";
+import ShowUserInfo from '../../src/components/GitGood/ShowUserInfo';
+import fieldDefMocks from '../../__mocks__/mock-field-definitions';
+import {mount} from 'enzyme';
 
-describe('Test suite for ShowUserInfo functionality', function () {
+describe('Test suite for ShowUserInfo functionality', function() {
 
     let fieldDefinitions = [];
     let gitUser = {};
@@ -20,7 +20,7 @@ describe('Test suite for ShowUserInfo functionality', function () {
         return tempGitUser;
     };
 
-    beforeEach(function () {
+    beforeEach(function() {
         fieldDefinitions = fieldDefMocks;
         gitUser = gitUserInit();
     });
@@ -51,7 +51,7 @@ describe('Test suite for ShowUserInfo functionality', function () {
         const wrapper = mount(<ShowUserInfo
             fields={fieldDefinitions}
             gitUser={gitUser}
-            onGetUserButtonClicked={function () {
+            onGetUserButtonClicked={function() {
                 result = true;
             }}
         />);

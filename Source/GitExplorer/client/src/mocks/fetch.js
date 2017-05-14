@@ -3,20 +3,20 @@
  */
 
 var fetch = function(_this) {
-  _this.setState({foo: 'bar'});
-  return {
-    then: function() {
-      return {
+    _this.setState({foo: 'bar'});
+    return {
         then: function() {
-          return {
-            catch: function() {
+            return {
+                then: function() {
+                    return {
+                        catch: function() {
 
-            },
-          };
+                        },
+                    };
+                },
+            };
         },
-      };
-    },
-  };
+    };
 };
 
 module.exports.fetch = fetch;

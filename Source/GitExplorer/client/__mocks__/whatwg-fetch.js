@@ -1,18 +1,18 @@
 /**
  * Created by fish on 4/18/17.
  */
-import getData from "./mock-data";
+import getData from './mock-data';
 
 'use strict';
 
 const whatwgFetch = jest.genMockFromModule('whatwg-fetch');
 
-var fetch = function (url) {
+var fetch = function(url) {
 
     var objectState = getData(url);
 
     var response = {};
-    response.json = function () {
+    response.json = function() {
         return objectState;
     };
 
@@ -23,23 +23,23 @@ var fetch = function (url) {
         }
     };
 
-    debug("FETCH STATER", objectState);
+    debug('FETCH STATER', objectState);
     return {
-        then: function (func) {
+        then: function(func) {
             debug('FETCH TEST ONE', func(response));
             return {
-                then: function (func) {
+                then: function(func) {
                     //func(JSON.stringify(stater));
                     func(objectState);
                     return {
-                        catch: function () {
+                        catch: function() {
 
                         }
-                    }
+                    };
                 }
-            }
+            };
         }
-    }
+    };
 };
 
 whatwgFetch.fetch = fetch;

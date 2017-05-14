@@ -1,7 +1,20 @@
 {
+  "preset": "google",
+  "validateIndentation": 4,
   "excludeFiles": [
     "**/node_modules/**",
     "**/build/**",
+    ".git/**",
+    "**/config/**",
+    "**/scripts/**",
+    "**/bower_components/**",
+    "**/field-definitions.js",
+    "**/mock-user-info.js",
+    "package.json",
+    "www",
+    "*.md",
     "*.svg"
-  ]
+  ],
+  "requireCamelCaseOrUpperCaseIdentifiers": false,
+  "maximumLineLength": 120
 }

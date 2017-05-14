@@ -6,15 +6,15 @@ import ElfHeaderMenu from './ElfHeaderMenu';
 
 class ElfHeader extends Component {
 
-  render() {
-    return (
-        <div className='App-header'>
+    render() {
+        return (
+            <div className='App-header'>
           <ElfHeaderMenu/>
           <img src={logo} className='App-logo' alt='logo'/>
           <h2>Welcome to Jefferson's Git Explorer</h2>
         </div>
-    );
-  }
+        );
+    }
 }
 
 export default ElfHeader;

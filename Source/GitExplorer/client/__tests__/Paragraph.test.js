@@ -1,8 +1,8 @@
-import React from "react";
-import {shallow} from "enzyme";
-import Paragraph from "../src/components/paragraph";
+import React from 'react';
+import {shallow} from 'enzyme';
+import Paragraph from '../src/components/paragraph';
 
-describe('Test suite for Paragraph component', function () {
+describe('Test suite for Paragraph component', function() {
 
     const testCases = {
         standard: {
@@ -10,8 +10,8 @@ describe('Test suite for Paragraph component', function () {
                 'foo',
                 'derp'
             ],
-            state   : {
-                'foo' : 'bar',
+            state: {
+                'foo': 'bar',
                 'derp': 'herp'
             }
         }

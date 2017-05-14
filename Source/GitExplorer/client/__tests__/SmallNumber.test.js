@@ -1,9 +1,9 @@
-import React from "react";
-import {shallow} from "enzyme";
-import Paragraph from "../src/components/paragraph";
-import SmallNumbers from "../src/components/SmallNumber/SmallNumbers";
+import React from 'react';
+import {shallow} from 'enzyme';
+import Paragraph from '../src/components/paragraph';
+import SmallNumbers from '../src/components/SmallNumber/SmallNumbers';
 
-describe('Checking for functionality per SmallNumber assignment', function () {
+describe('Checking for functionality per SmallNumber assignment', function() {
     var simNames = [
         {name: 'one', short: '1'},
         {name: 'two', short: '2'},
@@ -20,14 +20,14 @@ describe('Checking for functionality per SmallNumber assignment', function () {
     });
 
     var doGetTest = (val) => {
-        it('renders get' + val.upperName + " button click message", () => {
+        it('renders get' + val.upperName + ' button click message', () => {
             const wrapper = shallow(<SmallNumbers />);
             wrapper.find('#button' + val.upperName).simulate('click');
             const para = wrapper.find(Paragraph).dive();
 
             expect(para.find('#para' + val.name).contains(val.name)).toEqual(true);
             expect(para.find('#para' + val.name).contains(val.short)).toEqual(true);
-        })
+        });
     };
 
     simNames.forEach((val) => {
