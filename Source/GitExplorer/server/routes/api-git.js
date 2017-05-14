@@ -13,9 +13,9 @@ let gh = new GitHub();
 let createGist = function(response) {
     let gist = gh.getGist(); // not a gist yet
     gist.create({
-        public: true,
+        public     : true,
         description: 'My first gist',
-        files: {
+        files      : {
             'file1.txt': {
                 content: 'Aren\'t gists great!',
             },
@@ -47,10 +47,9 @@ let getGistById = function(request, response) {
         if (request.body.id !== undefined) {
             console.log(request.body.id);
             gh.getGist(request.body.id).read().then(function({data}) {
-                    console.log(data);
-                    response.status(200).send(data);
-                },
-            ).catch((err) => {
+                console.log(data);
+                response.status(200).send(data);
+            }).catch((err) => {
                 console.log(err);
                 response.status(500).send(err);
             });
@@ -69,7 +68,7 @@ let getGitHub = function() {
     if (process.env.GITHUB_TOKEN !== '') {
         ghres = new GitHub({
             username: 'jefferson.eagley@gmail.com',
-            token: process.env.GITHUB_TOKEN,
+            token   : process.env.GITHUB_TOKEN,
         });
     } else {
         ghres = new GitHub({
