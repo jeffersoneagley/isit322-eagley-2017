@@ -22,6 +22,8 @@ Main Issues:
 - You autogenerate the **form** controls with **ElfElements**.
 - In **SmallNumbers**, you provide a view of 9 numbers. Good.
 
+I don't understand what advantage you get from the **Source** directory at the root of your repository. It's not a big issue, but it does make my life just slightly more complicated. 
+
 You have properly refactored your code into the following files or something similar:
 
 - ElfElements.js
@@ -96,8 +98,8 @@ I provide a link to the comments, but if you can't find them, just go to your on
 
 ## Comment Location
 
-My comments are here:
+My comments would be in your repository, but you have not given me write permissions to it:
 
 
 
-And also attached, but easier to read through the above link to your repository.
+And also attached, but easier to read if I could put in your repository.
