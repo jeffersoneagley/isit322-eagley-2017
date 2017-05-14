@@ -56,21 +56,20 @@ describe('Test suite for GetUserInfo functionality', function() {
           expect(wrapper.find('[htmlFor=\"' + id + '\"]').text()).
               toEqual(value.label + ':');
         });
-
-        it('simulates button click', () => {
-          let result = false;
-          const wrapper = mount(<GetUserInfo
-              fields={fieldDefinitions}
-              gitUser={gitUser}
-              onGetUserButtonClicked={function() {
-                result = true;
-              }}
-          />);
-          wrapper.find('button').simulate('click');
-          expect(result).toEqual(true);
-        });
       }
 
+      it('simulates button click', () => {
+        let result = false;
+        const wrapper = mount(<GetUserInfo
+            fields={fieldDefinitions}
+            gitUser={gitUser}
+            onGetUserButtonClicked={function() {
+              result = true;
+            }}
+        />);
+        wrapper.find('button').simulate('click');
+        expect(result).toEqual(true);
+      });
       function runAllTestsOnGitUserFields() {
         for (let field in fieldDefMocks) {
           runTestCycleOnValue(fieldDefMocks[field].id, fieldDefMocks[field]);
