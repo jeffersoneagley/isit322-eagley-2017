@@ -77,7 +77,7 @@ describe('Test suite for GetUserInfo functionality', function() {
       }
 
       runAllTestsOnGitUserFields();
-// runTestCycleOnValue('company', 'company-unknown');
+      // runTestCycleOnValue('company', 'company-unknown');
     },
 )
 ;
