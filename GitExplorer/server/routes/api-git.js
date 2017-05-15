@@ -10,16 +10,18 @@ let GitHub = require('github-api');
 // unauthenticated client
 let gh = new GitHub();
 
-let createGist = function(response) {
+let checkIsObject = function(input) {
+    return typeof (input) === 'string' ? JSON.parse(input) : input;
+};
+
+let createGist = function(request, response) {
+    let docs = checkIsObject(request.body.docs);
+    let desc = checkIsObject(request.body.doc);
     let gist = gh.getGist(); // not a gist yet
     gist.create({
-        public     : true,
-        description: 'My first gist',
-        files      : {
-            'file1.txt': {
-                content: 'Aren\'t gists great!',
-            },
-        },
+        public: true,
+        description: desc || 'My new gist',
+        files: docs,
     }).then(function({data}) {
         // Promises!
         return gist.read();
@@ -68,7 +70,7 @@ let getGitHub = function() {
     if (process.env.GITHUB_TOKEN !== '') {
         ghres = new GitHub({
             username: 'jefferson.eagley@gmail.com',
-            token   : process.env.GITHUB_TOKEN,
+            token: process.env.GITHUB_TOKEN,
         });
     } else {
         ghres = new GitHub({
@@ -92,11 +94,11 @@ router.post('/getGistHeaderById', (request, response, next) => {
     getGistById(request, response);
 });
 
-router.get('/createGist', function(request, response, next) {
-    // let message = {'result': 'success', 'foo': 'bar', 'file': 'api.js'};
+router.post('/createGist', function(request, response, next) {
     console.log('createGist called on server');
+    console.log(request.body);
     gh = getGitHub();
-    createGist(response);
+    createGist(request, response);
     // response.status(200).send(gistResult);
 
 });
