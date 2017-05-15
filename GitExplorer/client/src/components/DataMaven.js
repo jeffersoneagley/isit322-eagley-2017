@@ -25,18 +25,11 @@ class DataMaven extends Component {
             },
             userReceived: false,
         };
+        this.gistListUpdateTime = Date.now();
+
         this.debug = new Debug();
         this.debug.speakUp();
-        this.getGistList();
     };
-
-    // gitUserInit = () => {
-    //     const tempGitUser = {};
-    //     for (let value of fieldDefinitions) {
-    //         tempGitUser[value.id] = value.sample;
-    //     }
-    //     return tempGitUser;
-    // };
 
     getUser = (event) => {
         event.preventDefault();
@@ -148,6 +141,13 @@ class DataMaven extends Component {
         });
     };
 
+    checkGistList = () => {
+        if (Date.now() > this.gistListUpdateTime) {
+            this.gistListUpdateTime = Date.now() + 60000;
+            this.getGistList();
+        }
+    };
+
     render() {
         this.debug.log('render getuserinfo');
         return (
@@ -166,15 +166,22 @@ class DataMaven extends Component {
                         <Route path="/get-numbers" render={(props) => (
                             <SmallNumbers {...props} numbers={numbersInit}/>
                         )}/>
-                        <Route exact path="/get-gist" render={(props) => (
-                            <GistBrowser {...props}
-                                         onGetUserButtonClicked={this.getGist}
-                                         gistData={this.state.gistData}
-                                         newGist={this.state.newGist}
-                                         getGistList={this.getGistList}
-                                         getGistHeaderById={this.getGistHeaderById}
-                            />
-                        )}/>
+                        <Route exact path="/get-gist"
+                               render=
+                                   {
+                                       (props) => {
+                                           this.checkGistList();
+                                           return (
+                                               <GistBrowser {...props}
+                                                            onGetUserButtonClicked={this.getGist}
+                                                            gistData={this.state.gistData}
+                                                            newGist={this.state.newGist}
+                                                            getGistList={this.getGistList}
+                                                            getGistHeaderById={this.getGistHeaderById}
+                                               />
+                                           );
+                                       }
+                                   }/>
                     </div>
                 </Router>
             </div>
