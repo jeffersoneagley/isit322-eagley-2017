@@ -5,10 +5,22 @@ const logger = new Debug(false);
  * A component for entering a new gist
  */
 class GetGist extends Component {
+    constructor(props) {
+        super(props);
+        this.formElements = {
+            gistContent: 'gists are great',
+            gistTitle: 'new gist.txt',
+            gistDescription: 'a gist made from GitExplorer',
+        };
+    }
 
     clickMe = (event) => {
         console.log('clicked');
-        this.props.onGetUserButtonClicked(event);
+        let docs = {};
+        docs[this.formElements.gistTitle] = {
+            'content': this.formElements.gistContent,
+        };
+        this.props.onCreateGist(event, docs, this.formElements.gistDescription);
     };
 
     render() {
@@ -16,6 +28,27 @@ class GetGist extends Component {
         return (
             <form className="Form">
                 <h3>Create gist</h3>
+                <label >Title</label>
+                <input id="#newGistTitle" type="text"
+                       defaultValue={this.formElements.gistTitle}
+                       onChange={(value) => {
+                           this.formElements.gistTitle = value;
+                       }}
+                />
+                <label >Description</label>
+                <input id="#newGistDescription" type="text"
+                       defaultValue={this.formElements.gistDescription}
+                       onChange={(value) => {
+                           this.formElements.gistDescription = value;
+                       }}
+                />
+                <label >Content</label>
+                <input id="#newGistContent" type="text"
+                       defaultValue={this.formElements.gistContent}
+                       onChange={(value) => {
+                           this.formElements.gistContent = value;
+                       }}
+                />
                 <button onClick={this.clickMe}>Create Gist</button>
             </form>
         );

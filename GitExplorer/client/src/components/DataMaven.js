@@ -20,12 +20,15 @@ class DataMaven extends Component {
             fieldDefinitions: [],
             gitUser: [],
             newGist: {},
+            history: {},
             gistData: {
                 gistList: {},
             },
             userReceived: false,
         };
         this.gistListUpdateTime = Date.now();
+
+        this.onCreateGist = this.onCreateGist.bind(this);
 
         this.debug = new Debug();
         this.debug.speakUp();
@@ -57,12 +60,27 @@ class DataMaven extends Component {
         });
     };
 
-    getGist = (event) => {
+    onCreateGist = (event, docs, desc) => {
+        console.log('onCreateGist called');
+        console.log(docs, desc);
         if (event !== undefined) {
             event.preventDefault();
         }
+        let body = {
+            desc: desc,
+            docs: docs,
+        };
         const that = this;
-        fetch('/api/git/createGist').then(function(response) {
+        fetch('/api/git/createGist', {
+            method: 'POST',
+            body: JSON.stringify(
+                body,
+            ),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'same-origin',
+        }).then(function(response) {
             // YOU WRITE IT
             that.debug.log(response);
             return response.json();
@@ -152,7 +170,7 @@ class DataMaven extends Component {
         this.debug.log('render getuserinfo');
         return (
             <div className="App">
-                <Router>
+                <Router history={this.state.history}>
                     <div>
                         <ElfHeader/>
                         <Route exact path="/" render={(props) => (
@@ -167,21 +185,20 @@ class DataMaven extends Component {
                             <SmallNumbers {...props} numbers={numbersInit}/>
                         )}/>
                         <Route exact path="/get-gist"
-                               render=
-                                   {
-                                       (props) => {
-                                           this.checkGistList();
-                                           return (
-                                               <GistBrowser {...props}
-                                                            onGetUserButtonClicked={this.getGist}
-                                                            gistData={this.state.gistData}
-                                                            newGist={this.state.newGist}
-                                                            getGistList={this.getGistList}
-                                                            getGistHeaderById={this.getGistHeaderById}
-                                               />
-                                           );
-                                       }
-                                   }/>
+                               render={
+                                   (props) => {
+                                       this.checkGistList();
+                                       return (
+                                           <GistBrowser {...props}
+                                                        onCreateGist={this.onCreateGist}
+                                                        gistData={this.state.gistData}
+                                                        newGist={this.state.newGist}
+                                                        getGistList={this.getGistList}
+                                                        getGistHeaderById={this.getGistHeaderById}
+                                           />
+                                       );
+                                   }
+                               }/>
                     </div>
                 </Router>
             </div>
