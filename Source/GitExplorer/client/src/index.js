@@ -5,5 +5,5 @@ import DataMaven from './components/DataMaven';
 
 ReactDOM.render(
     <DataMaven/>,
-    document.getElementById('root')
+    document.getElementById('root'),
 );

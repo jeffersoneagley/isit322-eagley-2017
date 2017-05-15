@@ -2,14 +2,14 @@
  * Created by fish on 4/13/17.
  */
 
-var fetch = function(_this) {
+let fetch = (_this) => {
     _this.setState({foo: 'bar'});
     return {
-        then: function() {
+        then: () => {
             return {
-                then: function() {
+                then: () => {
                     return {
-                        catch: function() {
+                        catch: () => {
 
                         },
                     };

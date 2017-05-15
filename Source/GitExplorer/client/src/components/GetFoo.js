@@ -1,44 +1,46 @@
-import React, {Component} from "react";
-import Paragraph from "./paragraph";
+import React, {Component} from 'react';
+import Paragraph from './paragraph';
 
 class GetFoo extends Component {
     constructor() {
         super();
         this.state = {
             file: 'Get Nine Result will be placed here',
-            foo : 'waiting for server'
+            foo: 'waiting for server',
         };
         this.nameDummies = [
             'foo',
-            'file'
+            'file',
         ];
         this.quiet = false;
 
+        this.GetButton = this.GetButton.bind(this);
+        this.debug = this.debug.bind(this);
+        this.getFoo = this.getFoo.bind(this);
     };
 
-    getFoo = () => {
+    getFoo() {
         const that = this;
-        fetch('/api/foo')
-            .then(function (response) {
-                console.log('GETONE-FETCH-ONE');
-                return response.json();
-            }).then(function (json) {
+        fetch('/api/foo').then((response) => {
+            console.log('GETONE-FETCH-ONE');
+            return response.json();
+        }).then((json) => {
             console.log('GETONE-FETCH-TWO');
             console.log('parsed json', json);
             that.setState(foo => (json));
-        }).catch(function (ex) {
+        }).catch((ex) => {
             console.log('parsing failed', ex);
         });
     };
 
-    debug = (message) => {
+    debug(message) {
         if (!this.quiet) {
             console.log(message);
         }
     };
 
-    GetButton = () => {
-        return (<button id="buttonFoo" onClick={this.getFoo}>Bar</button>);
+    GetButton() {
+        return (<button id='buttonFoo' onClick={this.getFoo}>Bar</button>);
     };
 
     render() {

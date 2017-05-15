@@ -3,7 +3,7 @@ import React from 'react';
 import GitFieldGenerator from '../../src/components/GitGood/GitFieldGenerator';
 import fieldDefMocks from '../../__mocks__/mock-field-definitions';
 
-describe('Test suite GitFieldGenerator', function() {
+describe('Test suite GitFieldGenerator', () => {
         let fieldDefinitions = [];
         let gitUser = {};
 
@@ -20,7 +20,7 @@ describe('Test suite GitFieldGenerator', function() {
             return tempGitUser;
         };
 
-        beforeEach(function() {
+        beforeEach(() => {
             fieldDefinitions = fieldDefMocks;
             gitUser = gitUserInit();
         });

@@ -4,23 +4,23 @@ let request = require('request');
 let GistTest = require('./api-git');
 
 /* GET home page. */
-router.get('/foo', function(request, response, next) {
+router.get('/foo', (request, response, next) => {
     let message = {'result': 'success', 'foo': 'bar', 'file': 'api.js'};
     console.log('Foo called on server with message:', message);
     response.send(message);
 });
 
 // EXISTING CODE OMITTED HERE
-router.get('/user', function(req, res, next) {
+router.get('/user', (req, res, next) => {
     let options = {
         // url    : 'https://api.bitbucket.org/2.0/users/jeffersoneagley',
         url: 'https://api.github.com/users/charliecalvert',
         headers: {
-            'User-Agent': 'request'
-        }
+            'User-Agent': 'request',
+        },
     };
 
-    request(options, function(error, response, body) {
+    request(options, (error, response, body) => {
         // Print the error if one occurred
         console.log('error:', error);
         // Print the response status code if a response was received

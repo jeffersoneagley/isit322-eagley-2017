@@ -1,24 +1,25 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 /**
  * A component for display of a git user's info
  */
 class GistList extends Component {
     constructor(props) {
         super(props);
+        this.clickHandler_gistIdSelected = this.clickHandler_gistIdSelected.bind(this);
     }
 
-    getFileListItem = (fileMetaData) => {
+    getFileListItem(fileMetaData) {
         return <li>
             <small>
                 {fileMetaData.filename || ''}
                 ({fileMetaData.type || ''})
             </small>
-        </li>
+        </li>;
     };
 
-    getFileMetaList = (fileMetaList) => {
+    getFileMetaList(fileMetaList) {
         let res = [];
-        for (var lineItem in fileMetaList) {
+        for (let lineItem in fileMetaList) {
             if (fileMetaList.hasOwnProperty(lineItem)) {
                 res.push(this.getFileListItem(fileMetaList[lineItem]));
             }
@@ -26,7 +27,7 @@ class GistList extends Component {
         return res;
     };
 
-    autoTruncate = (text, length = 8) => {
+    autoTruncate(text, length = 8) {
         if (text.length > length) {
             return text.substring(0, length - 1) + '...';
         } else {
@@ -34,13 +35,13 @@ class GistList extends Component {
         }
     };
 
-    clickHandler_gistIdSelected = (id) => {
+    clickHandler_gistIdSelected(id) {
         return (event) => {
             this.props.getGistHeaderById(id, event);
-        }
+        };
     };
 
-    getForm = (field, index) => {
+    getForm(field, index) {
         console.log(field.files);
         return <tr>
             <td>
@@ -59,23 +60,17 @@ class GistList extends Component {
             ;
     };
 
-    getList = () => {
+    getList() {
         if (this.props.gistData.gistList && this.props.gistData.gistList.length > 0) {
             return this.props.gistData.gistList.map((field, index) => {
                 return this.getForm(field, index);
-            })
+            });
         } else {
             return <tr>
                 <td>No gist data loaded yet</td>
-            </tr>
+            </tr>;
         }
     };
-
-    // checkForGistListRefresh = () => {
-    //     if (this.props.gistData.gistListRefreshRequired) {
-    //         this.props.getGistList();
-    //     }
-    // };
 
     render() {
         return (

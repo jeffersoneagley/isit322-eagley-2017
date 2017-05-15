@@ -9,11 +9,11 @@ class ElfHeaderMenu extends Component {
     render() {
         return (
             <ul className='elf-header-menu'>
-          <li><Link to='/'>Home</Link></li>
-          <li><Link to='/get-foo'>BarFoo</Link></li>
-          <li><Link to='/get-numbers'>Numbers</Link></li>
-          <li><Link to='/get-gist'>Gists</Link></li>
-        </ul>
+                <li><Link to='/'>Home</Link></li>
+                <li><Link to='/get-foo'>BarFoo</Link></li>
+                <li><Link to='/get-numbers'>Numbers</Link></li>
+                <li><Link to='/get-gist'>Gists</Link></li>
+            </ul>
         );
     }
 }

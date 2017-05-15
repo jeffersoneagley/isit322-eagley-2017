@@ -18,14 +18,10 @@ class GistBrowser extends Component {
         logger.log('render GetGist');
         return (
             <div>
+                <h3>Selected Gist</h3>
                 <GistView {...this.props} />
-                <GetGist {...this.props}
-                         onGetUserButtonClicked={function(e) {
-                            this.props.getGist(e);
-                        }}
-                />
-                <GistList {...this.props}
-                />
+                <GetGist {...this.props} />
+                <GistList {...this.props} />
             </div>
         );
     };

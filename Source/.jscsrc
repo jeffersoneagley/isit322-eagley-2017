@@ -1,6 +1,7 @@
 {
   "preset": "google",
   "validateIndentation": 4,
+  "requireArrowFunctions": true,
   "excludeFiles": [
     "**/node_modules/**",
     "**/build/**",
