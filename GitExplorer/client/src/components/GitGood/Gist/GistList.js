@@ -38,7 +38,6 @@ class GistList extends Component {
     };
 
     getForm = (field, index) => {
-        console.log(field.files);
         return <tr key={'keyGistRow' + field.id}>
             <td>
                 <button onClick={this.clickHandler_gistIdSelected(field.id)}>
