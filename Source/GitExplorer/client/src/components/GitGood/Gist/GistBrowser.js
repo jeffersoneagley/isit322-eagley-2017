@@ -21,8 +21,8 @@ class GistBrowser extends Component {
                 <GistView {...this.props} />
                 <GetGist {...this.props}
                          onGetUserButtonClicked={function(e) {
-                            this.props.getGist(e);
-                        }}
+                             this.props.getGist(e);
+                         }}
                 />
                 <GistList {...this.props}
                 />

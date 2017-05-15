@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import GetFoo from '../src/components/GetFoo';
-import Paragraph from '../src/components/paragraph';
+import Paragraph from '../src/components/Paragraph/Paragraph';
 import {shallow} from 'enzyme';
 
 describe('my basic rest test', function() {

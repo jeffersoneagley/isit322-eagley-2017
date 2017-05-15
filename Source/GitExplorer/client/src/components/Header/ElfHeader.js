@@ -9,10 +9,10 @@ class ElfHeader extends Component {
     render() {
         return (
             <div className='App-header'>
-          <ElfHeaderMenu/>
-          <img src={logo} className='App-logo' alt='logo'/>
-          <h2>Welcome to Jefferson's Git Explorer</h2>
-        </div>
+                <ElfHeaderMenu/>
+                <img src={logo} className='App-logo' alt='logo'/>
+                <h2>Welcome to Jefferson's Git Explorer</h2>
+            </div>
         );
     }
 }

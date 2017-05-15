@@ -1,9 +1,8 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 /**
  * Created by fish on 4/24/17.
  * This is a polyfill for my rest-basics assignment paragraphing functions
  */
-
 
 class Paragraph extends Component {
     constructor() {
@@ -12,7 +11,7 @@ class Paragraph extends Component {
     }
 
     getParagraph = (index) => {
-        return (<p id={"para" + index} key={"para" + index}>
+        return (<p id={'para' + index} key={'para' + index}>
             {index}: {this.props.stator[index]}
         </p>);
     };
@@ -27,7 +26,7 @@ class Paragraph extends Component {
 
     render() {
         return (<div>
-            {this.isQuiet ? "" : <h3>Paragraph output</h3>}
+            {this.isQuiet ? '' : <h3>Paragraph output</h3>}
             {this.getParagraphs()}
 
         </div>);

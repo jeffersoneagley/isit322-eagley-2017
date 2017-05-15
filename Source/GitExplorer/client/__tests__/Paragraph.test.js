@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import Paragraph from '../src/components/paragraph';
+import Paragraph from '../src/components/Paragraph/Paragraph';
 
 describe('Test suite for Paragraph component', function() {
 

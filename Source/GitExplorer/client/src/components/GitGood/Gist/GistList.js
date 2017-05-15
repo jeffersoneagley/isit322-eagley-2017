@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 /**
  * A component for display of a git user's info
  */
@@ -13,7 +13,7 @@ class GistList extends Component {
                 {fileMetaData.filename || ''}
                 ({fileMetaData.type || ''})
             </small>
-        </li>
+        </li>;
     };
 
     getFileMetaList = (fileMetaList) => {
@@ -37,7 +37,7 @@ class GistList extends Component {
     clickHandler_gistIdSelected = (id) => {
         return (event) => {
             this.props.getGistHeaderById(id, event);
-        }
+        };
     };
 
     getForm = (field, index) => {
@@ -63,11 +63,11 @@ class GistList extends Component {
         if (this.props.gistData.gistList && this.props.gistData.gistList.length > 0) {
             return this.props.gistData.gistList.map((field, index) => {
                 return this.getForm(field, index);
-            })
+            });
         } else {
             return <tr>
                 <td>No gist data loaded yet</td>
-            </tr>
+            </tr>;
         }
     };
 

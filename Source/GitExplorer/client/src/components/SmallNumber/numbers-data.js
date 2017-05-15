@@ -12,7 +12,7 @@ export default{
         six: '0',
         seven: '0',
         eight: '0',
-        nine: '0'
+        nine: '0',
     },
     nameList: [
         'one',
@@ -23,6 +23,6 @@ export default{
         'six',
         'seven',
         'eight',
-        'nine'
-    ]
+        'nine',
+    ],
 };

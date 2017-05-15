@@ -1,16 +1,16 @@
-import React, {Component} from "react";
-import Paragraph from "./paragraph";
+import React, {Component} from 'react';
+import Paragraph from './Paragraph/Paragraph';
 
 class GetFoo extends Component {
     constructor() {
         super();
         this.state = {
             file: 'Get Nine Result will be placed here',
-            foo : 'waiting for server'
+            foo: 'waiting for server',
         };
         this.nameDummies = [
             'foo',
-            'file'
+            'file',
         ];
         this.quiet = false;
 
@@ -18,15 +18,14 @@ class GetFoo extends Component {
 
     getFoo = () => {
         const that = this;
-        fetch('/api/foo')
-            .then(function (response) {
-                console.log('GETONE-FETCH-ONE');
-                return response.json();
-            }).then(function (json) {
+        fetch('/api/foo').then(function(response) {
+            console.log('GETONE-FETCH-ONE');
+            return response.json();
+        }).then(function(json) {
             console.log('GETONE-FETCH-TWO');
             console.log('parsed json', json);
             that.setState(foo => (json));
-        }).catch(function (ex) {
+        }).catch(function(ex) {
             console.log('parsing failed', ex);
         });
     };

@@ -14,7 +14,7 @@ class ElfElement extends Component {
         const common = {
             id: this.props.id,
             value: this.props.defaultValue,
-            onChange: this.props.onChange
+            onChange: this.props.onChange,
         };
 
         switch (this.props.type) {

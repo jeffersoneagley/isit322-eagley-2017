@@ -1,8 +1,7 @@
-import React, {Component} from "react";
-import "../../css/App.css";
-import numbersInit from "./numbers-data";
-import Paragraph from "../paragraph";
-
+import React, {Component} from 'react';
+import '../../css/App.css';
+import numbersInit from './numbers-data';
+import Paragraph from '../Paragraph/Paragraph';
 
 class SmallNumbers extends Component {
     constructor() {
@@ -10,7 +9,6 @@ class SmallNumbers extends Component {
         this.nameList = numbersInit.nameList;
         this.state = numbersInit.state;
     };
-
 
     getOne = () => {
         this.setState({one: '1'});
@@ -58,7 +56,7 @@ class SmallNumbers extends Component {
             <button id="buttonSix" onClick={this.getSix}>GetSix</button>,
             <button id="buttonSeven" onClick={this.getSeven}>GetSeven</button>,
             <button id="buttonEight" onClick={this.getEight}>GetEight</button>,
-            <button id="buttonNine" onClick={this.getNine}>GetNine</button>
+            <button id="buttonNine" onClick={this.getNine}>GetNine</button>,
         ];
     };
 

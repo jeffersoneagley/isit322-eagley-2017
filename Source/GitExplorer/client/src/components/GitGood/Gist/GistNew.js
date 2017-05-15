@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import Debug from "../../Debug/Debug";
+import React, {Component} from 'react';
+import Debug from '../../Debug/Debug';
 const logger = new Debug(false);
 /**
  * A component for entering a new gist

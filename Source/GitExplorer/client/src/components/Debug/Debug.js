@@ -22,6 +22,6 @@ class debug {
     //added for compatibility with Charlie code
     setQuiet = (newValue) => {
         this.noisy = !newValue;
-    }
+    };
 }
 export default debug;
