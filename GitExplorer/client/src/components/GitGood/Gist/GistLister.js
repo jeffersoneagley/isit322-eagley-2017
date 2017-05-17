@@ -58,7 +58,19 @@ class GistList extends Component {
     };
 
     getList = () => {
-        if (this.props.gistData.gistList &&
+        if (!this.props.gistData) {
+            return [
+                (<tr key='noGistData'>
+                    <td>GistLister has no gist data prop</td>
+                </tr>)];
+        }
+        else if (!this.props.gistData.gistList) {
+            return [
+                (<tr key='noGistData'>
+                    <td>GistLister gist data has no gist list</td>
+                </tr>)];
+        }
+        else if (this.props.gistData.gistList &&
             this.props.gistData.gistList.length > 0) {
             return this.props.gistData.gistList.map((field, index) => {
                 return this.getForm(field, index);
@@ -66,19 +78,21 @@ class GistList extends Component {
         } else {
             return [
                 (<tr key='noGistData'>
-                    <td>No gist data loaded yet</td>
+                    <td>GistLister had unidentified error</td>
                 </tr>)];
         }
     };
 
     render() {
         return (
-            <table>
-                <caption>Gist List</caption>
-                <tbody>
-                {this.getList()}
-                </tbody>
-            </table>
+            <div>
+                <h2>Gist Lister</h2>
+                <table>
+                    <tbody>
+                    {this.getList()}
+                    </tbody>
+                </table>
+            </div>
         );
     };
 }
