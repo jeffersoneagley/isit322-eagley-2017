@@ -15,5 +15,10 @@
     "pug": "^2.0.0-beta11",
     "request": "^2.81.0",
     "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "jasmine": "^2.6.0",
+    "jasmine-spec-reporter": "^4.1.0",
+    "supertest": "^3.0.0"
   }
 }
