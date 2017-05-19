@@ -27,12 +27,17 @@ class DataMaven extends Component {
             userReceived: false,
         };
         this.gistListUpdateTime = Date.now();
+        this.isRefreshingGistData = true;
 
         this.onCreateGist = this.onCreateGist.bind(this);
 
         this.debug = new Debug();
         this.debug.speakUp();
     };
+
+    componentWillMount() {
+
+    }
 
     getUser = (event) => {
         event.preventDefault();
@@ -71,7 +76,7 @@ class DataMaven extends Component {
             docs: docs,
         };
         const that = this;
-        fetch('/api/git/createGist', {
+        fetch('/api/git/gist/new', {
             method: 'POST',
             body: JSON.stringify(
                 body,
@@ -104,9 +109,13 @@ class DataMaven extends Component {
             //if we're called from an eventhandler
             event.preventDefault();
         }
+
+        //activate refresh component for gistList
+        this.isRefreshingGistData = true;
+
         // this.setState({gistData: {gistList: false}});
         const that = this;
-        fetch('/api/git/gistList').then(function(response) {
+        fetch('/api/git/gist/list').then(function(response) {
             // YOU WRITE IT
             // that.debug.log(response);
             return response.json();
@@ -117,11 +126,17 @@ class DataMaven extends Component {
             // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
             let body = typeof (json) === 'string' ? JSON.parse(json) : json;
             // var body = json.body;
-            that.setState({gistData: {gistList: body}});
-            // that.debug.log('setting state: ' + JSON.stringify(json));
+            that.isRefreshingGistData = false;
+            that.setState({
+                gistData: {
+                    gistList: body.result,
+                },
+            });
         }).catch(function(ex) {
             // DISPLAY WITH LOGGER
             that.debug.log(ex);
+            that.isRefreshingGistData = false;
+
         });
     };
 
@@ -131,7 +146,7 @@ class DataMaven extends Component {
         }
         console.log('requesting API send us gist with ID ' + gistId);
         const that = this;
-        fetch('/api/git/getGistHeaderById', {
+        fetch('/api/git/gist/byId', {
             method: 'POST',
             body: JSON.stringify(
                 {'id': gistId},
@@ -161,12 +176,14 @@ class DataMaven extends Component {
 
     checkGistList = () => {
         if (Date.now() > this.gistListUpdateTime) {
-            this.gistListUpdateTime = Date.now() + 60000;
+            this.gistListUpdateTime = Date.now() + 6000;
             this.getGistList();
+            console.log(this.gistListUpdateTime);
         }
     };
 
     render() {
+        this.checkGistList();
         this.debug.log('render getuserinfo');
         return (
             <div className="App">
@@ -195,6 +212,7 @@ class DataMaven extends Component {
                                                         newGist={this.state.newGist}
                                                         getGistList={this.getGistList}
                                                         getGistHeaderById={this.getGistHeaderById}
+                                                        isRefreshingGistData={this.state.isRefreshingGistData}
                                            />
                                        );
                                    }
@@ -205,6 +223,4 @@ class DataMaven extends Component {
         );
     };
 }
-//<Route exact path="/" component={GetUserInfo}/>
-
 export default DataMaven;

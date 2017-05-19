@@ -51,11 +51,15 @@ let getGistList = function(response) {
                 url: gist.url,
                 html_url: gist.html_url,
                 description: gist.description,
+                git_pull_url: gist.git_pull_url,
                 files: getGistFiles(gist.files),
             };
         });
 
-        response.status(200).send(result);
+        response.status(200).send({
+            count: result.length,
+            result: result,
+        });
     }).catch((err) => {
         console.log(err);
         response.status(500).send(err);

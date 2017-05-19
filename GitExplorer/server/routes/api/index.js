@@ -2,11 +2,12 @@ let express = require('express');
 let router = express.Router();
 let Git = require('./git');
 let Users = require('./users');
+let morgan = require('morgan')('api-index');
 
 /* GET home page. */
 router.get('/foo', function(request, response, next) {
     let message = {'result': 'success', 'foo': 'bar', 'file': 'api.js'};
-    console.log('Foo called on server with message:', message);
+    // morgan('Foo called on server with message: ' + message);
     response.send(message);
 });
 

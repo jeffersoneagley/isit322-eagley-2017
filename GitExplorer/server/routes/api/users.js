@@ -6,30 +6,6 @@ let express = require('express');
 let router = express.Router();
 let GitHub = require('github-api');
 
-// // unauthenticated client
-// let gh = new GitHub();
-//
-// let checkIsObject = function(input) {
-//     return typeof (input) === 'string' ? JSON.parse(input) : input;
-// };
-//
-// // basic auth
-// let getGitHub = function() {
-//     let ghres = {};
-//     if (process.env.GITHUB_TOKEN !== '') {
-//         ghres = new GitHub({
-//             username: 'jefferson.eagley@gmail.com',
-//             token: process.env.GITHUB_TOKEN,
-//         });
-//     } else {
-//         ghres = new GitHub({
-//             username: 'jefferson.eagley@gmail.com',
-//             password: process.env.GITHUB_PASSWORD,
-//         });
-//     }
-//     return ghres;
-// };
-
 // EXISTING CODE OMITTED HERE
 router.get('/', function(req, res, next) {
     let options = {

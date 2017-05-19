@@ -88,6 +88,7 @@ class GistList extends Component {
             <div>
                 <h2>Gist Lister</h2>
                 <table>
+                    {this.props.isRefreshingGistData ? <caption>loading..</caption> : true}
                     <tbody>
                     {this.getList()}
                     </tbody>

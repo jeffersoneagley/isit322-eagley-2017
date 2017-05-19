@@ -7,18 +7,31 @@ const getData = (url) => {
             return {
                 result: 'success',
                 foo: 'bar',
-                file: 'api.js'
+                file: 'api.js',
+            };
+
+        case '/api/git/gist/ist':
+            return {
+                result: [
+                    {
+                        'html_url': 'https://gist.github.com/a023c7db77926ff58d35087821e12020',
+                        'id': 'a023c7db77926ff58d35087821e12020',
+                        'git_pull_url': 'https://gist.github.com/a023c7db77926ff58d35087821e12020.git',
+                        'description': 'Simple React Component',
+                    },
+                    {
+                        'html_url': 'https://gist.github.com/17f8ec886c1ae22f66501fc3cbe760ac',
+                        'id': '17f8ec886c1ae22f66501fc3cbe760ac',
+                        'git_pull_url': 'https://gist.github.com/17f8ec886c1ae22f66501fc3cbe760ac.git',
+                        'description': 'React Npm Install',
+                    },
+                ],
             };
 
         case '/api/user':
             return {
                 error: {},
                 response: {},
-                // body    : JSON.stringify({
-                //
-                //     'username'    : 'robindudette',
-                //     'display_name': 'Robin Dudette'
-                // })
                 body: JSON.stringify(
                     {
                         'login': 'charliecalvert',
@@ -50,9 +63,9 @@ const getData = (url) => {
                         'followers': 85,
                         'following': 6,
                         'created_at': '2012-06-03T04:58:22Z',
-                        'updated_at': '2017-05-04T22:59:56Z'
-                    }
-                )
+                        'updated_at': '2017-05-04T22:59:56Z',
+                    },
+                ),
             };
 
         default:
