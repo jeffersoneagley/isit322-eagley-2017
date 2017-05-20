@@ -69,7 +69,7 @@ let getGitHub = function() {
     let ghres = {};
     if (process.env.GITHUB_TOKEN !== '') {
         ghres = new GitHub({
-            username: 'jefferson.eagley@gmail.com',
+            username: 'charliecalvert',
             token: process.env.GITHUB_TOKEN,
         });
     } else {
