@@ -4,7 +4,7 @@ import {mount} from 'enzyme';
 import fieldDefMocks from '../../__mocks__/mock-field-definitions';
 import ShowUserInfo from '../../src/components/GitGood/ShowUserInfo';
 
-describe('Test suite for GetUserInfo functionality', function() {
+describe('Test suite for ShowUSerInfo functionality', function() {
         let fieldDefinitions = [];
         let gitUser = {};
 
@@ -33,7 +33,7 @@ describe('Test suite for GetUserInfo functionality', function() {
             it('Renders ' + id + ' paragraph containing ' + value.sample, () => {
                 // console.log(fieldDefinitions);
                 const wrapper = mount(<ShowUserInfo
-                    fields={fieldDefinitions}
+                    fieldDefinitions={fieldDefinitions}
                     gitUser={gitUser}
                     onGetUserButtonClicked={function() {
                         result = true;
@@ -46,7 +46,7 @@ describe('Test suite for GetUserInfo functionality', function() {
             it('Renders ' + id + ' label containing ' + value.label, () => {
                 // console.log(fieldDefinitions);
                 const wrapper = mount(<ShowUserInfo
-                    fields={fieldDefinitions}
+                    fieldDefinitions={fieldDefinitions}
                     gitUser={gitUser}
                     onGetUserButtonClicked={function() {
                         result = true;
