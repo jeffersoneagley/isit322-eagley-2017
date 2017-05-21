@@ -5,15 +5,28 @@ import React, {Component} from 'react';
 /**
  * A component for display of a git user's info
  */
-class GistList extends Component {
+class GistListRow extends Component {
+
+    static DEFAULT_MESSAGES = {
+        NOT_FOUND: {
+            button: 'Gist ID missing',
+            files: 'No files found for gist? that\'s strange',
+            url: 'No URL(s) given',
+        },
+        DUMMY: {
+            button: 'No data was given',
+            files: 'No files, because this this a dummy row',
+            url: 'If you are seeing this, please refresh and contact the site admin.',
+        },
+    };
 
     getFileListItem = (fileMetaData) => {
-        return <li key={'keyGistFile' + fileMetaData.filename}>
+        return (<li key={'keyGistFile' + fileMetaData.filename}>
             <small>
                 {fileMetaData.filename || ''}
                 ({fileMetaData.type || ''})
             </small>
-        </li>;
+        </li>);
     };
 
     getFileMetaList = (fileMetaList) => {
@@ -34,29 +47,70 @@ class GistList extends Component {
         }
     };
 
-    getForm = (field, index, clickHandler) => {
-        return <tr key={'keyGistRow' + field.id}>
-            <td>
-                <button onClick={clickHandler(field.id)}>
-                    {index !== undefined ? index : 'something has gone terribly wrong, please refresh'}
-                    - ID: <br/>
-                    {field.id || 'error in getting ID'}
-                </button>
-            </td>
-            <td>
-                Files:
-                <ul>{field.files ? this.getFileMetaList(field.files) : 'no files'}</ul>
-            </td>
-            <td><a href={field.html_url} target="new">
-                {this.autoTruncate(field.html_url, 25) || 'no url given'}
-            </a></td>
-        </tr>
-            ;
+    static defaultForm = () => {
+        return <tr key={'keyGistRowNoData' + Date.now()}>
+            <th>{GistListRow.DEFAULT_MESSAGES.DUMMY.button}</th>
+            <td>{GistListRow.DEFAULT_MESSAGES.DUMMY.files}</td>
+            <td>{GistListRow.DEFAULT_MESSAGES.DUMMY.url}</td>
+        </tr>;
     };
 
+    processGistIdIndexHasButton = (gistData, index, clickHandler) => {
+        let buttonText = <div>
+            {typeof(index) === 'number' ? (index + ' - ') : ''}
+            {(gistData.id !== undefined ?
+                (<span>ID<br/>{gistData.id}</span>) :
+                GistListRow.DEFAULT_MESSAGES.NOT_FOUND.button)}
+        </div>;
+        if (clickHandler !== undefined) {
+            return (<button onClick={clickHandler}>
+                {buttonText}
+            </button>);
+        } else {
+            return buttonText;
+        }
+    };
+
+    getForm = (gistData, index, clickHandler) => {
+        if (gistData !== undefined) {
+            return <tr key={'keyGistRow' + gistData.id}>
+                <td>
+                    {this.processGistIdIndexHasButton(gistData, index, clickHandler)}
+                </td>
+                <td>
+                    Files:
+                    <ul>{gistData.files ?
+                        this.getFileMetaList(gistData.files) :
+                        GistListRow.DEFAULT_MESSAGES.NOT_FOUND.files
+                    }</ul>
+                </td>
+                <td><a href={gistData.html_url} target="new">
+                    {
+                        gistData && gistData.html_url ?
+                            this.autoTruncate(gistData.html_url, 25) :
+                            GistListRow.DEFAULT_MESSAGES.NOT_FOUND.url
+                    }
+                </a></td>
+            </tr>;
+        } else {
+            return GistListRow.defaultForm();
+        }
+    };
+
+    clickHandler_gistIdSelected = (event) => {
+        if (event !== undefined && event.preventDefault) {
+            event.preventDefault();
+        }
+        this.props.getGistHeaderById(this.props.gistData.id, event);
+    };
+
+    // clickHandler_gistIdSelected = (event) => {
+    //     this.props.clickHandler_gistIdSelected(event, this.props.gistData.id);
+    // };
+
     render() {
-        return this.getForm(this.props.field, this.props.index, this.props.clickHandler_gistIdSelected);
+        return this.getForm(this.props.gistData, this.props.index, this.clickHandler_gistIdSelected);
     };
 }
 
-export default GistList;
+export default GistListRow;

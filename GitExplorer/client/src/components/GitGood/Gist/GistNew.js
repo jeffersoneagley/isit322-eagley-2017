@@ -9,7 +9,7 @@ class GetGist extends Component {
         super(props);
         this.formElements = {
             gistContent: 'gists are great',
-            gistTitle: 'new gist.txt',
+            gistTitle: 'new gist.json',
             gistDescription: 'a gist made from GitExplorer',
         };
     }

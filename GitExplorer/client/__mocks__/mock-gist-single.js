@@ -1,0 +1,87 @@
+/**
+ * Created by fish on 5/21/17.
+ */
+
+export default {
+    'normal': {
+        'url': 'https://api.github.com/gists/973c2a9e1c4ca0f6fc4542be7bc2bf3c',
+        'forks_url': 'https://api.github.com/gists/973c2a9e1c4ca0f6fc4542be7bc2bf3c/forks',
+        'commits_url': 'https://api.github.com/gists/973c2a9e1c4ca0f6fc4542be7bc2bf3c/commits',
+        'id': '973c2a9e1c4ca0f6fc4542be7bc2bf3c',
+        'git_pull_url': 'https://gist.github.com/973c2a9e1c4ca0f6fc4542be7bc2bf3c.git',
+        'git_push_url': 'https://gist.github.com/973c2a9e1c4ca0f6fc4542be7bc2bf3c.git',
+        'html_url': 'https://gist.github.com/973c2a9e1c4ca0f6fc4542be7bc2bf3c',
+        'files': {
+            'new gist.txt': {
+                'filename': 'new gist.txt',
+                'type': 'text/plain',
+                'language': 'Text',
+                'raw_url': 'https://gist.githubusercontent.com/jeffersoneagley/973c2a9e1c4ca0f6fc4542be7bc2bf3c' +
+                '/raw/d0596d2184772ef5c054674efe74ecac6793d2a9/new%20gist.txt',
+                'size': 15,
+                'truncated': false,
+                'content': 'gists are great',
+            },
+        },
+        'public': true,
+        'created_at': '2017-05-21T07:15:31Z',
+        'updated_at': '2017-05-21T07:15:31Z',
+        'description': 'My new gist',
+        'comments': 0,
+        'user': null,
+        'comments_url': 'https://api.github.com/gists/973c2a9e1c4ca0f6fc4542be7bc2bf3c/comments',
+        'owner': {
+            'login': 'jeffersoneagley',
+            'id': 15936010,
+            'avatar_url': 'https://avatars3.githubusercontent.com/u/15936010?v=3',
+            'gravatar_id': '',
+            'url': 'https://api.github.com/users/jeffersoneagley',
+            'html_url': 'https://github.com/jeffersoneagley',
+            'followers_url': 'https://api.github.com/users/jeffersoneagley/followers',
+            'following_url': 'https://api.github.com/users/jeffersoneagley/following{/other_user}',
+            'gists_url': 'https://api.github.com/users/jeffersoneagley/gists{/gist_id}',
+            'starred_url': 'https://api.github.com/users/jeffersoneagley/starred{/owner}{/repo}',
+            'subscriptions_url': 'https://api.github.com/users/jeffersoneagley/subscriptions',
+            'organizations_url': 'https://api.github.com/users/jeffersoneagley/orgs',
+            'repos_url': 'https://api.github.com/users/jeffersoneagley/repos',
+            'events_url': 'https://api.github.com/users/jeffersoneagley/events{/privacy}',
+            'received_events_url': 'https://api.github.com/users/jeffersoneagley/received_events',
+            'type': 'User',
+            'site_admin': false,
+        },
+        'forks': [],
+        'history': [
+            {
+                'user': {
+                    'login': 'jeffersoneagley',
+                    'id': 15936010,
+                    'avatar_url': 'https://avatars3.githubusercontent.com/u/15936010?v=3',
+                    'gravatar_id': '',
+                    'url': 'https://api.github.com/users/jeffersoneagley',
+                    'html_url': 'https://github.com/jeffersoneagley',
+                    'followers_url': 'https://api.github.com/users/jeffersoneagley/followers',
+                    'following_url': 'https://api.github.com/users/jeffersoneagley/following{/other_user}',
+                    'gists_url': 'https://api.github.com/users/jeffersoneagley/gists{/gist_id}',
+                    'starred_url': 'https://api.github.com/users/jeffersoneagley/starred{/owner}{/repo}',
+                    'subscriptions_url': 'https://api.github.com/users/jeffersoneagley/subscriptions',
+                    'organizations_url': 'https://api.github.com/users/jeffersoneagley/orgs',
+                    'repos_url': 'https://api.github.com/users/jeffersoneagley/repos',
+                    'events_url': 'https://api.github.com/users/jeffersoneagley/events{/privacy}',
+                    'received_events_url': 'https://api.github.com/users/jeffersoneagley/received_events',
+                    'type': 'User',
+                    'site_admin': false,
+                },
+                'version': '0de05a05b3e50f1fefda555f57ef7ba9d77bc509',
+                'committed_at': '2017-05-21T07:15:30Z',
+                'change_status': {
+                    'total': 1,
+                    'additions': 1,
+                    'deletions': 0,
+                },
+                'url': 'https://api.github.com/gists/973c2a9e1c4ca0f6fc4542be7bc2bf3c' +
+                '/0de05a05b3e50f1fefda555f57ef7ba9d77bc509',
+            },
+        ],
+        'truncated': false,
+    },
+};

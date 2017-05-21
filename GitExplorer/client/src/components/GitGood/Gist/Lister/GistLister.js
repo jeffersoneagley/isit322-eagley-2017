@@ -5,15 +5,6 @@ import React, {Component} from 'react';
 import GistListRow from './GistListRow';
 class GistList extends Component {
 
-    clickHandler_gistIdSelected = (id) => {
-        return (event) => {
-            if (event !== undefined && event.preventDefault) {
-                event.preventDefault();
-            }
-            this.props.getGistHeaderById(id, event);
-        };
-    };
-
     getList = () => {
         if (!this.props.gistData) {
             return [
@@ -30,9 +21,9 @@ class GistList extends Component {
         else if (this.props.gistData.gistList &&
             this.props.gistData.gistList.length > 0) {
             return this.props.gistData.gistList.map((field, index) => {
-                return <GistListRow field={field}
+                return <GistListRow gistData={field}
                                     index={index}
-                                    clickHandler_gistIdSelected={this.clickHandler_gistIdSelected}
+                                    getGistHeaderById={this.props.getGistHeaderById}
                                     key={'gistListRow_' + index}
                 />;
             });
