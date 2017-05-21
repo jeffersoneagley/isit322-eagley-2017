@@ -8,7 +8,7 @@ import {shallow} from 'enzyme';
 import GistListRow from '../../../src/components/GitGood/Gist/Lister/GistListRow';
 import ElfDebugEnzyme from '../../../EfDebugEnzyme';
 import MockGistData from '../../../__mocks__/mock-gist-single';
-let elfDebugEnzyme = new ElfDebugEnzyme(true, 'GistLister');
+let elfDebugEnzyme = new ElfDebugEnzyme(false, 'GistLister');
 
 describe('GistListRow test Suite', function() {
 
@@ -32,26 +32,62 @@ describe('GistListRow test Suite', function() {
 
     it('renders and reads data from mock gist', () => {
         // console.log(MockGistData.normal);
-        const wrapper = shallow(<GistListRow gist={MockGistData.normal}/>);
+        // elfDebugEnzyme.showData = true;
+        const wrapper = shallow(<GistListRow gistData={MockGistData.normal}/>);
         elfDebugEnzyme.getAll(wrapper);
-        const dummy = GistListRow.defaultForm();
-        expect(wrapper.contains(dummy)).toEqual(true);
+        expect(wrapper.find('td').length).toEqual(3);
+        // elfDebugEnzyme.showData = false;
     });
+
+    it('[mock gist (valid)][no index] produces button?', () => {
+        // console.log(MockGistData.normal);
+        // elfDebugEnzyme.showData = true;
+        const wrapper = shallow(<GistListRow gistData={MockGistData.normal}/>);
+        elfDebugEnzyme.getAll(wrapper);
+        expect(wrapper.find('button').length).toEqual(1);
+        // elfDebugEnzyme.showData = false;
+    });
+
+    for (let file in MockGistData.normal.files) {
+        if (MockGistData.normal.files.hasOwnProperty(file)) {
+            it('[mock gist (valid)][no index] file list includes ' + file + '?', () => {
+                // console.log(MockGistData.normal);
+                // elfDebugEnzyme.showData = true;
+                const wrapper = shallow(<GistListRow gistData={MockGistData.normal}/>);
+                elfDebugEnzyme.getAll(wrapper);
+                expect(
+                    wrapper.someWhere(w => w.text().includes(MockGistData.normal.files[file].filename)),
+                ).toEqual(true);
+                // elfDebugEnzyme.showData = false;
+            });
+        }
+    }
 
     it('renders mock data with an index of 0', () => {
         // console.log(MockGistData.normal);
-        const wrapper = shallow(<GistListRow gist={MockGistData.normal} index={0}/>);
+        const wrapper = shallow(<GistListRow gistData={MockGistData.normal} index={0}/>);
         elfDebugEnzyme.getAll(wrapper);
-        const dummy = GistListRow.defaultForm();
-        expect(wrapper.contains(dummy)).toEqual(true);
+        expect(wrapper.someWhere(w => w.text().includes('0 - '))).toEqual(true);
     });
 
-    it('renders mock data with an index of 500,000', () => {
+    let bigNumber = 5000000;
+
+    it('renders mock data with an index of ' + bigNumber + ' [unreasonably large number]', () => {
         // console.log(MockGistData.normal);
-        const wrapper = shallow(<GistListRow gist={MockGistData.normal} index={500000}/>);
+        const wrapper = shallow(<GistListRow gistData={MockGistData.normal} index={bigNumber}/>);
         elfDebugEnzyme.getAll(wrapper);
-        const dummy = GistListRow.defaultForm();
-        expect(wrapper.contains(dummy)).toEqual(true);
+        expect(wrapper.someWhere(w => w.text().includes(bigNumber + ' - '))).toEqual(true);
+    });
+
+    it('[mock gist (valid)[no files][index 1] displays text to indicate gist has no files?', () => {
+        let myMock = MockGistData.normal;
+        myMock.files = undefined;
+        // console.log(MockGistData.normal);
+        const wrapper = shallow(<GistListRow gistData={myMock} index={1}/>);
+        elfDebugEnzyme.getAll(wrapper);
+        expect(
+            wrapper.someWhere(w => w.text().includes(GistListRow.DEFAULT_MESSAGES.NOT_FOUND.files)),
+        ).toEqual(true);
     });
 
 });

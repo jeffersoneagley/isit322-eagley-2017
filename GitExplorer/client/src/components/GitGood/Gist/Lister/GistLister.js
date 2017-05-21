@@ -29,9 +29,9 @@ class GistList extends Component {
             });
         } else {
             return [
-                (<tr key='noGistData'>
+                <tr key='noGistData'>
                     <td>GistLister had unidentified error</td>
-                </tr>)];
+                </tr>];
         }
     };
 

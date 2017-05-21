@@ -104,10 +104,6 @@ class GistListRow extends Component {
         this.props.getGistHeaderById(this.props.gistData.id, event);
     };
 
-    // clickHandler_gistIdSelected = (event) => {
-    //     this.props.clickHandler_gistIdSelected(event, this.props.gistData.id);
-    // };
-
     render() {
         return this.getForm(this.props.gistData, this.props.index, this.clickHandler_gistIdSelected);
     };
