@@ -3,27 +3,8 @@
  */
 let express = require('express');
 let router = express.Router();
-let GitHub = require('github-api');
-
-// unauthenticated client
-let gh = new GitHub();
-
-// basic auth
-let getGitHub = function() {
-    let ghres = {};
-    if (process.env.GITHUB_TOKEN !== '') {
-        ghres = new GitHub({
-            username: 'jefferson.eagley@gmail.com',
-            token: process.env.GITHUB_TOKEN,
-        });
-    } else {
-        ghres = new GitHub({
-            username: 'jefferson.eagley@gmail.com',
-            password: process.env.GITHUB_PASSWORD,
-        });
-    }
-    return ghres;
-};
+// let GitHub = require('github-api');
+let getGitHubAuth = require('../../getGitHubAuth');
 
 let getGistFiles = function(files) {
     let result = {};
@@ -42,7 +23,7 @@ let getGistFiles = function(files) {
 };
 
 let getGistList = function(response) {
-    gh.getUser().listGists().then(({data}) => {
+    getGitHubAuth().getUser().listGists().then(({data}) => {
         // Promises!
 
         const result = data.map((gist) => {
@@ -67,7 +48,7 @@ let getGistList = function(response) {
 };
 
 router.get('/', (request, response, next) => {
-    console.log('gistList requested on server');
+    // console.log('gistList requested on server');
     gh = getGitHub();
     getGistList(response);
 });

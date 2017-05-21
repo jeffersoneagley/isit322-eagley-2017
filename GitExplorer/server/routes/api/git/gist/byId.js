@@ -3,27 +3,7 @@
  */
 let express = require('express');
 let router = express.Router();
-let GitHub = require('github-api');
-
-// unauthenticated client
-let gh = new GitHub();
-
-// basic auth
-let getGitHub = function() {
-    let ghres = {};
-    if (process.env.GITHUB_TOKEN !== '') {
-        ghres = new GitHub({
-            username: 'jefferson.eagley@gmail.com',
-            token: process.env.GITHUB_TOKEN,
-        });
-    } else {
-        ghres = new GitHub({
-            username: 'jefferson.eagley@gmail.com',
-            password: process.env.GITHUB_PASSWORD,
-        });
-    }
-    return ghres;
-};
+let gh = require('../../getGitHubAuth')();
 
 let getGistById = function(request, response) {
     try {

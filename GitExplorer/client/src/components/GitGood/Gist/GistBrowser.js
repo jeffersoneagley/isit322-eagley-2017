@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Debug from '../../Debug/Debug';
 import GetGist from './GistNew';
-import GistList from './GistLister';
+import GistList from './Lister/GistLister';
 import GistView from './GistView';
 const logger = new Debug(false);
 /**

@@ -11,7 +11,7 @@ router.get('/foo', function(request, response, next) {
     response.send(message);
 });
 
-router.use('/users', Users);
+router.use('/user', Users);
 
 router.use('/git', Git);
 

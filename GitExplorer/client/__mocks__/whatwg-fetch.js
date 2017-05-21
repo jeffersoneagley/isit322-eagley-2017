@@ -7,17 +7,17 @@ import getData from './mock-data';
 
 const whatwgFetch = jest.genMockFromModule('whatwg-fetch');
 
-var fetch = function(url) {
+let fetch = function(url) {
 
-    var objectState = getData(url);
+    let objectState = getData(url);
 
-    var response = {};
+    let response = {};
     response.json = function() {
         return objectState;
     };
 
-    var quiet = true;
-    var debug = (message) => {
+    let quiet = true;
+    let debug = (message) => {
         if (!quiet) {
             console.log(message);
         }
@@ -34,11 +34,11 @@ var fetch = function(url) {
                     return {
                         catch: function() {
 
-                        }
+                        },
                     };
-                }
+                },
             };
-        }
+        },
     };
 };
 

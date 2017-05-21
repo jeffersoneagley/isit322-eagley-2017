@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import Debug from '../Debug/Debug';
 import ElfElements from '../Elf/ElfElement';
-import GitFieldGenerator from './GitFieldGenerator';
 
-const gitFieldGenerator = new GitFieldGenerator();
 const logger = new Debug(false);
-let fieldDefinitions = [];
+
 /**
  * A component for display of a git user's info
  */
@@ -36,6 +34,7 @@ class ShowUserInfo extends Component {
                 <ElfElements {...field}
                              value={this.props.gitUser[field.id] || field.sample}
                              onChange={this.props.onChange}
+                             key={'elfElement_' + field.id}
                 />
             </div>
         );
@@ -44,12 +43,12 @@ class ShowUserInfo extends Component {
     /**
      * calls getform for each field passed
      */
-    fillFields = () => {
+    fillFields = (fieldDefinitions) => {
         try {
             if (this.props.gitUser) {
-                fieldDefinitions = gitFieldGenerator.getFields(this.props.gitUser);
+                // fieldDefinitions = gitFieldGenerator.getFields(this.props.gitUser);
                 if (fieldDefinitions !== undefined) {
-                    logger.log(typeof (fieldDefinitions));
+                    // logger.log(typeof (fieldDefinitions));
                     return fieldDefinitions.map((field, index) => {
                         return this.getForm(field, index);
                     });
@@ -77,7 +76,7 @@ class ShowUserInfo extends Component {
         return (
             <form className="Form">
                 <h3>ShowUserInfo</h3>
-                {this.fillFields()}
+                {this.fillFields(this.props.fieldDefinitions)}
                 <button onClick={this.clickMe}>Get User</button>
             </form>
         );

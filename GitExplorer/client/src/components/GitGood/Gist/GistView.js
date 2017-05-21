@@ -13,7 +13,7 @@ class GistView extends Component {
     // };
 
     renderFileSingle(fileMetaData) {
-        return <li key={'keyGistViewFile' + fileMetaData.filename} className="gistViewFileItem">
+        return <li key={'keyGistViewFile' + fileMetaData.filename} className='gistViewFileItem'>
             {fileMetaData.filename || ''} - {fileMetaData.type || ''}<br/>
             <p>
                 {fileMetaData.content || 'contents cannot be displayed'}

@@ -4,33 +4,23 @@
 
 let express = require('express');
 let router = express.Router();
-let GitHub = require('github-api');
+let getGitHub = require('./getGitHubAuth');
+let checkIsObject = require('../../checkIsObject');
 
-// EXISTING CODE OMITTED HERE
 router.get('/', function(req, res, next) {
-    let options = {
-        // url    : 'https://api.bitbucket.org/2.0/users/jeffersoneagley',
-        url: 'https://api.github.com/users/charliecalvert',
-        headers: {
-            'User-Agent': 'request',
-        },
-    };
+    try {
+        let gh = getGitHub();
+        gh.getUser().getProfile().then((data) => {
+            let user = checkIsObject(data);
+            console.log(user.data.url);
+            res.status(200).send({body: user.data});
+        }).catch((err) => {
+            res.status(500).send({error: err});
+        });
 
-    request(options, function(error, response, body) {
-        // Print the error if one occurred
-        console.log('error:', error);
-        // Print the response status code if a response was received
-        console.log('statusCode:', response && response.statusCode);
-        // Print the HTML for the Google homepage.
-        console.log('body:', body);
-        res.send({error: error, response: response, body: body});
-    });
-
+    } catch (exc) {
+        console.log(exc);
+    }
 });
-
-// router.get('/', (request, response, next) => {
-//     console.log('git base route called');
-//     response.send('<h2>git base route</h2>');
-// });
 
 module.exports = router;

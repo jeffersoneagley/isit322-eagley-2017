@@ -15,6 +15,9 @@ class GetGist extends Component {
     }
 
     clickMe = (event) => {
+        if (event && event.preventDefault) {
+            event.preventDefault();
+        }
         console.log('clicked');
         let docs = {};
         docs[this.formElements.gistTitle] = {
@@ -31,22 +34,22 @@ class GetGist extends Component {
                 <label >Title</label>
                 <input id="#newGistTitle" type="text"
                        defaultValue={this.formElements.gistTitle}
-                       onChange={(value) => {
-                           this.formElements.gistTitle = value;
+                       onChange={(event) => {
+                           this.formElements.gistTitle = event.target.value;
                        }}
                 />
                 <label >Description</label>
                 <input id="#newGistDescription" type="text"
                        defaultValue={this.formElements.gistDescription}
-                       onChange={(value) => {
-                           this.formElements.gistDescription = value;
+                       onChange={(event) => {
+                           this.formElements.gistDescription = event.target.value;
                        }}
                 />
                 <label >Content</label>
                 <input id="#newGistContent" type="text"
                        defaultValue={this.formElements.gistContent}
-                       onChange={(value) => {
-                           this.formElements.gistContent = value;
+                       onChange={(event) => {
+                           this.formElements.gistContent = event.target.value;
                        }}
                 />
                 <button onClick={this.clickMe}>Create Gist</button>

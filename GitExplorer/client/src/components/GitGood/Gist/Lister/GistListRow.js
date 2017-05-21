@@ -1,3 +1,6 @@
+/**
+ * Created by fish on 5/21/17.
+ */
 import React, {Component} from 'react';
 /**
  * A component for display of a git user's info
@@ -31,16 +34,10 @@ class GistList extends Component {
         }
     };
 
-    clickHandler_gistIdSelected = (id) => {
-        return (event) => {
-            this.props.getGistHeaderById(id, event);
-        };
-    };
-
-    getForm = (field, index) => {
+    getForm = (field, index, clickHandler) => {
         return <tr key={'keyGistRow' + field.id}>
             <td>
-                <button onClick={this.clickHandler_gistIdSelected(field.id)}>
+                <button onClick={clickHandler(field.id)}>
                     {index !== undefined ? index : 'something has gone terribly wrong, please refresh'}
                     - ID: <br/>
                     {field.id || 'error in getting ID'}
@@ -57,44 +54,8 @@ class GistList extends Component {
             ;
     };
 
-    getList = () => {
-        if (!this.props.gistData) {
-            return [
-                (<tr key='noGistData'>
-                    <td>GistLister has no gist data prop</td>
-                </tr>)];
-        }
-        else if (!this.props.gistData.gistList) {
-            return [
-                (<tr key='noGistData'>
-                    <td>GistLister gist data has no gist list</td>
-                </tr>)];
-        }
-        else if (this.props.gistData.gistList &&
-            this.props.gistData.gistList.length > 0) {
-            return this.props.gistData.gistList.map((field, index) => {
-                return this.getForm(field, index);
-            });
-        } else {
-            return [
-                (<tr key='noGistData'>
-                    <td>GistLister had unidentified error</td>
-                </tr>)];
-        }
-    };
-
     render() {
-        return (
-            <div>
-                <h2>Gist Lister</h2>
-                <table>
-                    {this.props.isRefreshingGistData ? <caption>loading..</caption> : true}
-                    <tbody>
-                    {this.getList()}
-                    </tbody>
-                </table>
-            </div>
-        );
+        return this.getForm(this.props.field, this.props.index, this.props.clickHandler_gistIdSelected);
     };
 }
 

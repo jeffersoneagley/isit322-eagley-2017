@@ -7,8 +7,9 @@ import SmallNumbers from './SmallNumber/SmallNumbers';
 import numbersInit from './SmallNumber/numbers-data';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import ElfHeader from './Header/ElfHeader';
-import GetUserInfo from './GitGood/GetUserInfo';
+// import GetUserInfo from './GitGood/GetUserInfo';
 import GistBrowser from './GitGood/Gist/GistBrowser';
+import ShowUserInfo from './GitGood/ShowUserInfo';
 
 let fieldGenerator = new FieldGenerator();
 
@@ -40,19 +41,21 @@ class DataMaven extends Component {
     }
 
     getUser = (event) => {
-        event.preventDefault();
+        if (event !== undefined) {
+            event.preventDefault();
+        }
         const that = this;
         fetch('/api/user').then(function(response) {
             // YOU WRITE IT
             that.debug.log(response);
             return response.json();
-        }).then(function(json) {
+        }).then(function(data) {
             // DISPLAY WITH LOGGER AS NEEDED
             that.debug.log('JSON recieved, saving state');
-            that.debug.log(json);
+            // that.debug.log(data);
             // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
-            let body = JSON.parse(json.body);
-            // var body = json.body;
+            let json = typeof (data) === 'string' ? JSON.parse(data) : data;
+            let body = json.body;
             that.debug.log('setting state');
             that.debug.log(body);
 
@@ -97,7 +100,7 @@ class DataMaven extends Component {
             let body = typeof (json) === 'string' ? JSON.parse(json) : json;
             // var body = json.body;
             that.setState({newGist: body});
-            this.getGistList();
+            that.getGistList();
         }).catch(function(ex) {
             // DISPLAY WITH LOGGER
             that.debug.log(ex);
@@ -191,10 +194,10 @@ class DataMaven extends Component {
                     <div>
                         <ElfHeader/>
                         <Route exact path="/" render={(props) => (
-                            <GetUserInfo {...props}
-                                         gitUser={this.state.gitUser}
-                                         fieldDefinitions={this.state.fieldDefinitions}
-                                         onGetUserButtonClicked={this.getUser}
+                            <ShowUserInfo {...props}
+                                          gitUser={this.state.gitUser}
+                                          fieldDefinitions={this.state.fieldDefinitions}
+                                          onGetUserButtonClicked={this.getUser}
                             />
                         )}/>
                         <Route exact path="/get-foo" component={GetFoo}/>

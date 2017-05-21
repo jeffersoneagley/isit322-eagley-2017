@@ -10,7 +10,7 @@ const getData = (url) => {
                 file: 'api.js',
             };
 
-        case '/api/git/gist/ist':
+        case '/api/git/gist/list':
             return {
                 result: [
                     {
