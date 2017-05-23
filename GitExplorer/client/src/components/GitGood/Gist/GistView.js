@@ -13,7 +13,7 @@ class GistView extends Component {
     // };
 
     renderFileSingle(fileMetaData) {
-        return <li key={'keyGistViewFile' + fileMetaData.filename} className='gistViewFileItem'>
+        return <li key={'keyGistViewFile' + fileMetaData.filename}>
             {fileMetaData.filename || ''} - {fileMetaData.type || ''}<br/>
             <p>
                 {fileMetaData.content || 'contents cannot be displayed'}
@@ -35,34 +35,32 @@ class GistView extends Component {
         logger.log('render GistViewer');
         return (
             <section>
-                <div className='gistViewItem'>
-                    <h3>Git gist {this.props.newGist.id}</h3><br />
+                <div >
+                    <h3>Viewing Gist id {this.props.newGist.id}</h3><br />
                     description: {this.props.newGist.description || ''}
                 </div>
-                <div className='gistViewPanel'>
-                    <div className='gistViewPanelItem'>
-                        <h4>Links</h4>
-                        <ul>
-                            <li>
-                                link:
-                                <a href={this.props.newGist.html_url} target='new'>
-                                    {this.props.newGist.html_url || 'no url given'}
-                                </a>
-                            </li>
-                            <li>
-                                API
-                                <a href={this.props.newGist.url} target='new'>
-                                    {this.props.newGist.url || 'no url given'}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className='gistViewPanelItem gistViewItem'>
-                        <h4>Files</h4>
-                        <ul>
-                            {this.renderFiles()}
-                        </ul>
-                    </div>
+                <div className=' btn-group btn-group-vertical'>
+                    <h4>Links</h4>
+                    {
+                        this.props.newGist.html_url ?
+                            (<a href={this.props.newGist.html_url} className='btn btn-secondary btn-block' role='button'
+                                target='new'>
+                                Friendly: <br/>{this.props.newGist.html_url || 'no url given'}
+                            </a>) : ''
+                    }
+                    {
+                        this.props.newGist.url ?
+                            <a href={this.props.newGist.url} className='btn  btn-secondary btn-block' role='button'
+                               target='new'>
+                                API: <br/>{this.props.newGist.url || 'no url given'}
+                            </a> : ''
+                    }
+                </div>
+                <div>
+                    <h4>Files</h4>
+                    <ul>
+                        {this.renderFiles()}
+                    </ul>
                 </div>
             </section>
         );

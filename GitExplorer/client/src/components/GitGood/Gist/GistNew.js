@@ -29,31 +29,39 @@ class GetGist extends Component {
     render() {
         logger.log('render GetGist');
         return (
-            <form className="Form">
-                <h3>Create gist</h3>
-                <label >Title</label>
-                <input id="#newGistTitle" type="text"
-                       defaultValue={this.formElements.gistTitle}
-                       onChange={(event) => {
-                           this.formElements.gistTitle = event.target.value;
-                       }}
-                />
-                <label >Description</label>
-                <input id="#newGistDescription" type="text"
-                       defaultValue={this.formElements.gistDescription}
-                       onChange={(event) => {
-                           this.formElements.gistDescription = event.target.value;
-                       }}
-                />
-                <label >Content</label>
-                <input id="#newGistContent" type="text"
-                       defaultValue={this.formElements.gistContent}
-                       onChange={(event) => {
-                           this.formElements.gistContent = event.target.value;
-                       }}
-                />
-                <button onClick={this.clickMe}>Create Gist</button>
-            </form>
+            <div >
+                <form className="Form">
+                    <h3>Create a gist</h3>
+                    <div className="form-group">
+                        <label htmlFor="#newGistTitle">Title</label>
+                        <input id="#newGistTitle" type="text" className="form-control"
+                               defaultValue={this.formElements.gistTitle}
+                               onChange={(event) => {
+                                   this.formElements.gistTitle = event.target.value;
+                               }}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="#newGistDescription">Description</label>
+                        <input id="#newGistDescription" type="text" className="form-control"
+                               defaultValue={this.formElements.gistDescription}
+                               onChange={(event) => {
+                                   this.formElements.gistDescription = event.target.value;
+                               }}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="#newGistContent">Content</label>
+                        <input id="#newGistContent" type="text" className="form-control"
+                               defaultValue={this.formElements.gistContent}
+                               onChange={(event) => {
+                                   this.formElements.gistContent = event.target.value;
+                               }}
+                        />
+                    </div>
+                    <button onClick={this.clickMe}>Create Gist</button>
+                </form>
+            </div>
         );
     };
 }

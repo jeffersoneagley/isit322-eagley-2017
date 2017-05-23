@@ -39,7 +39,7 @@ class GistList extends Component {
         return (
             <div>
                 <h2>Gist Lister</h2>
-                <table>
+                <table className="table table-responsive table-striped">
                     {this.props.isRefreshingGistData ? <caption>loading..</caption> : true}
                     <tbody>
                     {this.getList()}

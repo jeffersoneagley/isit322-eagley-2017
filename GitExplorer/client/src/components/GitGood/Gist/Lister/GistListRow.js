@@ -11,10 +11,12 @@ class GistListRow extends Component {
         NOT_FOUND: {
             button: 'Gist ID missing',
             files: 'No files found for gist? that\'s strange',
+            description: 'Gist not found',
             url: 'No URL(s) given',
         },
         DUMMY: {
             button: 'No data was given',
+            description: 'Default Gist data for tests',
             files: 'No files, because this this a dummy row',
             url: 'If you are seeing this, please refresh and contact the site admin.',
         },
@@ -51,6 +53,7 @@ class GistListRow extends Component {
         return <tr key={'keyGistRowNoData' + Date.now()}>
             <th>{GistListRow.DEFAULT_MESSAGES.DUMMY.button}</th>
             <td>{GistListRow.DEFAULT_MESSAGES.DUMMY.files}</td>
+            <td>{GistListRow.DEFAULT_MESSAGES.DUMMY.description}</td>
             <td>{GistListRow.DEFAULT_MESSAGES.DUMMY.url}</td>
         </tr>;
     };
@@ -63,7 +66,7 @@ class GistListRow extends Component {
                 GistListRow.DEFAULT_MESSAGES.NOT_FOUND.button)}
         </div>;
         if (clickHandler !== undefined) {
-            return (<button onClick={clickHandler}>
+            return (<button className="btn btn-info btn-block" onClick={clickHandler}>
                 {buttonText}
             </button>);
         } else {
@@ -83,6 +86,13 @@ class GistListRow extends Component {
                         this.getFileMetaList(gistData.files) :
                         GistListRow.DEFAULT_MESSAGES.NOT_FOUND.files
                     }</ul>
+                </td>
+                <td>
+                    Description:
+                    {gistData.description ?
+                        gistData.description :
+                        GistListRow.DEFAULT_MESSAGES.NOT_FOUND.description
+                    }
                 </td>
                 <td><a href={gistData.html_url} target="new">
                     {
