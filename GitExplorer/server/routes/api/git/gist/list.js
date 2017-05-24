@@ -34,6 +34,8 @@ let getGistList = function(response) {
                 description: gist.description,
                 git_pull_url: gist.git_pull_url,
                 files: getGistFiles(gist.files),
+                created_at: gist.created_at,
+                updated_at: gist.updated_at,
             };
         });
 

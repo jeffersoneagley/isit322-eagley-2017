@@ -17,17 +17,20 @@ class GistBrowser extends Component {
     render() {
         logger.log('render GetGist');
         return (
-            <div >
-                <h1>Gist Browser</h1>
-                <div className='col-sm-8 jumbotron'>
-                    <GistView {...this.props} />
-                </div>
-                <div className='col-sm-4'>
-                    <GistNew {...this.props}/>
+            <div className='container-fluid'>
+                <div className='row'>
+                    <h1>Gist Browser</h1>
+                    <div className='col-sm-8 jumbotron'>
+                        <GistView {...this.props} />
+                    </div>
+                    <div className='col-sm-4'>
+                        <GistNew {...this.props}/>
+                    </div>
                 </div>
                 <hr/>
-                <GistList {...this.props}
-                />
+                <div className='row'>
+                    <GistList {...this.props} />
+                </div>
             </div>
         );
     };

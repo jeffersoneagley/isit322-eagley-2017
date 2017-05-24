@@ -29,9 +29,9 @@ class GetGist extends Component {
     render() {
         logger.log('render GetGist');
         return (
-            <div >
+            <div className='panel panel-info'>
                 <form className="Form">
-                    <h3>Create a gist</h3>
+                    <h3 className='page-header'>Create a gist</h3>
                     <div className="form-group">
                         <label htmlFor="#newGistTitle">Title</label>
                         <input id="#newGistTitle" type="text" className="form-control"
@@ -59,7 +59,7 @@ class GetGist extends Component {
                                }}
                         />
                     </div>
-                    <button onClick={this.clickMe}>Create Gist</button>
+                    <button className='btn btn-primary' onClick={this.clickMe}>Create Gist</button>
                 </form>
             </div>
         );
