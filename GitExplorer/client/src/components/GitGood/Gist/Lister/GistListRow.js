@@ -62,22 +62,6 @@ class GistListRow extends Component {
         </tr>;
     };
 
-    processGistIdIndexHasButton = (gistData, index, clickHandler) => {
-        let buttonText = <div>
-            {typeof(index) === 'number' ? (index + ' - ') : ''}
-            {(gistData.id !== undefined ?
-                (<span>ID<br/><small>{gistData.id}</small></span>) :
-                GistListRow.DEFAULT_MESSAGES.NOT_FOUND.button)}
-        </div>;
-        if (clickHandler !== undefined) {
-            return (<button className="btn btn-info btn-block" onClick={clickHandler}>
-                {buttonText}
-            </button>);
-        } else {
-            return buttonText;
-        }
-    };
-
     processButtonOrDiv = (content, clickHandler) => {
         if (clickHandler !== undefined) {
             return (<button className="btn btn-info btn-block" onClick={clickHandler}>
@@ -127,9 +111,9 @@ class GistListRow extends Component {
             return <tr key={'keyGistRow' + gistData.id} className="row">
                 <td>
                     <div className='container-fluid hidden-xs'>
-                        <h3>{gistHeader}</h3>
+                        <h3 className='page-header'>{gistHeader}</h3>
                         {this.getRowData(gistData)}
-                        <div className='col-sm-2 hidden-xs'>
+                        <div className='col-sm-3 hidden-xs'>
                             {this.processButtonOrDiv('View Gist Data', clickHandler)}
                         </div>
                     </div>
@@ -142,42 +126,6 @@ class GistListRow extends Component {
                             , clickHandler)}
                     </div>
                 </td>
-            </tr>;
-        } else {
-            return GistListRow.defaultForm();
-        }
-    };
-
-    getFormOld = (gistData, index, clickHandler) => {
-        if (gistData !== undefined) {
-            return <tr key={'keyGistRow' + gistData.id} className="row">
-                <td className="col-sm-1 hidden-xs">
-                    {this.processGistIdIndexHasButton(gistData, index, clickHandler)}
-                </td>
-                <td className="col-sm-1 hidden-xs">
-                    {this.processGistIdIndexHasButton(gistData, index, clickHandler)}
-                </td>
-                <td className="col-sm-3">
-                    Files:
-                    <ul>{gistData.files ?
-                        this.getFileMetaList(gistData.files) :
-                        GistListRow.DEFAULT_MESSAGES.NOT_FOUND.files
-                    }</ul>
-                </td>
-                <td className="col-sm-3">
-                    Description:
-                    {gistData.description ?
-                        gistData.description :
-                        GistListRow.DEFAULT_MESSAGES.NOT_FOUND.description
-                    }
-                </td>
-                <td className="col-sm-3"><a href={gistData.html_url} target="new">
-                    {
-                        gistData && gistData.html_url ?
-                            this.autoTruncate(gistData.html_url, 25) :
-                            GistListRow.DEFAULT_MESSAGES.NOT_FOUND.url
-                    }
-                </a></td>
             </tr>;
         } else {
             return GistListRow.defaultForm();
