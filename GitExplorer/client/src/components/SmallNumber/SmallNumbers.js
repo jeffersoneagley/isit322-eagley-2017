@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import '../../css/App.css';
 import numbersInit from './numbers-data';
 import Paragraph from '../Paragraph/Paragraph';
 

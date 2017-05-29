@@ -38,7 +38,7 @@ class GistList extends Component {
     render() {
         return (
             <div>
-                <h2>Gist Lister</h2>
+                <h2>Gist Lister<span className="badge">{this.props.gistData.gistList.length || ''}</span></h2>
                 <table className="table table-responsive table-striped">
                     {this.props.isRefreshingGistData ? <caption>loading..</caption> : true}
                     <tbody>

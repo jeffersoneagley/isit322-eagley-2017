@@ -10,7 +10,8 @@ import ElfHeader from './Header/ElfHeader';
 // import GetUserInfo from './GitGood/GetUserInfo';
 import GistBrowser from './GitGood/Gist/GistBrowser';
 import ShowUserInfo from './GitGood/ShowUserInfo';
-import ElfHeaderMenu from './Header/ElfHeaderMenu';
+import BsMenuBar from './Header/BsMenuBar';
+import FishLogo from './Header/FishLogo';
 
 let fieldGenerator = new FieldGenerator();
 
@@ -192,8 +193,9 @@ class DataMaven extends Component {
         return (
             <Router history={this.state.history}>
                 <div className="App">
-                    <div className="App-header">
-                        <ElfHeaderMenu/>
+                    <div className="container-fluid App-header">
+                        <BsMenuBar/>
+                        <FishLogo/>
                         <ElfHeader/>
                     </div>
                     <div className="container-fluid">
