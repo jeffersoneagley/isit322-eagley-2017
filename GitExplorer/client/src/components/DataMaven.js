@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import Debug from './Debug/Debug';
 // import fieldDefinitions from "./GitGood/field-definitions";
 import FieldGenerator from './GitGood/GitFieldGenerator';
-import GetFoo from './GetFoo';
-import SmallNumbers from './SmallNumber/SmallNumbers';
-import numbersInit from './SmallNumber/numbers-data';
+import GetFoo from './SimpleReactDemos/GetFoo';
+import SmallNumbers from './SimpleReactDemos/SmallNumber/SmallNumbers';
+import numbersInit from './SimpleReactDemos/SmallNumber/numbers-data';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import ElfHeader from './Header/ElfHeader';
 // import GetUserInfo from './GitGood/GetUserInfo';
@@ -12,6 +12,7 @@ import GistBrowser from './GitGood/Gist/GistBrowser';
 import ShowUserInfo from './GitGood/ShowUserInfo';
 import BsMenuBar from './Header/BsMenuBar';
 import FishLogo from './Header/FishLogo';
+import Home from './Home';
 
 let fieldGenerator = new FieldGenerator();
 
@@ -199,7 +200,8 @@ class DataMaven extends Component {
                         <ElfHeader/>
                     </div>
                     <div className="container-fluid">
-                        <Route exact path="/" render={(props) => (
+                        <Route exact path="/" component={Home}/>
+                        <Route exact path="/get-user" render={(props) => (
                             <ShowUserInfo {...props}
                                           gitUser={this.state.gitUser}
                                           fieldDefinitions={this.state.fieldDefinitions}
@@ -227,6 +229,11 @@ class DataMaven extends Component {
                                    }
                                }/>
                     </div>
+                    <hr/>
+                    <footer className="well">
+                        <p>Made in my ISIT 322 coursework at Bellevue College</p>
+                        <p>GitExplorer &copy; {new Date().getFullYear()} Jefferson Eagley</p>
+                    </footer>
                 </div>
             </Router>
         );

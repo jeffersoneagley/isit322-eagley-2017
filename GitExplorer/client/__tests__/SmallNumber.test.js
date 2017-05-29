@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import Paragraph from '../src/components/Paragraph/Paragraph';
-import SmallNumbers from '../src/components/SmallNumber/SmallNumbers';
+import SmallNumbers from '../src/components/SimpleReactDemos/SmallNumber/SmallNumbers';
 
 describe('Checking for functionality per SmallNumber assignment', function() {
     var simNames = [

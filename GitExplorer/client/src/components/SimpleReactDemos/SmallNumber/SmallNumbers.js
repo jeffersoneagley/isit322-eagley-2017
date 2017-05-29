@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import numbersInit from './numbers-data';
-import Paragraph from '../Paragraph/Paragraph';
+import Paragraph from '../../Paragraph/Paragraph';
 import {Button} from 'react-bootstrap';
 
 class SmallNumbers extends Component {

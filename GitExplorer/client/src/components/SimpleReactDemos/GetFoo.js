@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Paragraph from './Paragraph/Paragraph';
+import Paragraph from '../Paragraph/Paragraph';
 import {Button} from 'react-bootstrap';
 
 class GetFoo extends Component {

@@ -27,6 +27,7 @@ class BsMenuBar extends Component {
                                 SmallNumbers
                             </MenuItem></LinkContainer>
                         </NavDropdown>
+                        <LinkContainer to='get-user'><NavItem>User profile</NavItem></LinkContainer>
                         <LinkContainer to='get-gist'><NavItem>Gists</NavItem></LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
