@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Paragraph from './Paragraph/Paragraph';
+import {Button} from 'react-bootstrap';
 
 class GetFoo extends Component {
     constructor() {
@@ -37,7 +38,7 @@ class GetFoo extends Component {
     };
 
     GetButton = () => {
-        return (<button id="buttonFoo" onClick={this.getFoo}>Bar</button>);
+        return (<Button bsStyle="primary" id="buttonFoo" onClick={this.getFoo}>Bar</Button>);
     };
 
     render() {

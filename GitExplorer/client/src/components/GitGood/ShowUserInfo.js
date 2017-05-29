@@ -4,6 +4,7 @@
 import React, {Component} from 'react';
 import Debug from '../Debug/Debug';
 import FishElement from './FishElement';
+import {Button} from 'react-bootstrap';
 
 const logger = new Debug(false);
 
@@ -77,7 +78,7 @@ class ShowUserInfo extends Component {
             <div className="media">
                 <h3>ShowUserInfo</h3>
                 {this.fillFields(this.props.fieldDefinitions)}
-                <button onClick={this.clickMe}>Get User</button>
+                <Button bsClass="primary" onClick={this.clickMe}>Get User</Button>
             </div>
         );
     };

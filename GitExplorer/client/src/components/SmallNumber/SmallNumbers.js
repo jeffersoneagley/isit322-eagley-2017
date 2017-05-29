@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import numbersInit from './numbers-data';
 import Paragraph from '../Paragraph/Paragraph';
+import {Button} from 'react-bootstrap';
 
 class SmallNumbers extends Component {
     constructor() {
@@ -47,15 +48,30 @@ class SmallNumbers extends Component {
 
     getButtons = () => {
         return [
-            <button id="buttonOne" key="buttonOne" onClick={this.getOne}>GetOne</button>,
-            <button id="buttonTwo" key="buttonTwo" onClick={this.getTwo}>GetTwo</button>,
-            <button id="buttonThree" key="buttonThree" onClick={this.getThree}>GetThree</button>,
-            <button id="buttonFour" key="buttonFour" onClick={this.getFour}>GetFour</button>,
-            <button id="buttonFive" key="buttonFive" onClick={this.getFive}>GetFive</button>,
-            <button id="buttonSix" key="buttonSix" onClick={this.getSix}>GetSix</button>,
-            <button id="buttonSeven" key="buttonSeven" onClick={this.getSeven}>GetSeven</button>,
-            <button id="buttonEight" key="buttonEight" onClick={this.getEight}>GetEight</button>,
-            <button id="buttonNine" key="buttonNine" onClick={this.getNine}>GetNine</button>,
+            <Button bsStyle="primary" id="buttonOne"
+                    key="buttonOne" onClick={this.getOne}>GetOne</Button>,
+            <Button bsStyle="primary" id="buttonTwo"
+                    key="buttonTwo" onClick={this.getTwo}>GetTwo</Button>,
+            <Button bsStyle="primary" id="buttonThree"
+                    key="buttonThree" onClick={this.getThree}>
+                GetThree</Button>,
+            <Button bsStyle="primary" id="buttonFour"
+                    key="buttonFour" onClick={this.getFour}>
+                GetFour</Button>,
+            <Button bsStyle="primary" id="buttonFive"
+                    key="buttonFive" onClick={this.getFive}>
+                GetFive</Button>,
+            <Button bsStyle="primary" id="buttonSix"
+                    key="buttonSix" onClick={this.getSix}>GetSix</Button>,
+            <Button bsStyle="primary" id="buttonSeven"
+                    key="buttonSeven" onClick={this.getSeven}>
+                GetSeven</Button>,
+            <Button bsStyle="primary" id="buttonEight"
+                    key="buttonEight" onClick={this.getEight}>
+                GetEight</Button>,
+            <Button bsStyle="primary" id="buttonNine"
+                    key="buttonNine" onClick={this.getNine}>
+                GetNine</Button>,
         ];
     };
 
