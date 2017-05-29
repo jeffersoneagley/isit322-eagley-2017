@@ -36,7 +36,9 @@ getGitHub = function() {
         auth.password = ghpassword;
     }
     let ghres = new GitHub(auth);
-    // console.log(ghres.getUser());
+
+    console.log('GH connected to user ' + ghusername);
+
     return ghres;
 };
 module.exports = getGitHub;

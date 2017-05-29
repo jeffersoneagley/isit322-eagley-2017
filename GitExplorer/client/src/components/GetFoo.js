@@ -43,8 +43,22 @@ class GetFoo extends Component {
     render() {
         return (
             <div>
-                <Paragraph stator={this.state} nameList={this.nameDummies}/>
-                {this.GetButton()}
+                <div className="jumbotron col-sm-8">
+                    <h1>Foo </h1>
+                    <Paragraph stator={this.state} nameList={this.nameDummies}/>
+                    {this.GetButton()}
+                </div>
+                <div className="panel panel-info col-sm-4">
+                    <h2 className="panel-heading">Info</h2>
+                    <p>
+                        This page was created as an exercise in calling an API,
+                        then saving the results in state.
+                    </p>
+                    <p>
+                        This component calls the API on the server, and gets
+                        some simple data back as a proof-of-concept.
+                    </p>
+                </div>
             </div>
         );
     }

@@ -22,9 +22,11 @@ let getGistFiles = function(files) {
     return result;
 };
 
-let getGistList = function(response) {
+let getGistList = function(res) {
+    console.log(res);
     getGitHubAuth().getUser().listGists().then(({data}) => {
         // Promises!
+        console.log(data);
 
         const result = data.map((gist) => {
             return {
@@ -39,19 +41,18 @@ let getGistList = function(response) {
             };
         });
 
-        response.status(200).send({
+        res.status(200).send({
             count: result.length,
             result: result,
         });
     }).catch((err) => {
         console.log(err);
-        response.status(500).send(err);
+        res.status(500).send(err);
     });
 };
 
-router.get('/', (request, response, next) => {
-    // console.log('gistList requested on server');
-    gh = getGitHub();
+router.get('/', (request, response) => {
+    console.log('gistList requested on server');
     getGistList(response);
 });
 

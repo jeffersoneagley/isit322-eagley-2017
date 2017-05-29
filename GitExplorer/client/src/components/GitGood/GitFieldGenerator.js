@@ -19,19 +19,34 @@ class GitFieldGenerator {
         }
     };
 
+    /**
+     * processes the entry name into the various display data types used in other components.
+     * @param entry
+     * @param value
+     * @return {{id: *, label, type: string, sample: string}}
+     */
     makeEntryFromDataType = (entry, value) => {
         let result = {
             id: entry,
-            label: entry + '-name',
+            label: entry.replace(/_/, ' '),
             type: 'paragraph',
             sample: entry + '-unknown',
         };
-        switch (typeof (value)) {
-            case 'datetime':
-                result.type = 'year';
-                break;
-            default:
-                result.type = 'paragraph';
+        if (entry.includes('avatar') && value !== undefined && value !== '') {
+            result.type = 'image';
+        } else if (value === 'true' || value === true ||
+            value === false || value === 'false') {
+            result.type = 'bool';
+        } else if (entry.includes('url') && !value.includes('{')) {
+            result.type = 'url';
+        } else {
+            switch (typeof (value)) {
+                case 'datetime':
+                    result.type = 'year';
+                    break;
+                default:
+                    result.type = 'paragraph';
+            }
         }
 
         return result;

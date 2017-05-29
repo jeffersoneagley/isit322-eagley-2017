@@ -48,31 +48,43 @@ class SmallNumbers extends Component {
 
     getButtons = () => {
         return [
-            <button id="buttonOne" onClick={this.getOne}>GetOne</button>,
-            <button id="buttonTwo" onClick={this.getTwo}>GetTwo</button>,
-            <button id="buttonThree" onClick={this.getThree}>GetThree</button>,
-            <button id="buttonFour" onClick={this.getFour}>GetFour</button>,
-            <button id="buttonFive" onClick={this.getFive}>GetFive</button>,
-            <button id="buttonSix" onClick={this.getSix}>GetSix</button>,
-            <button id="buttonSeven" onClick={this.getSeven}>GetSeven</button>,
-            <button id="buttonEight" onClick={this.getEight}>GetEight</button>,
-            <button id="buttonNine" onClick={this.getNine}>GetNine</button>,
+            <button id="buttonOne" key="buttonOne" onClick={this.getOne}>GetOne</button>,
+            <button id="buttonTwo" key="buttonTwo" onClick={this.getTwo}>GetTwo</button>,
+            <button id="buttonThree" key="buttonThree" onClick={this.getThree}>GetThree</button>,
+            <button id="buttonFour" key="buttonFour" onClick={this.getFour}>GetFour</button>,
+            <button id="buttonFive" key="buttonFive" onClick={this.getFive}>GetFive</button>,
+            <button id="buttonSix" key="buttonSix" onClick={this.getSix}>GetSix</button>,
+            <button id="buttonSeven" key="buttonSeven" onClick={this.getSeven}>GetSeven</button>,
+            <button id="buttonEight" key="buttonEight" onClick={this.getEight}>GetEight</button>,
+            <button id="buttonNine" key="buttonNine" onClick={this.getNine}>GetNine</button>,
         ];
     };
 
     render() {
         return (
             <div className="SmallNumbers">
-                <Paragraph stator={this.state} nameList={this.nameList}/>
-                <button id="buttonOne" onClick={this.getOne}>GetOne</button>
-                <button id="buttonTwo" onClick={this.getTwo}>GetTwo</button>
-                <button id="buttonThree" onClick={this.getThree}>GetThree</button>
-                <button id="buttonFour" onClick={this.getFour}>GetFour</button>
-                <button id="buttonFive" onClick={this.getFive}>GetFive</button>
-                <button id="buttonSix" onClick={this.getSix}>GetSix</button>
-                <button id="buttonSeven" onClick={this.getSeven}>GetSeven</button>
-                <button id="buttonEight" onClick={this.getEight}>GetEight</button>
-                <button id="buttonNine" onClick={this.getNine}>GetNine</button>
+                <div className="jumbotron col-sm-8">
+                    <h1>Small Numbers</h1>
+                    <Paragraph stator={this.state} nameList={this.nameList}/>
+                    {this.getButtons()}
+                </div>
+                <div className="panel panel-info col-sm-4">
+                    <h2 className="panel-heading">Info</h2>
+                    <p>
+                        This page was created as a simple exercise in using
+                        state in a React component.
+                    </p>
+                    <p>
+                        Since this component stores state locally, you may notice that the entry is reset
+                        every time the user navigates away and the "SmallNumbers" object is
+                        destroyed, then recreated.
+                    </p>
+                    <p>
+                        Each button calls a function that belongs
+                        to this component, and calls setState
+                        on this component's React state.
+                    </p>
+                </div>
             </div>
         );
     }

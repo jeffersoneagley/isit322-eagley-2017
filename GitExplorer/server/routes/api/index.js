@@ -22,8 +22,9 @@ router.use('/user', Users);
 
 router.use('/git', Git);
 
-router.get('/qux', (req, res) => {
-    requester(getAddress('qux')).pipe(res);
+router.get('/qux/:data', (req, res) => {
+    console.log(req.params);
+    requester(getAddress('qux') + '/' + req.params.data).pipe(res);
 });
 
 router.get('/', (request, response, next) => {

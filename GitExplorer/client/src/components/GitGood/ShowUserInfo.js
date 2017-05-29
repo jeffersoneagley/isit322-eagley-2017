@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
-import Debug from '../Debug/Debug';
-import ElfElements from '../Elf/ElfElement';
-
-const logger = new Debug(false);
-
 /**
  * A component for display of a git user's info
  */
+import React, {Component} from 'react';
+import Debug from '../Debug/Debug';
+import FishElement from './FishElement';
+
+const logger = new Debug(false);
+
 class ShowUserInfo extends Component {
     /**
      * Make a new ShowUserInfo object
@@ -31,11 +31,11 @@ class ShowUserInfo extends Component {
             <div className="ElfFormRow" key={field.id}>
                 <label className="ElfFormLabel"
                        htmlFor={field.id}>{field.label}:</label>
-                <ElfElements {...field}
+                <FishElement {...field}
                              value={this.props.gitUser[field.id] || field.sample}
                              onChange={this.props.onChange}
-                             key={'elfElement_' + field.id}
-                />
+                             key={'elfElement_' + field.id}/>
+
             </div>
         );
     };

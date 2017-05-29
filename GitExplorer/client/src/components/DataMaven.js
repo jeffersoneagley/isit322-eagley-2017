@@ -10,6 +10,7 @@ import ElfHeader from './Header/ElfHeader';
 // import GetUserInfo from './GitGood/GetUserInfo';
 import GistBrowser from './GitGood/Gist/GistBrowser';
 import ShowUserInfo from './GitGood/ShowUserInfo';
+import ElfHeaderMenu from './Header/ElfHeaderMenu';
 
 let fieldGenerator = new FieldGenerator();
 
@@ -189,10 +190,13 @@ class DataMaven extends Component {
         this.checkGistList();
         this.debug.log('render getuserinfo');
         return (
-            <div className="App">
-                <Router history={this.state.history}>
-                    <div>
+            <Router history={this.state.history}>
+                <div className="App">
+                    <div className="App-header">
+                        <ElfHeaderMenu/>
                         <ElfHeader/>
+                    </div>
+                    <div className="container-fluid">
                         <Route exact path="/" render={(props) => (
                             <ShowUserInfo {...props}
                                           gitUser={this.state.gitUser}
@@ -221,8 +225,8 @@ class DataMaven extends Component {
                                    }
                                }/>
                     </div>
-                </Router>
-            </div>
+                </div>
+            </Router>
         );
     };
 }
