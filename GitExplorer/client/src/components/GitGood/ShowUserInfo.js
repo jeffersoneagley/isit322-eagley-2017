@@ -74,11 +74,11 @@ class ShowUserInfo extends Component {
     render() {
         logger.log('render getuserinfo');
         return (
-            <form className="Form">
+            <div className="media">
                 <h3>ShowUserInfo</h3>
                 {this.fillFields(this.props.fieldDefinitions)}
                 <button onClick={this.clickMe}>Get User</button>
-            </form>
+            </div>
         );
     };
 }

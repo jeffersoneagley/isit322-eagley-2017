@@ -7,6 +7,9 @@ import Debug from '../Debug/Debug';
 import ElfElement from '../Elf/ElfElement';
 const logger = new Debug(false);
 
+/**
+ * This is an extension/wrapper around charlie's ElfElement
+ */
 class FishElement extends Component {
     constructor(props) {
         logger.log('FORM INPUT', 'constructor called', props);
@@ -18,11 +21,11 @@ class FishElement extends Component {
         switch (this.props.type) {
             case 'image': {
                 console.log('image type');
-                return <div
-                >
+                return <div className='media-left'>
                     <img src={this.props.value}
                          id={this.props.id}
-                         alt={this.props.label}/>
+                         alt={this.props.label}
+                         className='media-object'/>
                 </div>;
 
             }

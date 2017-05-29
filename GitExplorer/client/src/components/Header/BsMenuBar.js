@@ -18,16 +18,16 @@ class BsMenuBar extends Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
-                        <LinkContainer to='/'><NavItem eventKey={1}>Home</NavItem></LinkContainer>
-                        <NavDropdown eventKey={3} title='React Basics' id='basic-nav-dropdown'>
-                            <LinkContainer to='get-foo'><MenuItem eventKey={3.1}>
+                        <LinkContainer to='/'><NavItem>Home</NavItem></LinkContainer>
+                        <NavDropdown title='React Basics' id='basic-nav-dropdown'>
+                            <LinkContainer to='get-foo'><MenuItem>
                                 Foo API test
                             </MenuItem></LinkContainer>
-                            <LinkContainer to='get-numbers'><MenuItem eventKey={3.2}>
+                            <LinkContainer to='get-numbers'><MenuItem>
                                 SmallNumbers
                             </MenuItem></LinkContainer>
                         </NavDropdown>
-                        <LinkContainer to='get-gist'><NavItem eventKey={2}>Gists</NavItem></LinkContainer>
+                        <LinkContainer to='get-gist'><NavItem>Gists</NavItem></LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
