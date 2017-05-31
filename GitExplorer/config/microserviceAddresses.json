@@ -1,8 +1,14 @@
 {
-  "webserver": {
+  "api": {
     "port": 30026
   },
   "qux": {
     "port": 30027
+  },
+  "git": {
+    "port": 30028
+  },
+  "gist": {
+    "port": 30029
   }
 }

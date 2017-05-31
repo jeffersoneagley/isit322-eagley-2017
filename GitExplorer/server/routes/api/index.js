@@ -4,7 +4,7 @@ let Git = require('./git');
 let Users = require('./users');
 let morgan = require('morgan')('api-index');
 let requester = require('request');
-let serverConfig = require('../../../config/microserviceAddresses.json');
+let serverConfig = require('../../../config/microserviceAddressesUtility');
 
 /* GET home page. */
 router.get('/foo', function(request, response, next) {
@@ -13,18 +13,18 @@ router.get('/foo', function(request, response, next) {
     response.send(message);
 });
 
-getAddress = (serverName) => {
-    return serverConfig[serverName].url ||
-        'http://localhost:' + serverConfig[serverName].port;
-};
-
 router.use('/user', Users);
 
-router.use('/git', Git);
+// router.use('/git', Git);
+router.all('/git', (req, res) => {
+    requester(serverConfig.getAddress('git'), {
+        followAllRedirects: true,
+    }).pipe(res);
+});
 
 router.get('/qux/:data', (req, res) => {
     console.log(req.params);
-    requester(getAddress('qux') + '/' + req.params.data).pipe(res);
+    requester(serverConfig.getAddress('qux') + '/' + req.params.data).pipe(res);
 });
 
 router.get('/', (request, response, next) => {

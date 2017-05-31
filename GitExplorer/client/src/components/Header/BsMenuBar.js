@@ -8,7 +8,7 @@ import {LinkContainer} from 'react-router-bootstrap';
 class BsMenuBar extends Component {
 
     render() {
-        const navbarInstance = (
+        return (
             <Navbar collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
@@ -18,7 +18,6 @@ class BsMenuBar extends Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
-                        <LinkContainer to='/'><NavItem>Home</NavItem></LinkContainer>
                         <NavDropdown title='React Basics' id='basic-nav-dropdown'>
                             <LinkContainer to='get-foo'><MenuItem>
                                 Foo API test
@@ -32,11 +31,6 @@ class BsMenuBar extends Component {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-        );
-        return (
-            <div>
-                {navbarInstance}
-            </div>
         );
     }
 }
