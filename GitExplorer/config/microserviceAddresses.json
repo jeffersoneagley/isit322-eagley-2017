@@ -10,5 +10,14 @@
   },
   "gist": {
     "port": 30029
+  },
+  "markdown": {
+    "port": 30030
+  },
+  "client": {
+    "port": 30031
+  },
+  "git-socket": {
+    "port": 30032
   }
 }

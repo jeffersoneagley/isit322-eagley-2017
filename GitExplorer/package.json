@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "concurrently 'npm run client' 'npm run git' 'npm run gist' 'npm run server'",
+    "start": "concurrently 'npm run client' 'npm run markdown' 'npm run git-socket' 'npm run git' 'npm run gist' 'npm run server'",
     "server": "babel-node start-server-api.js",
     "client": "babel-node start-server-frontend.js",
     "git": "babel-node start-server-api-git.js",

@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1= title
+    p You rang?
+    if(mirrorData !== undefined && mirrorData !== '')
+        div.jumbotron= mirrorData
+    else
+        p There was no data!

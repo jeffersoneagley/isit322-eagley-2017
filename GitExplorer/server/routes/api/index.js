@@ -1,7 +1,5 @@
 let express = require('express');
 let router = express.Router();
-// let Git = require('./git');
-// let Users = require('./users');
 let morgan = require('morgan')('api-index');
 let requester = require('request');
 let MicroServiceAddressUtility = require('../../../config/microserviceAddressesUtility');
@@ -41,18 +39,6 @@ router.use('/git', proxy({
     },
     onProxyReq: restream,
 }));
-
-// router.use('/git', (req, res) => {
-//     try {
-//
-//         console.log('git recieved on API');
-//         // requester(MicroServiceAddressUtility.getAddress('git'), req).pipe(res);
-//         httpProxy.web(req, res, {target: 'http://localhost:30028'});
-//
-//     } catch (exc) {
-//         console.log(exc);
-//     }
-// });
 
 router.get('/qux/:data', (req, res) => {
     console.log(req.params);
