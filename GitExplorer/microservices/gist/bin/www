@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-let serverMicroServiceName = 'git';
+let serverMicroServiceName = 'gist';
 
 let app = require('../app');
 let debug = require('debug')(serverMicroServiceName + ':server');
@@ -20,6 +20,7 @@ let port = normalizePort(
     MicroServiceAddressesUtility[serverMicroServiceName].port || process.env.PORT || '3000');
 app.set('port', port);
 
+// console.log('port chosen: ' + MicroServiceAddressesUtility[serverMicroServiceName].port);
 /**
  * Create HTTP server.
  */

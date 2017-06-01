@@ -1,5 +1,5 @@
 {
-  "name": "qux",
+  "name": "git",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,8 +10,13 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "express": "~4.14.0",
+    "express-http-proxy": "^1.0.3",
+    "github-api": "^3.0.0",
+    "http-proxy": "^1.16.2",
+    "http-proxy-middleware": "^0.17.4",
     "morgan": "~1.7.0",
     "pug": "~2.0.0-beta6",
+    "request": "^2.81.0",
     "require": "^2.4.20",
     "serve-favicon": "~2.3.0"
   }

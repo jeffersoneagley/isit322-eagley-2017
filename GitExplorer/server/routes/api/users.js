@@ -4,7 +4,7 @@
 
 let express = require('express');
 let router = express.Router();
-let getGitHub = require('./getGitHubAuth');
+let getGitHub = require('../../getGitHubAuth');
 let checkIsObject = require('../../checkIsObject');
 
 router.get('/', function(req, res, next) {

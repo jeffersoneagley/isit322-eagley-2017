@@ -48,7 +48,7 @@ class DataMaven extends Component {
             event.preventDefault();
         }
         const that = this;
-        fetch('/api/user').then(function(response) {
+        fetch('/api/git/user').then(function(response) {
             // YOU WRITE IT
             that.debug.log(response);
             return response.json();

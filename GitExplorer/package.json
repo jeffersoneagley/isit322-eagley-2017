@@ -3,9 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "concurrently 'npm run server' 'npm run client' ''",
+    "start": "concurrently 'npm run client' 'npm run git' 'npm run gist' 'npm run server'",
     "server": "babel-node start-server-api.js",
     "client": "babel-node start-server-frontend.js",
+    "git": "babel-node start-server-api-git.js",
+    "gist": "babel-node start-server-api-gist.js",
+    "markdown": "babel-node start-server-api-markdown.js",
+    "git-socket": "babel-node start-server-api-git-socket.js",
     "lint": "eslint ."
   },
   "dependencies": {
