@@ -29,6 +29,18 @@ let restream = (proxyReq, req, res, options) => {
     }
 };
 
+router.all('/markdown', proxy({
+    target: MicroServiceAddressUtility.getAddress('markdown'),
+    changeOrigin: true,               // needed for virtual hosted sites
+    ws: true,                         // proxy websockets
+    pathRewrite: {
+        '^/api/markdown': '',
+        '^/api': '',           // remove base path
+        '^/markdown': ''           // remove base path
+    },
+    onProxyReq: restream,
+}));
+
 router.use('/git', proxy({
     target: MicroServiceAddressUtility.getAddress('git'),
     changeOrigin: true,               // needed for virtual hosted sites

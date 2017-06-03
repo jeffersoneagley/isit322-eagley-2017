@@ -17,6 +17,7 @@
     "pug": "~2.0.0-beta6",
     "request": "^2.81.0",
     "require": "^2.4.20",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "url": "^0.11.0"
   }
 }

@@ -7,11 +7,11 @@ function buildService(gh) {
     let express = require('express');
     let router = express.Router();
 
-    let getGistById = function(request, response) {
+    let getGistById = function(gistId, request, response) {
         try {
-            if (request.body.id !== undefined) {
-                console.log(request.body.id);
-                gh.getGist(request.body.id).read().then(function({data}) {
+            if (gistId !== undefined) {
+                console.log(gistId);
+                gh().getGist(gistId).read().then(function({data}) {
                     console.log(data);
                     response.status(200).send(data);
                 }).catch((err) => {
@@ -27,10 +27,13 @@ function buildService(gh) {
         }
     };
 
+    router.get('/:id', (request, response) => {
+        getGistById(request.params.id, request, response);
+    });
+
     router.post('/', (request, response, next) => {
         console.log('gistList requested on server');
-        gh = getGitHub();
-        getGistById(request, response);
+        getGistById(request.body.id, request, response);
     });
     return router;
 }
