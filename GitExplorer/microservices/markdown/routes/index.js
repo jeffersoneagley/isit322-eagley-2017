@@ -47,7 +47,7 @@ router.get('/gist/:gistid', (req, res) => {
                     // console.log('gistResponse found ' + gistBody);
                     let doc = markdownGenerator.fromGist(gistBody);
 
-                    res.status(200).send(doc);
+                    res.set('content-type', 'text/x-markdown').status(200).send(doc);
 
                 },
             );

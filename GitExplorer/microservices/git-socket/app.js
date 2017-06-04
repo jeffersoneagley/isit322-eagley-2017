@@ -7,7 +7,11 @@ const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
 
-let app = express();
+let expressWs = require('express-ws');
+
+expressWs = expressWs(express());
+let app = expressWs.app;
+let appForpage = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,6 +24,27 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.ws('/echo', function(ws, req) {
+    ws.on('open', (msg) => {
+        console.log('open echo');
+    });
+    ws.on('message', function(msg) {
+        ws.send(msg);
+    });
+});
+
+app.ws('*', (ws, res) => {
+    console.log('connecting to router');
+    ws.on('connect', (client) => {
+        console.log('connected client');
+        ws.send('welcome');
+    });
+    ws.on('message', (msg) => {
+        console.log('message from client ' + msg);
+        ws.send(msg + ' to you too.');
+    });
+});
 
 app.use('/', index);
 
@@ -40,5 +65,7 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+
+// module.exports = app;
 
 module.exports = app;

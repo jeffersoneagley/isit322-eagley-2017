@@ -18,6 +18,7 @@
     "port": 30031
   },
   "git-socket": {
-    "port": 30032
+    "port": 30032,
+    "apiInternalPort": 30033
   }
 }

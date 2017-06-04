@@ -10,7 +10,6 @@ let debug = require('debug')(serverMicroServiceName + ':server');
 let http = require('http');
 
 let MicroServiceAddressesUtility = require('../../../config/microserviceAddresses.json');
-// import MicroServiceAddressesUtility from '../../../config/microserviceAddresses.json';
 
 /**
  * Get port from environment and store in Express.
@@ -24,6 +23,8 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
+
+// app.listen();
 
 let server = http.createServer(app);
 
