@@ -11,7 +11,7 @@ function buildService(gh) {
         try {
             if (gistId !== undefined) {
                 console.log(gistId);
-                gh().getGist(gistId).read().then(function({data}) {
+                gh.getGist(gistId).read().then(function({data}) {
                     console.log(data);
                     response.status(200).send(data);
                 }).catch((err) => {

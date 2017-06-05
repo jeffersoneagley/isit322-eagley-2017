@@ -4,10 +4,6 @@
 function buildService(gh) {
     let express = require('express');
     let router = express.Router();
-    // let GitHub = require('github-api');
-    // let checkIsObject = require('../../../../checkIsObject');
-
-    //unauthenticated client
 
     let createGist = function(request, response) {
         try {

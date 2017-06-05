@@ -22,10 +22,10 @@ function buildService(gh) {
     };
 
     let getGistList = function(res) {
-        console.log(res);
-        gh().getUser().listGists().then(({data}) => {
+        // console.log(res);
+        gh.getUser().listGists().then(({data}) => {
             // Promises!
-            console.log(data);
+            // console.log(data);
 
             const result = data.map((gist) => {
                 return {
