@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import numbersInit from './numbers-data';
 import Paragraph from '../../Paragraph/Paragraph';
 import {Button} from 'react-bootstrap';
+import {connect} from 'react-redux';
 
 class SmallNumbers extends Component {
     constructor() {
@@ -11,39 +12,39 @@ class SmallNumbers extends Component {
     };
 
     getOne = () => {
-        this.setState({one: '1'});
+        this.props.dispatch({type: 'NUMBER_ONE'});
     };
 
     getTwo = () => {
-        this.setState({two: '2'});
+        this.props.dispatch({type: 'NUMBER_TWO'});
     };
 
     getThree = () => {
-        this.setState({three: '3'});
+        this.props.dispatch({type: 'NUMBER_THREE'});
     };
 
     getFour = () => {
-        this.setState({four: '4'});
+        this.props.dispatch({type: 'NUMBER_FOUR'});
     };
 
     getFive = () => {
-        this.setState({five: '5'});
+        this.props.dispatch({type: 'NUMBER_FIVE'});
     };
 
     getSix = () => {
-        this.setState({six: '6'});
+        this.props.dispatch({type: 'NUMBER_SIX'});
     };
 
     getSeven = () => {
-        this.setState({seven: '7'});
+        this.props.dispatch({type: 'NUMBER_SEVEN'});
     };
 
     getEight = () => {
-        this.setState({eight: '8'});
+        this.props.dispatch({type: 'NUMBER_EIGHT'});
     };
 
     getNine = () => {
-        this.setState({nine: '9'});
+        this.props.dispatch({type: 'NUMBER_NINE'});
     };
 
     getButtons = () => {
@@ -103,7 +104,14 @@ class SmallNumbers extends Component {
             </div>
         );
     }
-
 }
+
+const mapStateToProps = (state) => {
+    return {
+        numbers: state.numbers,
+    };
+};
+
+SmallNumbers = connect(mapStateToProps)(SmallNumbers);
 
 export default SmallNumbers;

@@ -4,8 +4,15 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import './css/index.css';
 import DataMaven from './components/DataMaven';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import gistReducer from './assets/gist-reducer';
+
+let store = createStore(gistReducer);
 
 ReactDOM.render(
-    <DataMaven/>,
+    <Provider store={store}>
+        <DataMaven/>
+    </Provider>,
     document.getElementById('root'),
 );

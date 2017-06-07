@@ -209,9 +209,7 @@ class DataMaven extends Component {
                             />
                         )}/>
                         <Route exact path="/get-foo" component={GetFoo}/>
-                        <Route path="/get-numbers" render={(props) => (
-                            <SmallNumbers {...props} numbers={numbersInit}/>
-                        )}/>
+                        <Route path="/get-numbers" render={SmallNumbers}/>
                         <Route exact path="/get-gist"
                                render={
                                    (props) => {
