@@ -7,7 +7,7 @@ import React, {Component} from 'react';
 class Paragraph extends Component {
     constructor() {
         super();
-        this.isQuiet = true;
+        this.isQuiet = false;
     }
 
     getParagraph = (index) => {
@@ -17,8 +17,8 @@ class Paragraph extends Component {
     };
 
     getParagraphs = () => {
-        var res = [];
-        for (var val in this.props.nameList) {
+        let res = [];
+        for (let val in this.props.nameList) {
             res.push(this.getParagraph(this.props.nameList[val]));
         }
         return res;

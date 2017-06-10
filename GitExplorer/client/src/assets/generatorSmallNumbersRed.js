@@ -5,9 +5,10 @@ const numberResults = {
     one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9,
 };
 
-printItemToConsole = (item) => {
-    console.log('    case \'NUMBER_' + item.toUpper() + '\':');
-    console.log('        return {...state, numbers{...state.numbers, ' + item + ': ' + numberResults[item] + '}};');
+printNumberEnumCaseToConsole = (item) => {
+    console.log('        case \'NUMBER_' + item.toUpperCase() + '\':');
+    console.log(
+        '            return {...state, numbers:{...state.numbers, ' + item + ': ' + numberResults[item] + '}};');
 };
 
 printSmallNumbersReducerMainBody = () => {
@@ -16,7 +17,7 @@ printSmallNumbersReducerMainBody = () => {
 
     for (let item in numberResults) {
         if (numberResults.hasOwnProperty(item)) {
-            printItemToConsole(item);
+            printNumberEnumCaseToConsole(item);
         }
     }
     console.log('    default:');
@@ -25,7 +26,6 @@ printSmallNumbersReducerMainBody = () => {
     console.log('};');
 
     console.log('export default smallNumbersReducer;');
-    console.log(')');
 };
 
 printVariableDeclaration = () => {
@@ -41,5 +41,12 @@ printVariableDeclaration = () => {
 };
 
 printVariableDeclarationBody = (item) => {
-    console.log('        ' + item + ': \'' + numberResults[item] + '\',');
+    console.log('        ' + item + ': \'' + 0 + '\',');
 };
+
+generateAll = () => {
+    printVariableDeclaration();
+    printSmallNumbersReducerMainBody();
+};
+
+generateAll();

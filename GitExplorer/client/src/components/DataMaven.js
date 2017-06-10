@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 import Debug from './Debug/Debug';
-// import fieldDefinitions from "./GitGood/field-definitions";
 import FieldGenerator from './GitGood/GitFieldGenerator';
 import GetFoo from './SimpleReactDemos/GetFoo';
 import SmallNumbers from './SimpleReactDemos/SmallNumber/SmallNumbers';
-import numbersInit from './SimpleReactDemos/SmallNumber/numbers-data';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import ElfHeader from './Header/ElfHeader';
-// import GetUserInfo from './GitGood/GetUserInfo';
 import GistBrowser from './GitGood/Gist/GistBrowser';
 import ShowUserInfo from './GitGood/ShowUserInfo';
 import BsMenuBar from './Header/BsMenuBar';
@@ -209,7 +206,7 @@ class DataMaven extends Component {
                             />
                         )}/>
                         <Route exact path="/get-foo" component={GetFoo}/>
-                        <Route path="/get-numbers" render={SmallNumbers}/>
+                        <Route exact path="/get-numbers" component={SmallNumbers}/>
                         <Route exact path="/get-gist"
                                render={
                                    (props) => {
