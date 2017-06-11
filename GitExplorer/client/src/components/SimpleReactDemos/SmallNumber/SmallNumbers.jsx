@@ -25,14 +25,14 @@ class SmallNumbers extends Component {
     };
 
     render() {
-        console.log(this.props.state);
+        console.log(this.props.numbers);
 
         return (
             <div className="SmallNumbers">
                 <div className="jumbotron col-sm-8">
                     <h1>Small Numbers</h1>
-                    <Paragraph stator={this.props.state}
-                               nameList={this.props.state.keys}/>
+                    <Paragraph stator={this.props.numbers}
+                               nameList={Object.keys(this.props.numbers)}/>
                     {this.getButtons()}
                 </div>
                 <div className="panel panel-info col-sm-4">
@@ -59,7 +59,7 @@ class SmallNumbers extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        state: state.SmallNumbersReducer.numbers,
+        numbers: state.SmallNumbersReducer.smallNumbersReducer.numbers,
     };
 };
 
