@@ -1,8 +1,9 @@
+/**
+ * Created by fish on 6/11/17.
+ */
 import React, {Component} from 'react';
 import {Button} from 'react-bootstrap';
-import Paragraph from '../../Paragraph/Paragraph';
-import {getSmallNumbersNumber} from './SmallNumbersActionTypes';
-import {connect} from 'react-redux';
+import Paragraph from '../../../Paragraph/Paragraph';
 
 class SmallNumbers extends Component {
     getButtons = () => {
@@ -51,29 +52,15 @@ class SmallNumbers extends Component {
                         to this component, and calls setState
                         on this component's React state.
                     </p>
+                    <hr/>
+                    <h3>June update:</h3>
+                    <p>
+                        This module was updated to use Redux for state!
+                    </p>
                 </div>
             </div>
         );
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        numbers: state.SmallNumbersReducer.smallNumbersReducer.numbers,
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getSmallNumber: (number) => {
-
-            dispatch(getSmallNumbersNumber(number));
-        },
-    };
-};
-
-SmallNumbers = connect(mapStateToProps, mapDispatchToProps)(SmallNumbers);
-
 export default SmallNumbers;
-
-

@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {TYPE_SMALL_NUMBERS_GET_NUMBER} from '../components/SimpleReactDemos/SmallNumber/SmallNumbersActionTypes';
+import {TYPE_SMALL_NUMBERS_GET_NUMBER} from '../components/SimpleReactDemos/SmallNumber/actions/SmallNumbersActionTypes';
 
 const smallNumbersState = {
     numbers: {
