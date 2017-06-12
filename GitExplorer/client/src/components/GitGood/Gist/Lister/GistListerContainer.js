@@ -1,7 +1,11 @@
 /**
  * A component for display of a git user's info
  */
-import {getTypeGistListIsRefreshing, getTypeGitGistMetaListResponse} from '../actions/GitGistActionTypes';
+import {
+    getTypeGistListIsRefreshing,
+    getTypeGitGistByIdResponse,
+    getTypeGitGistMetaListResponse,
+} from '../actions/GitGistActionTypes';
 import {connect} from 'react-redux';
 import GitGistListerDisplay from './views/GistListerDisplay';
 // import GetFooMobile from './views/GetFooMobile';
@@ -31,8 +35,6 @@ const mapDispatchToProps = (dispatch) => {
         // this.setState({gistData: {gistList: false}});
         const that = this;
         fetch('/api/git/gist/list').then(function(response) {
-            // YOU WRITE IT
-            // that.debug.log(response);
             return response.json();
         }).then(function(json) {
             // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
@@ -48,6 +50,35 @@ const mapDispatchToProps = (dispatch) => {
         });
     };
 
+    let getGistHeaderById = (gistId, event) => {
+        if (event !== undefined) {
+            event.preventDefault();
+        }
+        console.log('requesting API send us gist with ID ' + gistId);
+        const that = this;
+        fetch('/api/git/gist/byId', {
+            method: 'POST',
+            body: JSON.stringify(
+                {'id': gistId + ''},
+            ),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'same-origin',
+        }).then(function(response) {
+            return response.json();
+        }).then(function(json) {
+            // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
+            let body = typeof (json) === 'string' ? JSON.parse(json) : json;
+            // var body = json.body;
+            dispatch(getTypeGitGistByIdResponse(body));
+            getGistList();
+        }).catch(function(ex) {
+            // DISPLAY WITH LOGGER
+            console.log(ex);
+        });
+    };
+
     let checkGistList = () => {
         if (Date.now() > gistListUpdateTime) {
             gistListUpdateTime = Date.now() + 6600;
@@ -58,6 +89,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getGistList,
         checkGistList,
+        getGistHeaderById,
     };
 };
 

@@ -18,7 +18,7 @@ class GistList extends Component {
             return gistMetaList.map((field, index) => {
                 return <GistListRow gistData={field}
                                     index={index}
-                    // getGistHeaderById={this.props.getGistHeaderById}
+                     getGistHeaderById={this.props.getGistHeaderById}
                                     key={'gistListRow_' + index}
                 />;
             });

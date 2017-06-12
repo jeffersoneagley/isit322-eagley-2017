@@ -76,40 +76,6 @@ class DataMaven extends Component {
         });
     };
 
-    getGistHeaderById = (gistId, event) => {
-        if (event !== undefined) {
-            event.preventDefault();
-        }
-        console.log('requesting API send us gist with ID ' + gistId);
-        const that = this;
-        fetch('/api/git/gist/byId', {
-            method: 'POST',
-            body: JSON.stringify(
-                {'id': gistId},
-            ),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'same-origin',
-        }).then(function(response) {
-            // YOU WRITE IT
-            that.debug.log(response);
-            return response.json();
-        }).then(function(json) {
-            // DISPLAY WITH LOGGER AS NEEDED
-            that.debug.log('JSON recieved, saving state');
-            that.debug.log(json);
-            // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
-            let body = typeof (json) === 'string' ? JSON.parse(json) : json;
-            // var body = json.body;
-            that.setState({newGist: body});
-            // that.getGistList();
-        }).catch(function(ex) {
-            // DISPLAY WITH LOGGER
-            that.debug.log(ex);
-        });
-    };
-
     render() {
         this.debug.log('render getuserinfo');
         return (
@@ -133,7 +99,6 @@ class DataMaven extends Component {
                                                         onCreateGist={this.onCreateGist}
                                                         gistData={this.state.gistData}
                                                         newGist={this.state.newGist}
-                                                        getGistList={this.getGistList}
                                                         getGistHeaderById={this.getGistHeaderById}
                                                         isRefreshingGistData={this.state.isRefreshingGistData}
                                            />
