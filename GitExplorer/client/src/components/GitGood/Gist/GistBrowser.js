@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Debug from '../../Debug/Debug';
-import GistNew from './GistNew';
+import GistCreator from './GistCreator/GistCreatorContainer';
 import GistList from './Lister/GistListerContainer';
 import GistDetails from './GistDetails/GistDetailsContainer';
 const logger = new Debug(false);
@@ -24,7 +24,7 @@ class GistBrowser extends Component {
                         <GistDetails />
                     </div>
                     <div className='col-sm-4'>
-                        <GistNew {...this.props}/>
+                        <GistCreator/>
                     </div>
                 </div>
                 <hr/>

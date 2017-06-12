@@ -37,45 +37,6 @@ class DataMaven extends Component {
 
     }
 
-    onCreateGist = (event, docs, desc) => {
-        console.log('onCreateGist called');
-        console.log(docs, desc);
-        if (event !== undefined) {
-            event.preventDefault();
-        }
-        let body = {
-            desc: desc,
-            docs: docs,
-        };
-        const that = this;
-        fetch('/api/git/gist/new', {
-            method: 'POST',
-            body: JSON.stringify(
-                body,
-            ),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'same-origin',
-        }).then(function(response) {
-            // YOU WRITE IT
-            that.debug.log(response);
-            return response.json();
-        }).then(function(json) {
-            // DISPLAY WITH LOGGER AS NEEDED
-            that.debug.log('JSON recieved, saving state');
-            that.debug.log(json);
-            // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
-            let body = typeof (json) === 'string' ? JSON.parse(json) : json;
-            // var body = json.body;
-            that.setState({newGist: body});
-            // that.getGistList();
-        }).catch(function(ex) {
-            // DISPLAY WITH LOGGER
-            that.debug.log(ex);
-        });
-    };
-
     render() {
         this.debug.log('render getuserinfo');
         return (
@@ -91,20 +52,7 @@ class DataMaven extends Component {
                         <Route exact path="/get-user" component={GitUserInfoContainer}/>
                         <Route exact path="/get-foo" component={GetFoo}/>
                         <Route exact path="/get-numbers" component={SmallNumbers}/>
-                        <Route exact path="/get-gist"
-                               render={
-                                   (props) => {
-                                       return (
-                                           <GistBrowser {...props}
-                                                        onCreateGist={this.onCreateGist}
-                                                        gistData={this.state.gistData}
-                                                        newGist={this.state.newGist}
-                                                        getGistHeaderById={this.getGistHeaderById}
-                                                        isRefreshingGistData={this.state.isRefreshingGistData}
-                                           />
-                                       );
-                                   }
-                               }/>
+                        <Route exact path="/get-gist" component={GistBrowser}/>
                     </div>
                     <hr/>
                     <footer className="well">

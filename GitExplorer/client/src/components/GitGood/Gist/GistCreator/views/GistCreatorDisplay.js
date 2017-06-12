@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import Debug from '../../Debug/Debug';
+import Debug from '../../../../Debug/Debug';
 const logger = new Debug(false);
 /**
  * A component for entering a new gist
  */
-class GetGist extends Component {
+class GistCreatorDisplay extends Component {
     constructor(props) {
         super(props);
         this.formElements = {
@@ -66,4 +66,4 @@ class GetGist extends Component {
     };
 }
 
-export default GetGist;
+export default GistCreatorDisplay;
