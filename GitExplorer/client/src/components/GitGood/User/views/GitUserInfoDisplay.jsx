@@ -2,13 +2,12 @@
  * A component for display of a git user's info
  */
 import React, {Component} from 'react';
-import Debug from '../Debug/Debug';
-import FishElement from './FishElement';
+import FishElement from '../../FishElement';
 import {Button} from 'react-bootstrap';
-
+import gitFieldGenerator from '../../GitFieldGenerator';
 const logger = new Debug(false);
 
-class ShowUserInfo extends Component {
+class GitUserInfo extends Component {
     /**
      * Make a new ShowUserInfo object
      * @param props: expects onGetUserButtonClicked, fieldDefinitions, & gitUser state
@@ -17,7 +16,7 @@ class ShowUserInfo extends Component {
         super(props);
 
         logger.log(
-            'ShowUserInfo props.' + JSON.stringify(this.props.fields, null, 4));
+            'ShowUserInfo props.' + JSON.stringify(this.props.userData, null, 4));
     };
 
     /**
@@ -44,10 +43,10 @@ class ShowUserInfo extends Component {
     /**
      * calls getform for each field passed
      */
-    fillFields = (fieldDefinitions) => {
+    fillFields = (fields) => {
         try {
-            if (this.props.gitUser) {
-                // fieldDefinitions = gitFieldGenerator.getFields(this.props.gitUser);
+            if (fields) {
+                let fieldDefinitions = gitFieldGenerator.getFields(fields);
                 if (fieldDefinitions !== undefined) {
                     // logger.log(typeof (fieldDefinitions));
                     return fieldDefinitions.map((field, index) => {
@@ -57,7 +56,7 @@ class ShowUserInfo extends Component {
             }
         } catch (exc) {
 
-            console.log(this.props.gitUser);
+            console.log(fields);
             console.log(exc);
         }
     };
@@ -69,7 +68,7 @@ class ShowUserInfo extends Component {
      */
     clickMe = (event) => {
         // console.log('clicked');
-        this.props.onGetUserButtonClicked(event);
+        this.props.getUser(event);
     };
 
     render() {
@@ -77,11 +76,11 @@ class ShowUserInfo extends Component {
         return (
             <div className="media">
                 <h3>ShowUserInfo</h3>
-                {this.fillFields(this.props.fieldDefinitions)}
+                {this.fillFields(this.props.userData)}
                 <Button bsClass="primary" onClick={this.clickMe}>Get User</Button>
             </div>
         );
     };
 }
 
-export default ShowUserInfo;
+export default GitUserInfo;

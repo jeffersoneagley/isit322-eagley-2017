@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {mount} from 'enzyme';
 import fieldDefMocks from '../../__mocks__/mock-field-definitions';
-import ShowUserInfo from '../../src/components/GitGood/ShowUserInfo';
+import ShowUserInfo from '../../src/components/GitGood/User/views/ShowUserInfo';
 
 describe('Test suite for ShowUSerInfo functionality', function() {
         let fieldDefinitions = [];

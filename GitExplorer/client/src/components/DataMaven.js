@@ -6,7 +6,7 @@ import SmallNumbers from './SimpleReactDemos/SmallNumber/SmallNumbersConnector';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import ElfHeader from './Header/ElfHeader';
 import GistBrowser from './GitGood/Gist/GistBrowser';
-import ShowUserInfo from './GitGood/ShowUserInfo';
+import GitUserInfoContainer from './GitGood/User/GitUserInfoContainer';
 import BsMenuBar from './Header/BsMenuBar';
 import FishLogo from './Header/FishLogo';
 import Home from './Home';
@@ -19,7 +19,6 @@ class DataMaven extends Component {
 
         this.state = {
             fieldDefinitions: [],
-            gitUser: [],
             newGist: {},
             history: {},
             gistData: {
@@ -39,34 +38,6 @@ class DataMaven extends Component {
     componentWillMount() {
 
     }
-
-    getUser = (event) => {
-        if (event !== undefined) {
-            event.preventDefault();
-        }
-        const that = this;
-        fetch('/api/git/user').then(function(response) {
-            // YOU WRITE IT
-            that.debug.log(response);
-            return response.json();
-        }).then(function(data) {
-            // DISPLAY WITH LOGGER AS NEEDED
-            that.debug.log('JSON recieved, saving state');
-            // that.debug.log(data);
-            // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
-            let json = typeof (data) === 'string' ? JSON.parse(data) : data;
-            let body = json.body;
-            that.debug.log('setting state');
-            that.debug.log(body);
-
-            let fields = fieldGenerator.getFields(body);
-            that.setState({gitUser: body, fieldDefinitions: fields});
-            // that.debug.log('setting state: ' + JSON.stringify(json));
-        }).catch(function(ex) {
-            // DISPLAY WITH LOGGER
-            that.debug.log(ex);
-        });
-    };
 
     onCreateGist = (event, docs, desc) => {
         console.log('onCreateGist called');
@@ -198,13 +169,7 @@ class DataMaven extends Component {
                     </div>
                     <div className="container-fluid">
                         <Route exact path="/" component={Home}/>
-                        <Route exact path="/get-user" render={(props) => (
-                            <ShowUserInfo {...props}
-                                          gitUser={this.state.gitUser}
-                                          fieldDefinitions={this.state.fieldDefinitions}
-                                          onGetUserButtonClicked={this.getUser}
-                            />
-                        )}/>
+                        <Route exact path="/get-user" component={GitUserInfoContainer}/>
                         <Route exact path="/get-foo" component={GetFoo}/>
                         <Route exact path="/get-numbers" component={SmallNumbers}/>
                         <Route exact path="/get-gist"
