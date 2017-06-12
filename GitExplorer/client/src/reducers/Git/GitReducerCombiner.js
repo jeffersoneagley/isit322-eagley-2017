@@ -4,6 +4,6 @@
 
 import {combineReducers} from 'redux';
 import GitUserInfoReducer from './GitUserInfoReducer';
-// import GitGistReducer from './GitGistReducer';
+import GitGistReducer from './GitGistReducer';
 
-export default combineReducers({GitUserInfoReducer});
+export default combineReducers({GitUserInfoReducer,GitGistReducer});

@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import {shallow} from 'enzyme';
-import GistLister from '../../../src/components/GitGood/Gist/Lister/GistLister';
+import GistLister from '../../../src/components/GitGood/Gist/Lister/GistListerContainer';
 import ElfDebugEnzyme from '../../../EfDebugEnzyme';
 let elfDebugEnzyme = new ElfDebugEnzyme(false, 'GistLister');
 

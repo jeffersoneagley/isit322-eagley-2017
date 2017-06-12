@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Debug from './Debug/Debug';
-import FieldGenerator from './GitGood/GitFieldGenerator';
+// import FieldGenerator from './GitGood/GitFieldGenerator';
 import GetFoo from './SimpleReactDemos/GetFoo/GetFoo';
 import SmallNumbers from './SimpleReactDemos/SmallNumber/SmallNumbersConnector';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
@@ -11,7 +11,7 @@ import BsMenuBar from './Header/BsMenuBar';
 import FishLogo from './Header/FishLogo';
 import Home from './Home';
 
-let fieldGenerator = new FieldGenerator();
+// let fieldGenerator = new FieldGenerator();
 
 class DataMaven extends Component {
     constructor(props) {
@@ -26,8 +26,6 @@ class DataMaven extends Component {
             },
             userReceived: false,
         };
-        this.gistListUpdateTime = Date.now();
-        this.isRefreshingGistData = true;
 
         this.onCreateGist = this.onCreateGist.bind(this);
 
@@ -71,46 +69,10 @@ class DataMaven extends Component {
             let body = typeof (json) === 'string' ? JSON.parse(json) : json;
             // var body = json.body;
             that.setState({newGist: body});
-            that.getGistList();
+            // that.getGistList();
         }).catch(function(ex) {
             // DISPLAY WITH LOGGER
             that.debug.log(ex);
-        });
-    };
-
-    getGistList = (event) => {
-        if (event !== undefined) {
-            //if we're called from an eventhandler
-            event.preventDefault();
-        }
-
-        //activate refresh component for gistList
-        this.isRefreshingGistData = true;
-
-        // this.setState({gistData: {gistList: false}});
-        const that = this;
-        fetch('/api/git/gist/list').then(function(response) {
-            // YOU WRITE IT
-            // that.debug.log(response);
-            return response.json();
-        }).then(function(json) {
-            // DISPLAY WITH LOGGER AS NEEDED
-            // that.debug.log('JSON recieved, saving state');
-            // that.debug.log(json);
-            // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
-            let body = typeof (json) === 'string' ? JSON.parse(json) : json;
-            // var body = json.body;
-            that.isRefreshingGistData = false;
-            that.setState({
-                gistData: {
-                    gistList: body.result,
-                },
-            });
-        }).catch(function(ex) {
-            // DISPLAY WITH LOGGER
-            that.debug.log(ex);
-            that.isRefreshingGistData = false;
-
         });
     };
 
@@ -141,23 +103,14 @@ class DataMaven extends Component {
             let body = typeof (json) === 'string' ? JSON.parse(json) : json;
             // var body = json.body;
             that.setState({newGist: body});
-            that.getGistList();
+            // that.getGistList();
         }).catch(function(ex) {
             // DISPLAY WITH LOGGER
             that.debug.log(ex);
         });
     };
 
-    checkGistList = () => {
-        if (Date.now() > this.gistListUpdateTime) {
-            this.gistListUpdateTime = Date.now() + 6000;
-            this.getGistList();
-            console.log(this.gistListUpdateTime);
-        }
-    };
-
     render() {
-        this.checkGistList();
         this.debug.log('render getuserinfo');
         return (
             <Router history={this.state.history}>
@@ -175,7 +128,6 @@ class DataMaven extends Component {
                         <Route exact path="/get-gist"
                                render={
                                    (props) => {
-                                       this.checkGistList();
                                        return (
                                            <GistBrowser {...props}
                                                         onCreateGist={this.onCreateGist}

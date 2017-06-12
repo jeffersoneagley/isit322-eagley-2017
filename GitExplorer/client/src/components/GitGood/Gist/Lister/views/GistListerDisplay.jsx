@@ -5,25 +5,20 @@ import React, {Component} from 'react';
 import GistListRow from './GistListRow';
 class GistList extends Component {
 
-    getList = () => {
-        if (!this.props.gistData) {
-            return [
-                (<tr key='noGistData'>
-                    <td>GistLister has no gist data prop</td>
-                </tr>)];
-        }
-        else if (!this.props.gistData.gistList) {
+    getList = (gistMetaList) => {
+        if (gistMetaList === undefined) {
             return [
                 (<tr key='noGistData'>
                     <td>GistLister gist data has no gist list</td>
                 </tr>)];
         }
-        else if (this.props.gistData.gistList &&
-            this.props.gistData.gistList.length > 0) {
-            return this.props.gistData.gistList.map((field, index) => {
+        else if (gistMetaList &&
+            gistMetaList.length !== undefined &&
+            gistMetaList.length > 0) {
+            return gistMetaList.map((field, index) => {
                 return <GistListRow gistData={field}
                                     index={index}
-                                    getGistHeaderById={this.props.getGistHeaderById}
+                    // getGistHeaderById={this.props.getGistHeaderById}
                                     key={'gistListRow_' + index}
                 />;
             });
@@ -35,14 +30,24 @@ class GistList extends Component {
         }
     };
 
+    getBadge = (gistMetaList) => {
+        if (gistMetaList !== undefined && gistMetaList.length !== undefined) {
+            return gistMetaList.length || '';
+        } else {
+            return '';
+        }
+    };
+
     render() {
+        this.props.checkGistList();
+
         return (
             <div>
-                <h2>Gist Lister<span className="badge">{this.props.gistData.gistList.length || ''}</span></h2>
+                <h2>Gist Lister<span className="badge">{this.getBadge(this.props.gistListMetaData)}</span></h2>
                 <table className="table table-responsive table-striped">
-                    {this.props.isRefreshingGistData ? <caption>loading..</caption> : true}
+                    {this.props.isGistListRefreshing ? <caption>loading..</caption> : true}
                     <tbody>
-                    {this.getList()}
+                    {this.getList(this.props.gistListMetaData)}
                     </tbody>
                 </table>
             </div>

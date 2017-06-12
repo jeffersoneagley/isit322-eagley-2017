@@ -5,14 +5,14 @@ import {getTypeGitUserResponse} from './GitUserActionTypes';
 import {connect} from 'react-redux';
 // import GetFooMobile from './views/GetFooMobile';
 import GitUserInfoDisplay from './views/GitUserInfoDisplay';
-import fetch from 'whatwg-fetch';
+import 'whatwg-fetch';
 
 // let GetFoo = (process.env.BUILD_FOR_MOBILE === true) ?
 //     GetFooMobile :
 //     GetFooStandard;
 
 const mapStateToProps = (state) => {
-    return state.GitUserReducer;
+    return state.GitReducerCombiner.GitUserInfoReducer;
 
 };
 

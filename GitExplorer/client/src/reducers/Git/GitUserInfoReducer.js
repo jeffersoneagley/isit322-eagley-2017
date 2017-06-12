@@ -7,7 +7,7 @@ const GitUserInfoReducer = (state = initialState, action) => {
     let newState = {...state};
     switch (action.type) {
         case TYPE_GIT_GET_USER_RESPONSE:
-            newState = {...state, fooData: action.userData};
+            newState = {...state, userData: action.userData};
             return newState;
         default:
             return state;

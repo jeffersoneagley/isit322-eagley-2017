@@ -4,8 +4,11 @@
 import React, {Component} from 'react';
 import FishElement from '../../FishElement';
 import {Button} from 'react-bootstrap';
-import gitFieldGenerator from '../../GitFieldGenerator';
+import GitFieldGenerator from '../../GitFieldGenerator';
+import Debug from '../../../Debug/Debug';
 const logger = new Debug(false);
+
+const gitFieldGenerator = new GitFieldGenerator();
 
 class GitUserInfo extends Component {
     /**
@@ -32,7 +35,7 @@ class GitUserInfo extends Component {
                 <label className="ElfFormLabel"
                        htmlFor={field.id}>{field.label}:</label>
                 <FishElement {...field}
-                             value={this.props.gitUser[field.id] || field.sample}
+                             value={this.props.userData[field.id] || field.sample}
                              onChange={this.props.onChange}
                              key={'elfElement_' + field.id}/>
 
