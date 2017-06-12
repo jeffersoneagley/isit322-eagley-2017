@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Debug from './Debug/Debug';
 import FieldGenerator from './GitGood/GitFieldGenerator';
-import GetFoo from './SimpleReactDemos/GetFoo';
+import GetFoo from './SimpleReactDemos/GetFoo/GetFoo';
 import SmallNumbers from './SimpleReactDemos/SmallNumber/SmallNumbersConnector';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import ElfHeader from './Header/ElfHeader';

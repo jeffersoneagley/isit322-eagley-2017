@@ -5,5 +5,6 @@
 import GistReducer from './gist-reducer';
 import SmallNumbersReducer from './SmallNumbersReducer';
 import {combineReducers} from 'redux';
+import GetFooReducer from './GetFooReducer';
 
-export default combineReducers({GistReducer, SmallNumbersReducer});
+export default combineReducers({GistReducer, SmallNumbersReducer, GetFooReducer});

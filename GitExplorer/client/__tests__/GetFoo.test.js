@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import GetFoo from '../src/components/SimpleReactDemos/GetFoo';
+import GetFoo from '../src/components/SimpleReactDemos/GetFoo/GetFoo';
 import Paragraph from '../src/components/Paragraph/Paragraph';
 import {shallow} from 'enzyme';
 

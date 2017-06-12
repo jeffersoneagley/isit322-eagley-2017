@@ -7,7 +7,7 @@ import React, {Component} from 'react';
 class Paragraph extends Component {
     constructor() {
         super();
-        this.isQuiet = false;
+        this.isQuiet = true;
     }
 
     getParagraph = (index) => {
