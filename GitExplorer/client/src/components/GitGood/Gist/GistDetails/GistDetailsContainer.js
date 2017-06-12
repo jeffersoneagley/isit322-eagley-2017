@@ -1,7 +1,7 @@
 /***
  * Container object for a detailed view of a single gist
  */
-import GistDetailsDisplay from './views/GistDetailsView';
+import GistDetailsDisplay from './views/GistDetailsDisplay';
 import {connect} from 'react-redux';
 
 const mapStateToProps = (state) => {
