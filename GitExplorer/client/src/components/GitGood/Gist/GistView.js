@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../../../css/GistView.css';
+import './GistDetails/views/GistDetailsStylesheet.css';
 import Debug from '../../Debug/Debug';
 import {Panel} from 'react-bootstrap';
 const logger = new Debug(false);

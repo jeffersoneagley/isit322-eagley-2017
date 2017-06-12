@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../../../../../css/GistView.css';
+import './GistDetailsStylesheet.css';
 import Debug from '../../../../Debug/Debug';
 import {Panel} from 'react-bootstrap';
 const logger = new Debug(false);
@@ -9,7 +9,7 @@ const logger = new Debug(false);
  */
 class GistView extends Component {
 
-    renderFileSingle(fileMetaData) {
+    static renderFileSingle(fileMetaData) {
         return <li key={'keyGistViewFile' + fileMetaData.filename}>
             {fileMetaData.filename || ''} - {fileMetaData.type || ''}<br/>
             <p>
@@ -22,7 +22,7 @@ class GistView extends Component {
         let result = [];
         for (let file in selectedGist.files) {
             if (selectedGist.files.hasOwnProperty(file)) {
-                result.push(this.renderFileSingle(selectedGist.files[file]));
+                result.push(GistView.renderFileSingle(selectedGist.files[file]));
             }
         }
         return result;
