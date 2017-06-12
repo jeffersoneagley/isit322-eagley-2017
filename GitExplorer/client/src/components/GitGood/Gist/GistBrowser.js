@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Debug from '../../Debug/Debug';
 import GistNew from './GistNew';
 import GistList from './Lister/GistListerContainer';
-import GistView from './GistView';
+import GistDetails from './GistDetails/GistDetailsContainer';
 const logger = new Debug(false);
 /**
  * A component for display of a git user's info
@@ -21,7 +21,7 @@ class GistBrowser extends Component {
                 <div className='row'>
                     <h1>Gist Browser</h1>
                     <div className='col-sm-8 jumbotron'>
-                        <GistView {...this.props} />
+                        <GistDetails />
                     </div>
                     <div className='col-sm-4'>
                         <GistNew {...this.props}/>
