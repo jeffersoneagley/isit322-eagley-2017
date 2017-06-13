@@ -20,7 +20,6 @@ const GitGistDeleteReducer = (state = initialState, action) => {
             return {
                 ...state,
                 deleteResultStatistics: action.deleteResultStatistics,
-                gistEditorDeleteMode: TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_FINAL,
             };
         case TYPES.TYPE_SET_MODE_DELETE_MENU_CLEAR_SELECTION:
             return {...state, gistList: {}};

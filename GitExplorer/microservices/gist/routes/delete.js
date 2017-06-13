@@ -31,14 +31,18 @@ function buildService(gh) {
     };
 
     let checkForJobComplete = (req, res) => {
+        let allFinished = true;
         for (let gistId in gistsToSend) {
             if (gistsToSend.hasOwnProperty(gistId)) {
                 if (!gistsToSend[gistId].finished) {
-                    return;
+                    allFinished = false;
+                    break;
                 }
             }
         }
-        onJobComplete(req, res);
+        if (allFinished) {
+            onJobComplete(req, res);
+        }
 
     };
 
