@@ -9,6 +9,7 @@ let Index = () => {
     const gh = GitHub();
     const List = require('./list')(gh);
     const ById = require('./byId')(gh);
+    const Delete = require('./delete')(gh);
     const CreateNew = require('./new')(gh);
 
     router.all('*', (req, res, next) => {
@@ -21,6 +22,7 @@ let Index = () => {
     router.use('/list', List);
     router.use('/byId', ById);
     router.use('/new', CreateNew);
+    router.use('/delete', Delete);
     router.get('/you-rang/:id', function(req, res, next) {
         // console.log('echoing params');
         // console.log(req.params);

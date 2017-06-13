@@ -31,7 +31,7 @@ class GistListDeleteMenuDisplay extends Component {
     getButtonDeleteSelected = () => {
         let that = this;
         return <button className='btn btn-warning btn-block' onClick={() => {
-            that.props.onClickDeleteStage(this.props.gistEditorDeleteMode);
+            that.props.onClickDeleteStage();
         }
         }>Delete</button>;
     };
@@ -39,7 +39,7 @@ class GistListDeleteMenuDisplay extends Component {
     getButtonConfirmDeleteSelected = () => {
         let that = this;
         return <button className='btn btn-danger btn-block' onClick={() => {
-            that.props.onClickDeleteStage(this.props.gistEditorDeleteMode);
+            that.props.onClickDeleteStage();
         }
         }>Delete <span className='badge'>{this.getSelectedGistCount()}</span> Gists
         </button>;
@@ -48,7 +48,7 @@ class GistListDeleteMenuDisplay extends Component {
     getModeOff = () => {
         let that = this;
         return <button className='btn btn-secondary btn-block' onClick={() => {
-            that.props.onClickDeleteStage(this.props.gistEditorDeleteMode);
+            that.props.onClickDeleteStage();
         }
         }>Delete Gists</button>;
     };

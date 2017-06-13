@@ -2,7 +2,7 @@
  * Created by fish on 5/21/17.
  */
 import React, {Component} from 'react';
-import GistListRowDeleteSelectorContainer from '../../GistDelete/GistListRowDeleteSelectorContainer.jsx';
+import GistListRowDeleteSelectorContainer from '../../GistDelete/GistListRowDeleteSelectorContainer.js';
 
 /**
  * A component for display of a git user's info

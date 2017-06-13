@@ -9,6 +9,7 @@ let mapStateToProps = (state) => {
     return state.Git.Gist.Delete;
 };
 let mapDispatchToProps = (dispatch) => {
+
     let onDeleteListItemAddClicked = (gistId) => {
         dispatch(getTypeGitGistDeleteListAdd(gistId));
     };
