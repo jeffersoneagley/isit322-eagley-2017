@@ -67,12 +67,17 @@ function buildService(gh) {
     };
 
     let deleteGistsFromList = (list, req, res) => {
-        let result = true;
+        //split into 2 loops on purpose
+        //this is done to require the joblist be populated before any checks for completion fire
         for (let gistId in list) {
             if (list.hasOwnProperty(gistId)) {
                 gistsToSend[gistId] = {
                     finished: false,
                 };
+            }
+        }
+        for (let gistId in list) {
+            if (list.hasOwnProperty(gistId)) {
                 deleteGistById(gistId, req, res);
             }
         }

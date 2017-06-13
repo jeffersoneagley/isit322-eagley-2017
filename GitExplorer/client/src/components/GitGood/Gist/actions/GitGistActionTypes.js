@@ -11,6 +11,9 @@ export const GIST_DELETE_ACTION_TYPES = {
     TYPE_SET_MODE_DELETE_MENU_DISABLED: 'TYPE_SET_MODE_DELETE_MENU_DISABLED',
     TYPE_SET_MODE_DELETE_MENU_STAGE_FIRST: 'TYPE_SET_MODE_DELETE_MENU_STAGE_FIRST',
     TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND: 'TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND',
+    TYPE_SET_MODE_DELETE_MENU_STAGE_FINAL: 'TYPE_SET_MODE_DELETE_MENU_STAGE_FINAL',
+    TYPE_SET_MODE_DELETE_MENU_FINAL_STATISTICS: 'TYPE_SET_MODE_DELETE_MENU_FINAL_STATISTICS',
+    TYPE_SET_MODE_DELETE_MENU_CLEAR_SELECTION: 'TYPE_SET_MODE_DELETE_MENU_CLEAR_SELECTION',
     TYPE_GIST_DELETE_LIST_ADD_GIST_ID: 'TYPE_GIST_DELETE_LIST_ADD_GIST_ID',
     TYPE_GIST_DELETE_LIST_REMOVE_GIST_ID: 'TYPE_GIST_DELETE_LIST_REMOVE_GIST_ID',
 };
@@ -53,6 +56,21 @@ export function getTypeGitGistDeleteMenuStageFirst() {
 }
 export function getTypeGitGistDeleteMenuStageSecond() {
     return getTypeGitGistDeleteMenuAction(GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND);
+}
+export function getTypeGitGistDeleteMenuStageFinal() {
+    return getTypeGitGistDeleteMenuAction(GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_FINAL);
+}
+export function getTypeGitGistDeleteMenuFinalStatistics(statistics) {
+    return {
+        type: GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_FINAL_STATISTICS,
+        deleteResultStatistics: statistics,
+    };
+
+}
+export function getTypeGitGistDeleteClearSelection() {
+    return {
+        type: GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_CLEAR_SELECTION,
+    };
 }
 /***
  * Makes a contract for git gist delete list add/remove

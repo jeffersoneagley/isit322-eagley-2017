@@ -77,6 +77,33 @@ class GistListDeleteMenuDisplay extends Component {
         </div>;
     }
 
+    getModeStagePostMortem() {
+        console.log(this.props.deleteResultStatistics);
+        if (this.props.deleteResultStatistics !== undefined && this.props.deleteResultStatistics.totals !== undefined) {
+            let stat = this.props.deleteResultStatistics;
+
+            return <div className='alert alert-success fade in'>
+                <div className='col-xs-9 col-sm-10'>
+                    <h4 className='alert-link'>Results</h4>
+                    Gists deleted: {stat.totals.gistsProcessed}
+                    <span className='badge'>Successes {stat.totals.successes} / {stat.totals.gistsProcessed}</span>
+                    <span className='badge'>Failures {stat.totals.failures} / {stat.totals.gistsProcessed}</span>
+                </div>
+                <div className='col-xs-3 col-sm-2'>
+                    <button
+                        className='btn btn-success btn-block'
+                        onClick={this.props.onClickDeleteStage()}
+                    >Ok
+                    </button>
+                </div>
+            </div>;
+        } else {
+            return <div className='alert alert-info fade in'>
+                <h4>Working, please wait</h4>
+            </div>;
+        }
+    }
+
     getCurrentMode = () => {
         switch (this.props.gistEditorDeleteMode) {
             case GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_DISABLED:
@@ -85,6 +112,8 @@ class GistListDeleteMenuDisplay extends Component {
                 return this.getModeStageFirst();
             case GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND:
                 return this.getModeStageSecond();
+            case GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_FINAL:
+                return this.getModeStagePostMortem();
             default:
                 return this.getModeOff();
         }

@@ -3,7 +3,10 @@
  */
 import GistDeleteMenuDisplay from './views/GistDeleteMenuDisplay';
 import {
+    getTypeGitGistDeleteClearSelection,
     getTypeGitGistDeleteMenuDisabled,
+    getTypeGitGistDeleteMenuFinalStatistics,
+    getTypeGitGistDeleteMenuStageFinal,
     getTypeGitGistDeleteMenuStageFirst,
     getTypeGitGistDeleteMenuStageSecond,
     GIST_DELETE_ACTION_TYPES as STAGES,
@@ -19,9 +22,14 @@ let mapDispatchToProps = (dispatch) => {
     return {
 
         onCompletedDelete: (result) => {
-            dispatch(getTypeGitGistDeleteMenuStageFirst());
+            dispatch(getTypeGitGistDeleteMenuFinalStatistics(result));
         },
-
+        dispatchClearDelete: () => {
+            dispatch(getTypeGitGistDeleteClearSelection());
+        },
+        dispatchStageFinal: () => {
+            dispatch(getTypeGitGistDeleteMenuStageFinal());
+        },
         dispatchStageSecond: () => {
             dispatch(getTypeGitGistDeleteMenuStageSecond());
         },
@@ -72,12 +80,20 @@ const mergeProps = (propsFromState, propsFromDispatch, ownProps) => {
             console.log(ex);
         });
     };
+
+    console.log(propsFromState.deleteResultStatistics);
+    
     return {
         gistEditorDeleteMode: propsFromState.gistEditorDeleteMode,
         gistList: propsFromState.gistList,
+        deleteResultStatistics: propsFromState.deleteResultStatistics,
         onClickDeleteStage: () => {
             switch (propsFromState.gistEditorDeleteMode) {
+                case STAGES.TYPE_SET_MODE_DELETE_MENU_STAGE_FINAL:
+                    propsFromDispatch.dispatchClearDelete();
+                    break;
                 case STAGES.TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND:
+                    propsFromDispatch.dispatchStageFinal();
                     SendDeleteCommand();
                     break;
                 case STAGES.TYPE_SET_MODE_DELETE_MENU_STAGE_FIRST:
