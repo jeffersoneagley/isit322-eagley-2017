@@ -26,4 +26,3 @@ SmallNumbers = connect(mapStateToProps, mapDispatchToProps)(SmallNumbers);
 
 export default SmallNumbers;
 
-

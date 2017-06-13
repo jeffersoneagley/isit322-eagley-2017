@@ -7,7 +7,7 @@ const logger = new Debug(false);
 /**
  * A component for display of a single gist
  */
-class GistView extends Component {
+class GistDetailsDisplay extends Component {
 
     static renderFileSingle(fileMetaData) {
         return <li key={'keyGistViewFile' + fileMetaData.filename}>
@@ -22,7 +22,7 @@ class GistView extends Component {
         let result = [];
         for (let file in selectedGist.files) {
             if (selectedGist.files.hasOwnProperty(file)) {
-                result.push(GistView.renderFileSingle(selectedGist.files[file]));
+                result.push(GistDetailsDisplay.renderFileSingle(selectedGist.files[file]));
             }
         }
         return result;
@@ -80,4 +80,4 @@ class GistView extends Component {
     };
 }
 
-export default GistView;
+export default GistDetailsDisplay;

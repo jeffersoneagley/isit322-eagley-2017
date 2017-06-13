@@ -3,6 +3,7 @@ import Debug from '../../Debug/Debug';
 import GistCreator from './GistCreator/GistCreatorContainer';
 import GistList from './Lister/GistListerContainer';
 import GistDetails from './GistDetails/GistDetailsContainer';
+import GistDeleteMenu from './GistDelete/GistDeleteMenuContainer';
 const logger = new Debug(false);
 /**
  * A component for display of a git user's info
@@ -29,6 +30,7 @@ class GistBrowser extends Component {
                 </div>
                 <hr/>
                 <div className='row'>
+                    <GistDeleteMenu/>
                     <GistList {...this.props} />
                 </div>
             </div>

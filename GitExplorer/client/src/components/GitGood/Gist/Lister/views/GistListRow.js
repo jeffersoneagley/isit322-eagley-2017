@@ -2,6 +2,8 @@
  * Created by fish on 5/21/17.
  */
 import React, {Component} from 'react';
+import GistListRowDeleteSelectorContainer from '../../GistDelete/GistListRowDeleteSelectorContainer.jsx';
+
 /**
  * A component for display of a git user's info
  */
@@ -59,6 +61,7 @@ class GistListRow extends Component {
             <td>{GistListRow.DEFAULT_MESSAGES.DUMMY.files}</td>
             <td>{GistListRow.DEFAULT_MESSAGES.DUMMY.description}</td>
             <td>{GistListRow.DEFAULT_MESSAGES.DUMMY.url}</td>
+            <td>'delete mode disabled</td>
         </tr>;
     };
 
@@ -101,6 +104,19 @@ class GistListRow extends Component {
         </div>;
     };
 
+    getDeleteController = () => {
+        try {
+            return <GistListRowDeleteSelectorContainer
+                gist={this.props.gistData}
+                isGistListDeleteEnabled={true}
+                deleteGistsById={this.props.deleteGistsById}
+            />;
+        } catch (exc) {
+            console.log(exc);
+            return <p>Delete functions temporarily broken</p>;
+        }
+    };
+
     getForm = (gistData, index, clickHandler) => {
         let gistHeader = (gistData.id !== undefined ?
             (<div>ID:
@@ -110,20 +126,25 @@ class GistListRow extends Component {
         if (gistData !== undefined) {
             return <tr key={'keyGistRow' + gistData.id} className="row">
                 <td>
-                    <div className='container-fluid hidden-xs'>
-                        <h3 className='page-header'>{gistHeader}</h3>
-                        {this.getRowData(gistData)}
-                        <div className='col-sm-3 hidden-xs'>
-                            {this.processButtonOrDiv('View Gist Data', clickHandler)}
+                    <div className="col-xs-9">
+                        <div className='container-fluid hidden-xs'>
+                            <h3 className='page-header'>{gistHeader}</h3>
+                            {this.getRowData(gistData)}
+                            <div className='col-sm-3 hidden-xs'>
+                                {this.processButtonOrDiv('View Gist Data', clickHandler)}
+                            </div>
+                        </div>
+                        <div className='container-fluid hidden-sm hidden-lg hidden-md'>
+                            {this.processButtonOrDiv(
+                                <div>
+                                    <h3>{gistHeader}</h3>
+                                    {this.getRowData(gistData)}
+                                </div>
+                                , clickHandler)}
                         </div>
                     </div>
-                    <div className='container-fluid hidden-sm hidden-lg hidden-md'>
-                        {this.processButtonOrDiv(
-                            <div>
-                                <h3>{gistHeader}</h3>
-                                {this.getRowData(gistData)}
-                            </div>
-                            , clickHandler)}
+                    <div className='col-xs-3'>
+                        {this.getDeleteController()}
                     </div>
                 </td>
             </tr>;

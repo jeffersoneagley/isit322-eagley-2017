@@ -7,9 +7,10 @@
 import {connect} from 'react-redux';
 import GistCreatorDisplay from './views/GistCreatorDisplay';
 import {getTypeGitGistCreatorCreateGistResponse} from '../actions/GitGistActionTypes';
+import 'whatwg-fetch';
 
 const mapStateToProps = (state) => {
-    return state.GitReducerCombiner.GitGistReducer;
+    return state.Git.Gist.Viewer;
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -23,7 +24,6 @@ const mapDispatchToProps = (dispatch) => {
             desc: desc,
             docs: docs,
         };
-        const that = this;
         fetch('/api/git/gist/new', {
             method: 'POST',
             body: JSON.stringify(

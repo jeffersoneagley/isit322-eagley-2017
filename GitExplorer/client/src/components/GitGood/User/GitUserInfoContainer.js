@@ -12,7 +12,7 @@ import 'whatwg-fetch';
 //     GetFooStandard;
 
 const mapStateToProps = (state) => {
-    return state.GitReducerCombiner.GitUserInfoReducer;
+    return state.Git.UserInfo;
 
 };
 

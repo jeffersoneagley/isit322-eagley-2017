@@ -18,16 +18,8 @@ class DataMaven extends Component {
         super(props);
 
         this.state = {
-            fieldDefinitions: [],
-            newGist: {},
             history: {},
-            gistData: {
-                gistList: {},
-            },
-            userReceived: false,
         };
-
-        this.onCreateGist = this.onCreateGist.bind(this);
 
         this.debug = new Debug();
         this.debug.speakUp();
@@ -41,21 +33,21 @@ class DataMaven extends Component {
         this.debug.log('render getuserinfo');
         return (
             <Router history={this.state.history}>
-                <div className="App">
-                    <div className="container-fluid App-header">
+                <div className='App'>
+                    <div className='container-fluid App-header'>
                         <BsMenuBar/>
                         <FishLogo/>
                         <ElfHeader/>
                     </div>
-                    <div className="container-fluid">
-                        <Route exact path="/" component={Home}/>
-                        <Route exact path="/get-user" component={GitUserInfoContainer}/>
-                        <Route exact path="/get-foo" component={GetFoo}/>
-                        <Route exact path="/get-numbers" component={SmallNumbers}/>
-                        <Route exact path="/get-gist" component={GistBrowser}/>
+                    <div className='container-fluid'>
+                        <Route exact path='/' component={Home}/>
+                        <Route exact path='/get-user' component={GitUserInfoContainer}/>
+                        <Route exact path='/get-foo' component={GetFoo}/>
+                        <Route exact path='/get-numbers' component={SmallNumbers}/>
+                        <Route exact path='/get-gist' component={GistBrowser}/>
                     </div>
                     <hr/>
-                    <footer className="well">
+                    <footer className='well'>
                         <p>Made in my ISIT 322 coursework at Bellevue College</p>
                         <p>GitExplorer &copy; {new Date().getFullYear()} Jefferson Eagley</p>
                     </footer>

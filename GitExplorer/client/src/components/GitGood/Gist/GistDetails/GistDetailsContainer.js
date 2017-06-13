@@ -5,7 +5,7 @@ import GistDetailsDisplay from './views/GistDetailsDisplay';
 import {connect} from 'react-redux';
 
 const mapStateToProps = (state) => {
-    return state.GitReducerCombiner.GitGistReducer;
+    return state.Git.Gist.Viewer;
 };
 
 const mapDispatchToProps = (dispatch) => {

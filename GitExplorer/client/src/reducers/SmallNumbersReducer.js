@@ -15,7 +15,7 @@ const smallNumbersState = {
     },
 };
 const smallNumbersReducer = (state = smallNumbersState, action) => {
-    console.log('smallnum reducer called with action ' + JSON.stringify(action));
+    // console.log('smallnum reducer called with action ' + JSON.stringify(action));
     let newState = {...state, numbers: {...state.numbers}};
     switch (action.type) {
         case TYPE_SMALL_NUMBERS_GET_NUMBER:

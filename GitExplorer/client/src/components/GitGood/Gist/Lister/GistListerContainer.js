@@ -16,7 +16,7 @@ import 'whatwg-fetch';
 //     GetFooStandard;
 
 const mapStateToProps = (state) => {
-    return state.GitReducerCombiner.GitGistReducer;
+    return state.Git.Gist.Viewer;
 
 };
 
@@ -31,9 +31,6 @@ const mapDispatchToProps = (dispatch) => {
 
         //activate refresh component for gistList
         dispatch(getTypeGistListIsRefreshing(true));
-
-        // this.setState({gistData: {gistList: false}});
-        const that = this;
         fetch('/api/git/gist/list').then(function(response) {
             return response.json();
         }).then(function(json) {
@@ -44,18 +41,45 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(getTypeGistListIsRefreshing(false));
         }).catch(function(ex) {
             // DISPLAY WITH LOGGER
-            that.debug.log(ex);
+            console.log(ex);
             dispatch(getTypeGistListIsRefreshing(false));
 
         });
     };
 
-    let getGistHeaderById = (gistId, event) => {
+    let getGistHeaderById = (gistIdList, event) => {
+        if (event !== undefined) {
+            event.preventDefault();
+        }
+        console.log('requesting API send us gist with ID ' + gistIdList);
+        fetch('/api/git/gist/byId', {
+            method: 'POST',
+            body: JSON.stringify(
+                {'idList': gistIdList + ''},
+            ),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'same-origin',
+        }).then(function(response) {
+            return response.json();
+        }).then(function(json) {
+            // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
+            let body = typeof (json) === 'string' ? JSON.parse(json) : json;
+            // var body = json.body;
+            dispatch(getTypeGitGistByIdResponse(body));
+            getGistList();
+        }).catch(function(ex) {
+            // DISPLAY WITH LOGGER
+            console.log(ex);
+        });
+    };
+
+    let deleteGistsById = (gistId, event) => {
         if (event !== undefined) {
             event.preventDefault();
         }
         console.log('requesting API send us gist with ID ' + gistId);
-        const that = this;
         fetch('/api/git/gist/byId', {
             method: 'POST',
             body: JSON.stringify(
@@ -90,6 +114,7 @@ const mapDispatchToProps = (dispatch) => {
         getGistList,
         checkGistList,
         getGistHeaderById,
+        deleteGistsById,
     };
 };
 
