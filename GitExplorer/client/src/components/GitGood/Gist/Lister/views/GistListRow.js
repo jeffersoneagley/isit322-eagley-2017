@@ -108,8 +108,6 @@ class GistListRow extends Component {
         try {
             return <GistListRowDeleteSelectorContainer
                 gist={this.props.gistData}
-                isGistListDeleteEnabled={true}
-                deleteGistsById={this.props.deleteGistsById}
             />;
         } catch (exc) {
             console.log(exc);

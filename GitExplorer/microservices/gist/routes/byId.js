@@ -8,6 +8,7 @@ function buildService(gh) {
     let router = express.Router();
 
     let getGistById = function(gistId, request, response) {
+        console.log(gistId);
         try {
             if (gistId !== undefined) {
                 console.log(gistId);
@@ -28,12 +29,13 @@ function buildService(gh) {
     };
 
     router.get('/:id', (request, response) => {
+        console.log('gistList requested on server via get');
         getGistById(request.params.id, request, response);
     });
 
     router.post('/', (request, response, next) => {
-        console.log('gistList requested on server');
-        getGistById(request.body.id, request, response);
+        console.log('gistList requested on server via post');
+        getGistById(request.body.gistId, request, response);
     });
     return router;
 }

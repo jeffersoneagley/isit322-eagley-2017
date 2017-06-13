@@ -8,8 +8,15 @@ import {GIST_DELETE_ACTION_TYPES as TYPES_DEL} from '../../actions/GitGistAction
  */
 class GistListRowDeleteSelectorDisplay extends Component {
 
-    activateDeleteModeButton = <button className='btn btn-block btn-warning'>
-        {this.props.isGistListDeleteEnabled ? 'Cancel' : 'Delete'}
+    activateDeleteModeButton = <button
+        className='btn btn-block btn-warning'
+        onClick={
+            this.props.gistEditorDeleteMode === TYPES_DEL.TYPE_SET_MODE_DELETE_MENU_DISABLED ?
+                this.props.onClickDeleteStage :
+                this.props.onClickCancelStage
+        }
+    >
+        {this.props.gistEditorDeleteMode === TYPES_DEL.TYPE_SET_MODE_DELETE_MENU_DISABLED ? 'Delete' : 'Cancel' }
     </button>;
 
     generateDisplay = (gist, isMarkedForDelete) => {
@@ -40,7 +47,6 @@ class GistListRowDeleteSelectorDisplay extends Component {
                 'alert', 'danger', 'info', isGistMarkedForDeletion,
             )}>
             <h4>Delete gist?</h4>
-            {this.activateDeleteModeButton}
             <hr/>
             <button
                 className={this.getBootstrapContextClass(

@@ -47,35 +47,7 @@ const mapDispatchToProps = (dispatch) => {
         });
     };
 
-    let getGistHeaderById = (gistIdList, event) => {
-        if (event !== undefined) {
-            event.preventDefault();
-        }
-        console.log('requesting API send us gist with ID ' + gistIdList);
-        fetch('/api/git/gist/byId', {
-            method: 'POST',
-            body: JSON.stringify(
-                {'idList': gistIdList + ''},
-            ),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: 'same-origin',
-        }).then(function(response) {
-            return response.json();
-        }).then(function(json) {
-            // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
-            let body = typeof (json) === 'string' ? JSON.parse(json) : json;
-            // var body = json.body;
-            dispatch(getTypeGitGistByIdResponse(body));
-            getGistList();
-        }).catch(function(ex) {
-            // DISPLAY WITH LOGGER
-            console.log(ex);
-        });
-    };
-
-    let deleteGistsById = (gistId, event) => {
+    let getGistHeaderById = (gistId, event) => {
         if (event !== undefined) {
             event.preventDefault();
         }
@@ -83,7 +55,7 @@ const mapDispatchToProps = (dispatch) => {
         fetch('/api/git/gist/byId', {
             method: 'POST',
             body: JSON.stringify(
-                {'id': gistId + ''},
+                {gistId: gistId},
             ),
             headers: {
                 'Content-Type': 'application/json',
@@ -114,7 +86,6 @@ const mapDispatchToProps = (dispatch) => {
         getGistList,
         checkGistList,
         getGistHeaderById,
-        deleteGistsById,
     };
 };
 

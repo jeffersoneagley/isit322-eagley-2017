@@ -9,6 +9,12 @@ function buildService(gh) {
 
     let gistsToSend = {};
 
+    let removeGistFromGistsToSend = (gistId) => {
+        if (gistsToSend[gistId] !== undefined) {
+            delete gistsToSend[gistId];
+        }
+    };
+
     let onJobComplete = (req, res) => {
         let jobStatistics = {
             totals: {
@@ -22,6 +28,7 @@ function buildService(gh) {
             if (gistsToSend.hasOwnProperty(gistId)) {
                 (gistsToSend[gistId].success) ? jobStatistics.totals.successes++ : jobStatistics.totals.failures++;
                 jobStatistics.totals.gistsProcessed++;
+                removeGistFromGistsToSend(gistId);
             }
         }
         console.log('job stats');

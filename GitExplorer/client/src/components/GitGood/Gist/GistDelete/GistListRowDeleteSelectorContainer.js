@@ -5,9 +5,8 @@ import GistListRowDeleteSelectorDisplay from './views/GistListRowDeleteSelectorD
 import {getTypeGitGistDeleteListAdd, getTypeGitGistDeleteListRemove} from '../actions/GitGistActionTypes';
 import {connect} from 'react-redux';
 
-let mapStateToProps = (state) => {
-    return state.Git.Gist.Delete;
-};
+import GistDeleteController from './GistDeleteController';
+
 let mapDispatchToProps = (dispatch) => {
 
     let onDeleteListItemAddClicked = (gistId) => {
@@ -17,11 +16,16 @@ let mapDispatchToProps = (dispatch) => {
         dispatch(getTypeGitGistDeleteListRemove(gistId));
     };
     return {
+        ...GistDeleteController.mapDispatchToProps(dispatch),
         onDeleteListItemAddClicked: onDeleteListItemAddClicked,
         onDeleteListItemRemoveClickedList: onDeleteListItemRemoveClickedList,
     };
 };
 
-let GistListRowDeleteSelectorContainer = connect(mapStateToProps, mapDispatchToProps)(GistListRowDeleteSelectorDisplay);
+let GistListRowDeleteSelectorContainer = connect(
+    GistDeleteController.mapStateToProps,
+    mapDispatchToProps,
+    GistDeleteController.mergeProps,
+)(GistListRowDeleteSelectorDisplay);
 
 export default GistListRowDeleteSelectorContainer;

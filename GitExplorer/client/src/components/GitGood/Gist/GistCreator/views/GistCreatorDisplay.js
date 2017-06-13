@@ -29,39 +29,44 @@ class GistCreatorDisplay extends Component {
     render() {
         logger.log('render GetGist');
         return (
-            <div className='panel panel-info'>
-                <form className="Form">
-                    <h3 className='page-header'>Create a gist</h3>
-                    <div className="form-group">
-                        <label htmlFor="#newGistTitle">Title</label>
-                        <input id="#newGistTitle" type="text" className="form-control"
+            <section className='panel panel-info'>
+
+                <h3 className='panel-heading'>Create a gist</h3>
+                <article className="panel-body">
+                    <div className="input-group">
+                        <label htmlFor="#newGistTitle" className='control-label col-xs-12 col-sm-4'>Title</label>
+                        <input id="#newGistTitle" type="text" className="form-control col-xs-12 col-xs-8"
                                defaultValue={this.formElements.gistTitle}
                                onChange={(event) => {
                                    this.formElements.gistTitle = event.target.value;
                                }}
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="#newGistDescription">Description</label>
-                        <input id="#newGistDescription" type="text" className="form-control"
+                    <div className="input-group">
+                        <label htmlFor="#newGistDescription"
+                               className='control-label col-xs-12'>Description</label>
+                        <input id="#newGistDescription" type="text" className="form-control col-xs-12"
                                defaultValue={this.formElements.gistDescription}
                                onChange={(event) => {
                                    this.formElements.gistDescription = event.target.value;
                                }}
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="#newGistContent">Content</label>
-                        <input id="#newGistContent" type="text" className="form-control"
-                               defaultValue={this.formElements.gistContent}
-                               onChange={(event) => {
-                                   this.formElements.gistContent = event.target.value;
-                               }}
+                    <div className="input-group">
+                        <label htmlFor="#newGistContent"
+                               className='control-label col-xs-12 col-sm-4'>Content</label>
+                        <textarea id="#newGistContent" type="text" rows={5} className="form-control col-xs-12 col-xs-8"
+                                  defaultValue={this.formElements.gistContent}
+                                  onChange={(event) => {
+                                      this.formElements.gistContent = event.target.value;
+                                  }}
                         />
                     </div>
+                </article>
+                <div className='panel-footer'>
                     <button className='btn btn-primary' onClick={this.clickMe}>Create Gist</button>
-                </form>
-            </div>
+                </div>
+            </section>
         );
     };
 }
