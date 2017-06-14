@@ -142,7 +142,7 @@ class GistListRow extends Component {
                                 , clickHandler)}
                         </div>
                     </div>
-                    <div className='col-xs-3 hidden-sm'>
+                    <div className='col-xs-3 hidden-sm hidden-lg hidden-md'>
                         {this.getDeleteController()}
                     </div>
                 </td>

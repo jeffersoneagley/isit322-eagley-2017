@@ -6,7 +6,10 @@
  */
 import {connect} from 'react-redux';
 import GistCreatorDisplay from './views/GistCreatorDisplay';
-import {getTypeGitGistCreatorCreateGistResponse} from '../actions/GitGistActionTypes';
+import {
+    getTypeGitGistCreatorCreateGistResponse,
+    getTypeGitGistCreatorIsProcessing,
+} from '../actions/GitGistActionTypes';
 import 'whatwg-fetch';
 
 const mapStateToProps = (state) => {
@@ -15,6 +18,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     const onCreateGist = (event, docs, desc) => {
+        dispatch(getTypeGitGistCreatorIsProcessing(true));
         console.log('onCreateGist called');
         console.log(docs, desc);
         if (event !== undefined) {

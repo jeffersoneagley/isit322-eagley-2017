@@ -21,31 +21,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    let gistListUpdateTime = Date.now();
-
-    let getGistList = (event) => {
-        if (event !== undefined) {
-            //if we're called from an eventhandler
-            event.preventDefault();
-        }
-
-        //activate refresh component for gistList
-        dispatch(getTypeGistListIsRefreshing(true));
-        fetch('/api/git/gist/list').then(function(response) {
-            return response.json();
-        }).then(function(json) {
-            // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
-            let body = typeof (json) === 'string' ? JSON.parse(json) : json;
-            // var body = json.body;
-            dispatch(getTypeGitGistMetaListResponse(body.result));
-            dispatch(getTypeGistListIsRefreshing(false));
-        }).catch(function(ex) {
-            // DISPLAY WITH LOGGER
-            console.log(ex);
-            dispatch(getTypeGistListIsRefreshing(false));
-
-        });
-    };
 
     let getGistHeaderById = (gistId, event) => {
         if (event !== undefined) {
@@ -68,27 +43,69 @@ const mapDispatchToProps = (dispatch) => {
             let body = typeof (json) === 'string' ? JSON.parse(json) : json;
             // var body = json.body;
             dispatch(getTypeGitGistByIdResponse(body));
-            getGistList();
+            // getGistList();
         }).catch(function(ex) {
             // DISPLAY WITH LOGGER
             console.log(ex);
         });
     };
 
+    let dispatchActions = {
+        getTypeGitGistMetaListResponse: (result) => {
+            dispatch(getTypeGitGistMetaListResponse(result));
+        },
+        getTypeGistListIsRefreshing: (state) => {
+            dispatch(getTypeGistListIsRefreshing(state));
+        },
+    };
+
+    return {
+        getGistHeaderById,
+        dispatchActions,
+    };
+};
+
+let mergeProps = (propsFromState, propsFromDispatch, myProps) => {
+
+    let getGistList = (event) => {
+        if (event !== undefined) {
+            //if we're called from an eventhandler
+            event.preventDefault();
+        }
+        if (!propsFromState.isRefreshing) {
+            //activate refresh component for gistList
+            propsFromDispatch.dispatchActions.getTypeGistListIsRefreshing(true);
+            fetch('/api/git/gist/list').then(function(response) {
+                return response.json();
+            }).then(function(json) {
+                // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
+                let body = typeof (json) === 'string' ? JSON.parse(json) : json;
+                // var body = json.body;
+                propsFromDispatch.dispatchActions.getTypeGitGistMetaListResponse(body.result);
+                // dispatch(getTypeGistListIsRefreshing(false));
+            }).catch(function(ex) {
+                // DISPLAY WITH LOGGER
+                console.log(ex);
+                propsFromDispatch.dispatchActions.getTypeGistListIsRefreshing(false);
+
+            });
+        }
+    };
+
     let checkGistList = () => {
-        if (Date.now() > gistListUpdateTime) {
-            gistListUpdateTime = Date.now() + 6600;
+        //|| (Date.now() + 10000) > propsFromState.gistListUpdateTime
+        if (propsFromState.gistListNeedsRefresh) {
             getGistList();
         }
     };
 
+    checkGistList();
+
     return {
-        getGistList,
-        checkGistList,
-        getGistHeaderById,
+        ...propsFromState, ...propsFromDispatch, ...myProps
     };
 };
 
-let GitGistListerInfoContainer = connect(mapStateToProps, mapDispatchToProps)(GitGistListerDisplay);
+let GitGistListerInfoContainer = connect(mapStateToProps, mapDispatchToProps, mergeProps)(GitGistListerDisplay);
 
 export default GitGistListerInfoContainer;

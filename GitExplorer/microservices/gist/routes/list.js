@@ -22,8 +22,8 @@ function buildService(gh) {
     };
 
     let getGistList = function(res) {
-        // console.log(res);
-        gh.getUser().listGists().then(({data}) => {
+        let response = res;
+        gh.getUser().listGists().end(({data}) => {
             // Promises!
             // console.log(data);
 
@@ -40,13 +40,13 @@ function buildService(gh) {
                 };
             });
 
-            res.status(200).send({
+            response.status(200).send({
                 count: result.length,
                 result: result,
             });
         }).catch((err) => {
             console.log(err);
-            res.status(500).send(err);
+            response.status(500).send(err);
         });
     };
 

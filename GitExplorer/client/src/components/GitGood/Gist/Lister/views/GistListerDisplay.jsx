@@ -40,7 +40,6 @@ class GistList extends Component {
     };
 
     render() {
-        this.props.checkGistList();
 
         return (
             <div>

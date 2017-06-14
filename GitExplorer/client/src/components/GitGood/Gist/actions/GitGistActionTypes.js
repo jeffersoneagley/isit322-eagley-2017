@@ -5,7 +5,9 @@
 export const TYPE_GIT_GET_GIST_META_LIST_RESPONSE = 'TYPE_GIT_GET_GIST_META_LIST_RESPONSE';
 export const TYPE_GIT_GET_GIST_BY_ID_RESPONSE = 'TYPE_GIT_GET_GIST_BY_ID_RESPONSE';
 export const TYPE_GIT_GIST_CREATE_GIST_RESPONSE = 'TYPE_GIT_GIST_CREATE_GIST_RESPONSE';
+export const TYPE_GIT_GIST_CREATE_IS_PROCESSING = 'TYPE_GIT_GIST_CREATE_GIST_RESPONSE';
 export const TYPE_GIT_GIST_LIST_IS_REFRESHING = 'TYPE_GIT_GIST_LIST_IS_REFRESHING';
+export const TYPE_GIT_GIST_LIST_NEEDS_REFRESH = 'TYPE_GIT_GIST_LIST_NEEDS_REFRESH';
 
 export const GIST_DELETE_ACTION_TYPES = {
     TYPE_SET_MODE_DELETE_MENU_DISABLED: 'TYPE_SET_MODE_DELETE_MENU_DISABLED',
@@ -34,12 +36,27 @@ export function getTypeGistListIsRefreshing(isRefreshing) {
     return {
         type: TYPE_GIT_GIST_LIST_IS_REFRESHING,
         isRefreshing,
+        gistListNeedsRefresh: false,
+    };
+}
+export function getTypeGistListNeedsRefresh(needsRefresh) {
+    return {
+        type: TYPE_GIT_GIST_LIST_NEEDS_REFRESH,
+        gistListNeedsRefresh: needsRefresh,
     };
 }
 export function getTypeGitGistCreatorCreateGistResponse(newGist) {
     return {
         type: TYPE_GIT_GIST_CREATE_GIST_RESPONSE,
         selectedGist: newGist,
+        isProcessing: false,
+        gistListNeedsRefresh: true,
+    };
+}
+export function getTypeGitGistCreatorIsProcessing(state) {
+    return {
+        type: TYPE_GIT_GIST_CREATE_IS_PROCESSING,
+        createIsProcessing: state,
     };
 }
 function getTypeGitGistDeleteMenuAction(type) {

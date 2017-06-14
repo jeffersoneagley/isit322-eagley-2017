@@ -26,8 +26,30 @@ class GistCreatorDisplay extends Component {
         this.props.onCreateGist(event, docs, this.formElements.gistDescription);
     };
 
+    lockButton = () => {
+        if (this.props.createIsProcessing) {
+            return <button className='btn btn-primary'
+                           disabled
+            >
+                <div className='progress-bar progress-bar-striped active'
+                     onClick={this.clickMe}
+                     aria-valuenow='100' aria-valuemin='0' aria-valuemax='100'
+                     style={{width: '100%', height: '100%'}}
+                >
+                    Creating Gist <span className="glyphicon glyphicon-cloud-upload"> </span>
+                </div>
+            </button>;
+        } else {
+            return <button className='btn btn-primary' onClick={this.clickMe}>
+                Create
+                Gist
+            </button>;
+        }
+    };
+
     render() {
         logger.log('render GetGist');
+        console.log(this.props.isProcessing);
         return (
             <section className='panel panel-info'>
 
@@ -64,7 +86,7 @@ class GistCreatorDisplay extends Component {
                     </div>
                 </article>
                 <div className='panel-footer'>
-                    <button className='btn btn-primary' onClick={this.clickMe}>Create Gist</button>
+                    {this.lockButton()}
                 </div>
             </section>
         );
