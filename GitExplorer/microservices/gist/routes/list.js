@@ -23,7 +23,7 @@ function buildService(gh) {
 
     let getGistList = function(res) {
         let response = res;
-        gh.getUser().listGists().end(({data}) => {
+        gh.getUser().listGists().then(({data}) => {
             // Promises!
             // console.log(data);
 

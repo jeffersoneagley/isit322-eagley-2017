@@ -4,6 +4,7 @@ let favicon = require('serve-favicon');
 let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
+let RateLimit = require('express-rate-limit');
 
 let index = require('./routes/index');
 let users = require('./routes/users');
@@ -14,6 +15,19 @@ let app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+// app.enable('trust proxy');
+// only if you're behind a reverse proxy (Heroku, Bluemix, AWS if you use an ELB, custom Nginx setup, etc)
+
+let limiter = new RateLimit({
+    windowMs: 1000, // 1s
+    max: 20, // limit each IP to 100 requests per windowMs
+    delayAfter: 1,
+    delayMs: 50 // delay in ms
+});
+
+//  apply to all requests
+app.use(limiter);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

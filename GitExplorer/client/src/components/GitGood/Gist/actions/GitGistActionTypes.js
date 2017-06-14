@@ -21,42 +21,54 @@ export const GIST_DELETE_ACTION_TYPES = {
 };
 
 export function getTypeGitGistMetaListResponse(gistMetaList) {
-    return {
-        type: TYPE_GIT_GET_GIST_META_LIST_RESPONSE,
-        gistMetaList,
+    return (dispatch) => {
+        dispatch({
+            type: TYPE_GIT_GET_GIST_META_LIST_RESPONSE,
+            gistMetaList,
+        });
     };
 }
 export function getTypeGitGistByIdResponse(selectedGist) {
-    return {
-        type: TYPE_GIT_GET_GIST_BY_ID_RESPONSE,
-        selectedGist,
+    return (dispatch) => {
+        dispatch({
+            type: TYPE_GIT_GET_GIST_BY_ID_RESPONSE,
+            selectedGist,
+        });
     };
 }
 export function getTypeGistListIsRefreshing(isRefreshing) {
-    return {
-        type: TYPE_GIT_GIST_LIST_IS_REFRESHING,
-        isRefreshing,
-        gistListNeedsRefresh: false,
+    return (dispatch) => {
+        dispatch({
+            type: TYPE_GIT_GIST_LIST_IS_REFRESHING,
+            isRefreshing,
+            gistListNeedsRefresh: false,
+        });
     };
 }
 export function getTypeGistListNeedsRefresh(needsRefresh) {
-    return {
-        type: TYPE_GIT_GIST_LIST_NEEDS_REFRESH,
-        gistListNeedsRefresh: needsRefresh,
+    return (dispatch) => {
+        dispatch({
+            type: TYPE_GIT_GIST_LIST_NEEDS_REFRESH,
+            gistListNeedsRefresh: needsRefresh,
+        });
     };
 }
 export function getTypeGitGistCreatorCreateGistResponse(newGist) {
-    return {
-        type: TYPE_GIT_GIST_CREATE_GIST_RESPONSE,
-        selectedGist: newGist,
-        isProcessing: false,
-        gistListNeedsRefresh: true,
+    return (dispatch) => {
+        dispatch({
+            type: TYPE_GIT_GIST_CREATE_GIST_RESPONSE,
+            selectedGist: newGist,
+            isProcessing: false,
+            gistListNeedsRefresh: true,
+        });
     };
 }
 export function getTypeGitGistCreatorIsProcessing(state) {
-    return {
-        type: TYPE_GIT_GIST_CREATE_IS_PROCESSING,
-        createIsProcessing: state,
+    return (dispatch) => {
+        dispatch({
+            type: TYPE_GIT_GIST_CREATE_IS_PROCESSING,
+            createIsProcessing: state,
+        });
     };
 }
 function getTypeGitGistDeleteMenuAction(type) {
@@ -66,27 +78,39 @@ function getTypeGitGistDeleteMenuAction(type) {
     };
 }
 export function getTypeGitGistDeleteMenuDisabled() {
-    return getTypeGitGistDeleteMenuAction(GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_DISABLED);
+    return (dispatch) => {
+        dispatch(getTypeGitGistDeleteMenuAction(GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_DISABLED));
+    };
 }
 export function getTypeGitGistDeleteMenuStageFirst() {
-    return getTypeGitGistDeleteMenuAction(GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_FIRST);
+    return (dispatch) => {
+        dispatch(getTypeGitGistDeleteMenuAction(GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_FIRST));
+    };
 }
 export function getTypeGitGistDeleteMenuStageSecond() {
-    return getTypeGitGistDeleteMenuAction(GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND);
+    return (dispatch) => {
+        dispatch(getTypeGitGistDeleteMenuAction(GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND));
+    };
 }
 export function getTypeGitGistDeleteMenuStageFinal() {
-    return getTypeGitGistDeleteMenuAction(GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_FINAL);
+    return (dispatch) => {
+        dispatch(getTypeGitGistDeleteMenuAction(GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_FINAL));
+    };
 }
 export function getTypeGitGistDeleteMenuFinalStatistics(statistics) {
-    return {
-        type: GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_FINAL_STATISTICS,
-        deleteResultStatistics: statistics,
+    return function(dispatch) {
+        dispatch({
+            type: GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_FINAL_STATISTICS,
+            deleteResultStatistics: statistics,
+        });
     };
 
 }
 export function getTypeGitGistDeleteClearSelection() {
-    return {
-        type: GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_CLEAR_SELECTION,
+    return (dispatch) => {
+        dispatch({
+            type: GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_CLEAR_SELECTION,
+        });
     };
 }
 /***
@@ -96,10 +120,11 @@ export function getTypeGitGistDeleteClearSelection() {
  * @return {{type: string, gistId: *}} contract data type for gist list actions
  */
 function getTypeGitGistDeleteList(gistId, isAddToList = false) {
+    let type = (isAddToList ?
+        GIST_DELETE_ACTION_TYPES.TYPE_GIST_DELETE_LIST_ADD_GIST_ID :
+        GIST_DELETE_ACTION_TYPES.TYPE_GIST_DELETE_LIST_REMOVE_GIST_ID);
     return {
-        type: (isAddToList ?
-            GIST_DELETE_ACTION_TYPES.TYPE_GIST_DELETE_LIST_ADD_GIST_ID :
-            GIST_DELETE_ACTION_TYPES.TYPE_GIST_DELETE_LIST_REMOVE_GIST_ID),
+        type: type,
         gistId,
     };
 }
@@ -109,7 +134,9 @@ function getTypeGitGistDeleteList(gistId, isAddToList = false) {
  * @return {{type: string, gistId: *}}
  */
 export function getTypeGitGistDeleteListAdd(gistId) {
-    return getTypeGitGistDeleteList(gistId, true);
+    return (dispatch) => {
+        dispatch(getTypeGitGistDeleteList(gistId, true));
+    };
 }
 
 /***
@@ -118,5 +145,7 @@ export function getTypeGitGistDeleteListAdd(gistId) {
  * @return {{type: string, gistId: *}}
  */
 export function getTypeGitGistDeleteListRemove(gistId) {
-    return getTypeGitGistDeleteList(gistId, false);
+    return (dispatch) => {
+        dispatch(getTypeGitGistDeleteList(gistId, false));
+    };
 }

@@ -7,6 +7,7 @@
 import {connect} from 'react-redux';
 import GistCreatorDisplay from './views/GistCreatorDisplay';
 import {
+    getTypeGistListNeedsRefresh,
     getTypeGitGistCreatorCreateGistResponse,
     getTypeGitGistCreatorIsProcessing,
 } from '../actions/GitGistActionTypes';
@@ -43,7 +44,9 @@ const mapDispatchToProps = (dispatch) => {
             // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
             let body = typeof (json) === 'string' ? JSON.parse(json) : json;
             // that.setState({newGist: body});
-            dispatch(getTypeGitGistCreatorCreateGistResponse(body));
+            dispatch(getTypeGitGistCreatorCreateGistResponse(body)).
+                then(dispatch(getTypeGitGistCreatorIsProcessing(false))).
+                then(dispatch(getTypeGistListNeedsRefresh(true)));
         }).catch(function(ex) {
             // DISPLAY WITH LOGGER
             console.log(ex);

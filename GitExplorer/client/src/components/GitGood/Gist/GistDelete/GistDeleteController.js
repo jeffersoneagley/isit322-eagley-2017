@@ -2,6 +2,7 @@
  * Created by fish on 6/13/17.
  */
 import {
+    getTypeGistListNeedsRefresh,
     getTypeGitGistDeleteClearSelection,
     getTypeGitGistDeleteMenuDisabled,
     getTypeGitGistDeleteMenuFinalStatistics,
@@ -19,24 +20,27 @@ let GistDeleteController = {
     mapDispatchToProps: (dispatch) => {
 
         return {
-
             onCompletedDelete: (result) => {
-                dispatch(getTypeGitGistDeleteMenuFinalStatistics(result));
+                dispatch(getTypeGitGistDeleteMenuFinalStatistics(result)).
+                    then(dispatch(getTypeGistListNeedsRefresh(true)));
             },
             dispatchClearDelete: () => {
-                dispatch(getTypeGitGistDeleteClearSelection());
+                return dispatch(getTypeGitGistDeleteClearSelection());
             },
             dispatchStageFinal: () => {
-                dispatch(getTypeGitGistDeleteMenuStageFinal());
+                return dispatch(getTypeGitGistDeleteMenuStageFinal());
             },
             dispatchStageSecond: () => {
-                dispatch(getTypeGitGistDeleteMenuStageSecond());
+                return dispatch(getTypeGitGistDeleteMenuStageSecond());
             },
             dispatchStageFirst: () => {
-                dispatch(getTypeGitGistDeleteMenuStageFirst());
+                return dispatch(getTypeGitGistDeleteMenuStageFirst());
             },
             dispatchStageDisabled: () => {
-                dispatch(getTypeGitGistDeleteMenuDisabled());
+                return dispatch(getTypeGitGistDeleteMenuDisabled());
+            },
+            dispatchGistListNeedsRefresh: () => {
+                return dispatch(getTypeGistListNeedsRefresh(true));
             },
         };
     },
