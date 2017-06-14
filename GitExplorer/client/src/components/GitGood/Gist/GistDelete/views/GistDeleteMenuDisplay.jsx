@@ -77,46 +77,39 @@ class GistListDeleteMenuDisplay extends Component {
         </div>;
     }
 
-    getModeStagePostMortem() {
-        console.log(this.props.deleteResultStatistics);
-        if (this.props.deleteResultStatistics !== undefined) {
-            let stat = this.props.deleteResultStatistics;
+    getModeStageFinalPostMortem(stat) {
+        stat = JSON.parse(JSON.stringify(stat));
 
-            return <div className='alert alert-success fade in col-xs-12'>
-                <div className='col-xs-8 col-sm-10'>
-                    <h4 className='alert-link'>Results</h4>
-                    {
-                        () => {
-                            if (this.props.deleteResultStatistics.totals !== undefined) {
-                                return (<div>
-                                    <span>Gists deleted: {stat.totals.gistsProcessed} </span>
-                                    <span className='badge'>Successes {stat.totals.successes}
-                                        / {stat.totals.gistsProcessed}</span>
-                                    <span className='badge'>Failures {stat.totals.failures}
-                                        / {stat.totals.gistsProcessed}</span>
-                                </div>);
-                            }
-                        }
-                    }
+        return <div className='alert alert-success fade in col-xs-12'>
+            <div className='col-xs-8 col-sm-10'>
+                <h4 className='alert-link'>Results</h4>
+                <div>
+                    <span>Gists deleted: {stat['totals'].gistsProcessed} </span>
+                    <span className='badge'>Successes {stat['totals'].successes}
+                        / {stat['totals'].gistsProcessed}</span>
+                    <span className='badge'>Failures {stat['totals'].failures}
+                        / {stat['totals'].gistsProcessed}</span>
                 </div>
-                <div className='col-xs-4 col-sm-2'>
-                    <button
-                        className='btn btn-success btn-block'
-                        onClick={this.props.onClickDeleteStage}
-                    >Ok
-                    </button>
-                </div>
-            </div>;
-        } else {
-            return <div className='alert alert-info fade in col-xs-12'>
-                <h4>Working, please wait</h4>
-                <div className="progress-bar progress-bar-striped active col-xs-12" role="progressbar"
-                     aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                    processing...
-                </div>
-            </div>;
-        }
+            </div>
+            <div className='col-xs-4 col-sm-2'>
+                <button
+                    className='btn btn-success btn-block'
+                    onClick={this.props.onClickDeleteStage}
+                >Ok
+                </button>
+            </div>
+        </div>;
     }
+
+    getModeStageFinalProcessing = () => {
+        return <div className='alert alert-info fade in col-xs-12'>
+            <h4>Working, please wait</h4>
+            <div className="progress-bar progress-bar-striped active col-xs-12" role="progressbar"
+                 aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                processing...
+            </div>
+        </div>;
+    };
 
     getCurrentMode = () => {
         switch (this.props.gistEditorDeleteMode) {
@@ -127,7 +120,9 @@ class GistListDeleteMenuDisplay extends Component {
             case GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND:
                 return this.getModeStageSecond();
             case GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_FINAL:
-                return this.getModeStagePostMortem();
+                return (this.props.deleteResultStatistics ) ?
+                    this.getModeStageFinalPostMortem(this.props.deleteResultStatistics) :
+                    this.getModeStageFinalProcessing();
             default:
                 return this.getModeOff();
         }

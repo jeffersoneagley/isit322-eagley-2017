@@ -22,12 +22,13 @@ function buildService(gh) {
                 successes: 0,
                 failures: 0,
             },
-            gists: gistsToSend,
+            gists: [],
         };
         for (let gistId in gistsToSend) {
             if (gistsToSend.hasOwnProperty(gistId)) {
                 (gistsToSend[gistId].success) ? jobStatistics.totals.successes++ : jobStatistics.totals.failures++;
                 jobStatistics.totals.gistsProcessed++;
+                jobStatistics.gists.push(gistId);
                 removeGistFromGistsToSend(gistId);
             }
         }

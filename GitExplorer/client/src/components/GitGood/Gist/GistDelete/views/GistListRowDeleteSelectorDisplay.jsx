@@ -20,10 +20,13 @@ class GistListRowDeleteSelectorDisplay extends Component {
     </button>;
 
     generateDisplay = (gist, isMarkedForDelete) => {
-        if (this.props.gistEditorDeleteMode !== TYPES_DEL.TYPE_SET_MODE_DELETE_MENU_DISABLED) {
-            return this.generateDeleteInterfaceActive(gist, isMarkedForDelete);
-        } else {
-            return this.generateDeleteInterfaceInactive();
+        switch (this.props.gistEditorDeleteMode) {
+            case TYPES_DEL.TYPE_SET_MODE_DELETE_MENU_STAGE_FIRST:
+                return this.generateDeleteInterfaceActive(gist, isMarkedForDelete);
+            case TYPES_DEL.TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND:
+                return this.generateDeleteInterfaceLocked(gist, isMarkedForDelete);
+            default:
+                return this.generateDeleteInterfaceInactive();
         }
     };
 
@@ -61,6 +64,36 @@ class GistListRowDeleteSelectorDisplay extends Component {
                 }>
                 </span></h4>
                 <span>Delete?</span>
+            </button>
+        </div>;
+    }
+
+    generateDeleteInterfaceLocked(gist, isGistMarkedForDeletion) {
+
+        let that = this;
+        return <div
+            className={this.getBootstrapContextClass(
+                'alert', 'danger', 'info', isGistMarkedForDeletion,
+            )}>
+            <h4>Delete gist?</h4>
+            <button
+                className={this.getBootstrapContextClass(
+                    'btn', 'danger', 'success', isGistMarkedForDeletion,
+                    'btn-block',
+                )}
+                disabled
+            >
+                <h4><span className={
+                    'glyphicon  glyphicon-' + (isGistMarkedForDeletion ? 'remove' : 'unchecked')
+                }>
+                </span></h4>
+                <span>{isGistMarkedForDeletion ?
+                    <span>Will be deleted
+                        <span className='glyphicon glyphicon-file'></span>
+                        <span className='glyphicon glyphicon-menu-right'></span>
+                        <span className='glyphicon glyphicon-trash'></span>
+                    </span> :
+                    'Keep'}</span>
             </button>
         </div>;
     }
