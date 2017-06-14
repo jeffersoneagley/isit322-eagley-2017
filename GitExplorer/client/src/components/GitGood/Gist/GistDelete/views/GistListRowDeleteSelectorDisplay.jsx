@@ -47,7 +47,6 @@ class GistListRowDeleteSelectorDisplay extends Component {
                 'alert', 'danger', 'info', isGistMarkedForDeletion,
             )}>
             <h4>Delete gist?</h4>
-            <hr/>
             <button
                 className={this.getBootstrapContextClass(
                     'btn', 'danger', 'warning', isGistMarkedForDeletion,

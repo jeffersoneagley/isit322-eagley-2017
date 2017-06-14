@@ -124,12 +124,13 @@ class GistListRow extends Component {
         if (gistData !== undefined) {
             return <tr key={'keyGistRow' + gistData.id} className="row">
                 <td>
-                    <div className="col-xs-9">
+                    <div className="col-xs-9 col-sm-12">
                         <div className='container-fluid hidden-xs'>
                             <h3 className='page-header'>{gistHeader}</h3>
                             {this.getRowData(gistData)}
                             <div className='col-sm-3 hidden-xs'>
                                 {this.processButtonOrDiv('View Gist Data', clickHandler)}
+                                {this.getDeleteController()}
                             </div>
                         </div>
                         <div className='container-fluid hidden-sm hidden-lg hidden-md'>
@@ -141,7 +142,7 @@ class GistListRow extends Component {
                                 , clickHandler)}
                         </div>
                     </div>
-                    <div className='col-xs-3'>
+                    <div className='col-xs-3 hidden-sm'>
                         {this.getDeleteController()}
                     </div>
                 </td>
