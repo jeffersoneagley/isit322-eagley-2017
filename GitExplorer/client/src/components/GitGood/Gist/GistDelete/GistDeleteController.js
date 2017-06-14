@@ -77,6 +77,7 @@ let GistDeleteController = {
         let onClickDeleteStage = () => {
             switch (propsFromState.gistEditorDeleteMode) {
                 case STAGES.TYPE_SET_MODE_DELETE_MENU_STAGE_FINAL:
+                    propsFromDispatch.dispatchStageDisabled();
                     break;
                 case STAGES.TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND:
                     propsFromDispatch.dispatchStageFinal();
@@ -110,7 +111,9 @@ let GistDeleteController = {
             SendDeleteCommand,
             onClickDeleteStage,
             onClickCancelStage,
-            ...myProps
+            ...myProps,
+            ...propsFromState,
+            ...propsFromDispatch
         };
     },
 };

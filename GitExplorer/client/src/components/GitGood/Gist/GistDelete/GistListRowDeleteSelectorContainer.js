@@ -16,9 +16,9 @@ let mapDispatchToProps = (dispatch) => {
         dispatch(getTypeGitGistDeleteListRemove(gistId));
     };
     return {
-        ...GistDeleteController.mapDispatchToProps(dispatch),
         onDeleteListItemAddClicked: onDeleteListItemAddClicked,
         onDeleteListItemRemoveClickedList: onDeleteListItemRemoveClickedList,
+        ...GistDeleteController.mapDispatchToProps(dispatch),
     };
 };
 

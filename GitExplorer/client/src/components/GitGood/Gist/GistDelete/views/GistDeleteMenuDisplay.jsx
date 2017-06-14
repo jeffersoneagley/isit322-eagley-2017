@@ -50,19 +50,19 @@ class GistListDeleteMenuDisplay extends Component {
         return <button className='btn btn-secondary btn-block' onClick={() => {
             that.props.onClickDeleteStage();
         }
-        }>Delete Gists</button>;
+        }>Delete Gists <span className='glyphicon glyphicon-list'></span></button>;
     };
 
     getModeStageFirst() {
-        return <div className='alert alert-info'>
-            <div className='col-xs-8 col-sm-9'>
+        return <div className='panel panel-info'>
+            <div className='panel-body col-xs-7 col-sm-9'>
                 {this.getSelectedGistCount()} gists selected
             </div>
-            <div className='col-xs-4 col-sm-3'>
-                <div className='col-xs-6'>
+            <div className='panel-footer col-xs-5 col-sm-3'>
+                <div className='col-sm-6 col-xs-12'>
                     {this.getCancelButton()}
                 </div>
-                <div className='col-xs-6'>
+                <div className='col-sm-6 col-xs-12'>
                     {this.getButtonDeleteSelected()}
                 </div>
             </div>
@@ -84,13 +84,13 @@ class GistListDeleteMenuDisplay extends Component {
             let stat = this.props.deleteResultStatistics;
 
             return <div className='alert alert-success fade in col-xs-12'>
-                <div className='col-xs-9 col-sm-10'>
+                <div className='col-xs-8 col-sm-10'>
                     <h4 className='alert-link'>Results</h4>
                     <span>Gists deleted: {stat.totals.gistsProcessed} </span>
                     <span className='badge'>Successes {stat.totals.successes} / {stat.totals.gistsProcessed}</span>
                     <span className='badge'>Failures {stat.totals.failures} / {stat.totals.gistsProcessed}</span>
                 </div>
-                <div className='col-xs-3 col-sm-2'>
+                <div className='col-xs-4 col-sm-2'>
                     <button
                         className='btn btn-success btn-block'
                         onClick={this.props.onClickDeleteStage()}
