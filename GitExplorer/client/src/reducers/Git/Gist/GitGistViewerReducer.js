@@ -1,4 +1,5 @@
 import {
+    GIST_DELETE_ACTION_TYPES,
     TYPE_GIT_GET_GIST_BY_ID_RESPONSE,
     TYPE_GIT_GET_GIST_META_LIST_RESPONSE,
     TYPE_GIT_GIST_CREATE_GIST_RESPONSE,
@@ -44,6 +45,7 @@ const Gist = (state = initialState, action) => {
             }
             return newState;
         case TYPE_GIT_GIST_LIST_NEEDS_REFRESH:
+        case GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_FINAL:
             newState = {...state, gistListNeedsRefresh: action.gistListNeedsRefresh};
             return newState;
         default:

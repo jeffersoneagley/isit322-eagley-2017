@@ -79,21 +79,30 @@ class GistListDeleteMenuDisplay extends Component {
 
     getModeStagePostMortem() {
         console.log(this.props.deleteResultStatistics);
-        if (this.props.deleteResultStatistics !== undefined &&
-            this.props.deleteResultStatistics.totals !== undefined) {
+        if (this.props.deleteResultStatistics !== undefined) {
             let stat = this.props.deleteResultStatistics;
 
             return <div className='alert alert-success fade in col-xs-12'>
                 <div className='col-xs-8 col-sm-10'>
                     <h4 className='alert-link'>Results</h4>
-                    <span>Gists deleted: {stat.totals.gistsProcessed} </span>
-                    <span className='badge'>Successes {stat.totals.successes} / {stat.totals.gistsProcessed}</span>
-                    <span className='badge'>Failures {stat.totals.failures} / {stat.totals.gistsProcessed}</span>
+                    {
+                        () => {
+                            if (this.props.deleteResultStatistics.totals !== undefined) {
+                                return (<div>
+                                    <span>Gists deleted: {stat.totals.gistsProcessed} </span>
+                                    <span className='badge'>Successes {stat.totals.successes}
+                                        / {stat.totals.gistsProcessed}</span>
+                                    <span className='badge'>Failures {stat.totals.failures}
+                                        / {stat.totals.gistsProcessed}</span>
+                                </div>);
+                            }
+                        }
+                    }
                 </div>
                 <div className='col-xs-4 col-sm-2'>
                     <button
                         className='btn btn-success btn-block'
-                        onClick={this.props.onClickDeleteStage()}
+                        onClick={this.props.onClickDeleteStage}
                     >Ok
                     </button>
                 </div>

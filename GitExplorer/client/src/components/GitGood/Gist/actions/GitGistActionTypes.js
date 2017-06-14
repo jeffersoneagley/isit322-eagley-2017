@@ -78,6 +78,7 @@ function getTypeGitGistDeleteMenuAction(type) {
     };
 }
 export function getTypeGitGistDeleteMenuDisabled() {
+    console.trace();
     return (dispatch) => {
         dispatch(getTypeGitGistDeleteMenuAction(GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_DISABLED));
     };

@@ -3,13 +3,12 @@
  */
 import {
     getTypeGistListNeedsRefresh,
-    getTypeGitGistDeleteClearSelection,
     getTypeGitGistDeleteMenuDisabled,
     getTypeGitGistDeleteMenuFinalStatistics,
     getTypeGitGistDeleteMenuStageFinal,
     getTypeGitGistDeleteMenuStageFirst,
     getTypeGitGistDeleteMenuStageSecond,
-    GIST_DELETE_ACTION_TYPES as STAGES,
+    GIST_DELETE_ACTION_TYPES as STAGES
 } from '../actions/GitGistActionTypes';
 //I created this because I started having needs for these functions in multiple containers
 
@@ -21,14 +20,13 @@ let GistDeleteController = {
 
         return {
             onCompletedDelete: (result) => {
-                dispatch(getTypeGitGistDeleteMenuFinalStatistics(result)).
-                    then(dispatch(getTypeGistListNeedsRefresh(true)));
+                dispatch(getTypeGitGistDeleteMenuFinalStatistics(result));
             },
-            dispatchClearDelete: () => {
-                return dispatch(getTypeGitGistDeleteClearSelection());
-            },
+            // dispatchClearDelete: () => {
+            //     return dispatch(getTypeGitGistDeleteClearSelection());
+            // },
             dispatchStageFinal: () => {
-                return dispatch(getTypeGitGistDeleteMenuStageFinal());
+                dispatch(getTypeGitGistDeleteMenuStageFinal());
             },
             dispatchStageSecond: () => {
                 return dispatch(getTypeGitGistDeleteMenuStageSecond());
@@ -54,6 +52,7 @@ let GistDeleteController = {
                     }
                 }
             }
+            propsFromDispatch.dispatchStageFinal();
             console.log('command called to signal server to delete all gists in list');
             fetch('/api/git/gist/delete', {
                 method: 'POST',
@@ -84,7 +83,6 @@ let GistDeleteController = {
                     propsFromDispatch.dispatchStageDisabled();
                     break;
                 case STAGES.TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND:
-                    propsFromDispatch.dispatchStageFinal();
                     SendDeleteCommand();
                     break;
                 case STAGES.TYPE_SET_MODE_DELETE_MENU_STAGE_FIRST:
