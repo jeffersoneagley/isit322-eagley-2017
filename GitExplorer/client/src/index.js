@@ -10,7 +10,7 @@ import reducers from './reducers/reducers';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 
-let store = createStore(reducers, applyMiddleware(thunk), applyMiddleware(logger));
+let store = createStore(reducers, applyMiddleware(thunk, logger));
 
 ReactDOM.render(
     <div>

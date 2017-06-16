@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 import Debug from './Debug/Debug';
-// import FieldGenerator from './GitGood/GitFieldGenerator';
 import GetFoo from './SimpleReactDemos/GetFoo/GetFoo';
 import SmallNumbers from './SimpleReactDemos/SmallNumber/SmallNumbersConnector';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import ElfHeader from './Header/ElfHeader';
-import GistBrowser from './GitGood/Gist/GistBrowser';
+import GistBrowser from './GitGood/Gist/GistBrowserContainer';
 import GitUserInfoContainer from './GitGood/User/GitUserInfoContainer';
 import BsMenuBar from './Header/BsMenuBar';
 import FishLogo from './Header/FishLogo';
 import Home from './Home';
 
-// let fieldGenerator = new FieldGenerator();
-
+/***
+ * This component used to be our state manager, hence the datamaven name
+ * Now it ought to be renamed to something involving SPA routing and layout
+ */
 class DataMaven extends Component {
     constructor(props) {
         super(props);
@@ -22,12 +23,8 @@ class DataMaven extends Component {
         };
 
         this.debug = new Debug();
-        this.debug.speakUp();
+        this.debug.setQuiet(true);
     };
-
-    componentWillMount() {
-
-    }
 
     render() {
         this.debug.log('render getuserinfo');

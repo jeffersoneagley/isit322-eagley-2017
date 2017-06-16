@@ -6,16 +6,24 @@ import {
     TYPE_GIT_GIST_CREATE_IS_PROCESSING,
     TYPE_GIT_GIST_LIST_IS_REFRESHING,
     TYPE_GIT_GIST_LIST_NEEDS_REFRESH,
-} from '../../../components/GitGood/Gist/actions/GitGistActionTypes';
+} from '../../../components/GitGood/Gist/components/actions/GitGistActionTypes';
+import BrowserActions from '../../../components/GitGood/Gist/actions/GistBrowserActions';
 
 const initialState = {
     isGistListRefreshing: false,
     createIsProcessing: false,
     gistListNeedsRefresh: true,
+    browserMode: BrowserActions.BROWSER_MODES.BASE,
 };
 const Gist = (state = initialState, action) => {
     let newState = {...state};
     switch (action.type) {
+        case BrowserActions.ACTION_TYPES.SET_BROWSER_MODE:
+            newState = {
+                ...state,
+                browserMode: action.browserMode,
+            };
+            return newState;
         case TYPE_GIT_GET_GIST_META_LIST_RESPONSE:
             newState = {
                 ...state,
@@ -39,10 +47,16 @@ const Gist = (state = initialState, action) => {
             newState = {...state, createIsProcessing: action.createIsProcessing};
             return newState;
         case TYPE_GIT_GIST_LIST_IS_REFRESHING:
-            newState = {...state, isGistListRefreshing: action.isRefreshing, gistListNeedsRefresh: false};
+            let gistListUpdateTime = state.gistListUpdateTime;
             if (!action.isRefreshing) {
-                newState.gistListUpdateTime = Date.now();
+                gistListUpdateTime = Date.now();
             }
+            newState = {
+                ...state,
+                isGistListRefreshing: action.isRefreshing,
+                gistListNeedsRefresh: false,
+                gistListUpdateTime,
+            };
             return newState;
         case TYPE_GIT_GIST_LIST_NEEDS_REFRESH:
         case GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_FINAL:

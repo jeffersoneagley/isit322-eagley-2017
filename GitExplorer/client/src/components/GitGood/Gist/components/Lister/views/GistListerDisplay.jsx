@@ -18,8 +18,8 @@ class GistList extends Component {
             return gistMetaList.map((field, index) => {
                 return <GistListRow gistData={field}
                                     index={index}
-                                    getGistHeaderById={this.props.getGistHeaderById}
-                                    deleteGistsById={this.props.deleteGistsById}
+                                    getGistById={this.props.getGistById}
+                    // deleteGistsById={this.props.deleteGistsById}
                                     key={'gistListRow_' + index}
                 />;
             });

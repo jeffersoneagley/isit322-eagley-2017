@@ -4,6 +4,12 @@
 
 import {combineReducers} from 'redux';
 import GitGistDeleteReducer from './GitGistDeleteReducer';
-import GitGistViewerReducer from './GitGistViewerReducer';
+import GitGistViewerReducer from './GitGistBrowserReducer';
+import GitGistEditorReducer from './GitGistEditorReducer';
 
-export default combineReducers({Delete: GitGistDeleteReducer, Viewer: GitGistViewerReducer});
+export default combineReducers(
+    {
+        Delete: GitGistDeleteReducer,
+        Viewer: GitGistViewerReducer,
+        Editor: GitGistEditorReducer,
+    });

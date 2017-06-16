@@ -1,4 +1,4 @@
-import {GIST_DELETE_ACTION_TYPES as TYPES} from '../../../components/GitGood/Gist/actions/GitGistActionTypes';
+import {GIST_DELETE_ACTION_TYPES as TYPES} from '../../../components/GitGood/Gist/components/actions/GitGistActionTypes';
 
 const initialState = {
     gistEditorDeleteMode: TYPES.TYPE_SET_MODE_DELETE_MENU_DISABLED,
@@ -6,7 +6,6 @@ const initialState = {
 };
 const GitGistDeleteReducer = (state = initialState, action) => {
     let newState = state;
-    console.log('GitGistDeleteReducer');
     switch (action.type) {
         case TYPES.TYPE_SET_MODE_DELETE_MENU_DISABLED:
             return {...state, gistEditorDeleteMode: TYPES.TYPE_SET_MODE_DELETE_MENU_DISABLED};

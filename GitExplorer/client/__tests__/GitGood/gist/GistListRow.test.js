@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import {shallow} from 'enzyme';
-import GistListRow from '../../../src/components/GitGood/Gist/Lister/views/GistListRow';
+import GistListRow from '../../../src/components/GitGood/Gist/components/Lister/views/GistListRow';
 import ElfDebugEnzyme from '../../../EfDebugEnzyme';
 import MockGistData from '../../../__mocks__/mock-gist-single';
 let elfDebugEnzyme = new ElfDebugEnzyme(false, 'GistLister');

@@ -20,6 +20,33 @@ export const GIST_DELETE_ACTION_TYPES = {
     TYPE_GIST_DELETE_LIST_REMOVE_GIST_ID: 'TYPE_GIST_DELETE_LIST_REMOVE_GIST_ID',
 };
 
+export const GIST_EDIT_ACTION_TYPES = {
+    TYPE_EDITOR_UPDATE_RESPONSE_RESULT_SAVE_TO_STORE: 'TYPE_EDITOR_UPDATE_RESPONSE_RESULT_SAVE_TO_STORE',
+    TYPE_EDITOR_SAVE_CHANGES_TO_STORE: 'TYPE_EDITOR_SAVE_CHANGES_TO_STORE',
+    TYPE_EDITOR_SET_MODE: 'TYPE_EDITOR_SET_MODE',
+    RESPONSE_TYPES: {
+        SUCCESS: 'SUCCESS',
+        FAILURE: 'FAILURE',
+        STARTUP: 'STARTUP',
+    },
+    EDITOR_MODES: {
+        VIEW: 'VIEW',
+        EDIT: 'EDIT',
+        FINAL: 'FINAL',
+        CREATE: 'CREATE',
+    },
+    setEditorMode: (mode) => {
+        return () => {
+            return dispatch => {
+                dispatch({
+                    type: GIST_EDIT_ACTION_TYPES.TYPE_EDITOR_SET_MODE,
+                    editorEditMode: mode,
+                });
+            };
+        };
+    },
+};
+
 export function getTypeGitGistMetaListResponse(gistMetaList) {
     return (dispatch) => {
         dispatch({

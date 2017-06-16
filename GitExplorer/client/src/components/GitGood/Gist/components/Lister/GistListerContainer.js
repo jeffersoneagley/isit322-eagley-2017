@@ -6,6 +6,7 @@ import {
     getTypeGitGistByIdResponse,
     getTypeGitGistMetaListResponse,
 } from '../actions/GitGistActionTypes';
+import BrowserActions from '../../actions/GistBrowserActions';
 import {connect} from 'react-redux';
 import GitGistListerDisplay from './views/GistListerDisplay';
 // import GetFooMobile from './views/GetFooMobile';
@@ -22,7 +23,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 
-    let getGistHeaderById = (gistId, event) => {
+    let getGistById = (gistId, event) => {
         if (event !== undefined) {
             event.preventDefault();
         }
@@ -42,6 +43,7 @@ const mapDispatchToProps = (dispatch) => {
             // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
             let body = typeof (json) === 'string' ? JSON.parse(json) : json;
             // var body = json.body;
+            dispatch(BrowserActions.getActionTypeSetBrowserMode(BrowserActions.BROWSER_MODES.VIEW));
             dispatch(getTypeGitGistByIdResponse(body));
             // getGistList();
         }).catch(function(ex) {
@@ -60,7 +62,7 @@ const mapDispatchToProps = (dispatch) => {
     };
 
     return {
-        getGistHeaderById,
+        getGistById,
         dispatchActions,
     };
 };
@@ -80,9 +82,7 @@ let mergeProps = (propsFromState, propsFromDispatch, myProps) => {
             }).then(function(json) {
                 // PARSE THE JSON BODY INTO JS SINCE IT IS PROPABLY A STRING:
                 let body = typeof (json) === 'string' ? JSON.parse(json) : json;
-                // var body = json.body;
                 propsFromDispatch.dispatchActions.getTypeGitGistMetaListResponse(body.result);
-                // dispatch(getTypeGistListIsRefreshing(false));
             }).catch(function(ex) {
                 // DISPLAY WITH LOGGER
                 console.log(ex);

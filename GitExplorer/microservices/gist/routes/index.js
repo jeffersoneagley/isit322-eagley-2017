@@ -11,6 +11,7 @@ let Index = () => {
     const ById = require('./byId')(gh);
     const Delete = require('./delete')(gh);
     const CreateNew = require('./new')(gh);
+    const Edit = require('./edit')(gh);
 
     router.all('*', (req, res, next) => {
         console.log('gist server ' + req.url);
@@ -23,6 +24,7 @@ let Index = () => {
     router.use('/byId', ById);
     router.use('/new', CreateNew);
     router.use('/delete', Delete);
+    router.use('/edit', Edit);
     router.get('/you-rang/:id', function(req, res, next) {
         // console.log('echoing params');
         // console.log(req.params);

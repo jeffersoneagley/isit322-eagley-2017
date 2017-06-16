@@ -129,7 +129,10 @@ class GistListRow extends Component {
                             <h3 className='page-header'>{gistHeader}</h3>
                             {this.getRowData(gistData)}
                             <div className='col-sm-3 hidden-xs'>
-                                {this.processButtonOrDiv('View Gist Data', clickHandler)}
+                                {this.processButtonOrDiv(
+                                    <span>Open<span className='glyphicon glyphicon-open-file'></span></span>,
+                                    clickHandler,
+                                )}
                                 {this.getDeleteController()}
                             </div>
                         </div>
@@ -156,7 +159,7 @@ class GistListRow extends Component {
         if (event !== undefined && event.preventDefault) {
             event.preventDefault();
         }
-        this.props.getGistHeaderById(this.props.gistData.id, event);
+        this.props.getGistById(this.props.gistData.id, event);
     };
 
     render() {
