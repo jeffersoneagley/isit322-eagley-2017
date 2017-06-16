@@ -89,9 +89,12 @@ class GistCreatorDisplay extends Component {
         </section>;
     };
 
-    getPanelFooterResponseConfirm = () => {
+    getPanelFooterResponseConfirm = (panelType) => {
         return <div className='panel-footer'>
-            <button className="btn btn-lg btn-primary" onClick={this.props.onConfirmPromptOk}>
+            <button
+                className={'btn ' + (panelType !== undefined ? 'btn-' + panelType : '') + ' btn-block'}
+                onClick={this.props.onConfirmPromptOk}
+            >
                 Ok!
             </button>
         </div>;
@@ -103,11 +106,16 @@ class GistCreatorDisplay extends Component {
                 <h3>Your new gist was created!!</h3>
                 <subtitle>{this.props.selectedGist.id}</subtitle>
             </div>
-            <article>
-                Response:
-                {this.props.create.responseMessage}
-            </article>
-            {this.getPanelFooterResponseConfirm()}
+            <div className='panel-body'>
+                <div className='col-xs-12 col-sm-6'>
+                    Gist description:
+                    {this.props.selectedGist.description}
+                </div>
+                <div className='col-xs-12 col-sm-6'>
+                    <a href={this.props.selectedGist.html_url} target="_blank">Link to Github</a>
+                </div>
+            </div>
+            {this.getPanelFooterResponseConfirm('success')}
         </section>;
     };
 
@@ -122,7 +130,7 @@ class GistCreatorDisplay extends Component {
                 Response:
                 {this.props.create.responseMessage}
             </article>
-            {this.getPanelFooterResponseConfirm()}
+            {this.getPanelFooterResponseConfirm('danger')}
         </section>;
     };
 

@@ -34,7 +34,8 @@ let mergeProps = (fromState, fromDispatch, fromProps) => {
     const onCreateFailure = (ex) => {
         console.log(ex);
 
-        fromDispatch.dispatch(CREATE.ACTION_CREATORS.getTypeGitGistCreatorCreateGistResponse({ok: false}, ex.message));
+        fromDispatch.dispatch(
+            CREATE.ACTION_CREATORS.getTypeGitGistCreatorCreateGistResponse({ok: false, message: ex.message}));
 
     };
 
