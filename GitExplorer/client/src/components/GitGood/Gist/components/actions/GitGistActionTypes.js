@@ -4,10 +4,61 @@
 
 export const TYPE_GIT_GET_GIST_META_LIST_RESPONSE = 'TYPE_GIT_GET_GIST_META_LIST_RESPONSE';
 export const TYPE_GIT_GET_GIST_BY_ID_RESPONSE = 'TYPE_GIT_GET_GIST_BY_ID_RESPONSE';
-export const TYPE_GIT_GIST_CREATE_GIST_RESPONSE = 'TYPE_GIT_GIST_CREATE_GIST_RESPONSE';
-export const TYPE_GIT_GIST_CREATE_IS_PROCESSING = 'TYPE_GIT_GIST_CREATE_GIST_RESPONSE';
 export const TYPE_GIT_GIST_LIST_IS_REFRESHING = 'TYPE_GIT_GIST_LIST_IS_REFRESHING';
 export const TYPE_GIT_GIST_LIST_NEEDS_REFRESH = 'TYPE_GIT_GIST_LIST_NEEDS_REFRESH';
+
+export const CREATE = {
+    ACTION_TYPES: {
+        TYPE_GIT_GIST_CREATE_IS_PROCESSING: 'TYPE_GIT_GIST_CREATE_IS_PROCESSING',
+        TYPE_GIT_GIST_CREATE_GIST_RESPONSE: 'TYPE_GIT_GIST_CREATE_GIST_RESPONSE',
+        TYPE_GIT_GIST_CREATE_RESULT: 'TYPE_GIT_GIST_CREATE_RESULT',
+    },
+    RESPONSE_TYPES: {
+        SUCCESS: 'SUCCESS',
+        FAILURE: 'FAILURE',
+        STARTUP: 'STARTUP',
+    },
+    ACTION_CREATORS: {
+        getTypeGitGistCreateConfirm: () => {
+            return (dispatch) =>
+                dispatch({
+                    type: CREATE.ACTION_TYPES.TYPE_GIT_GIST_CREATE_RESULT,
+                    responseType: CREATE.RESPONSE_TYPES.STARTUP,
+                    responseMessage: '',
+                });
+        },
+        getTypeGitGistCreatorCreateGistResponse: (result, body) => {
+            return (dispatch) => {
+                if (result.ok) {
+                    dispatch({
+                        type: CREATE.ACTION_TYPES.TYPE_GIT_GIST_CREATE_GIST_RESPONSE,
+                        selectedGist: body,
+                    });
+                    dispatch({
+                        type: CREATE.ACTION_TYPES.TYPE_GIT_GIST_CREATE_RESULT,
+                        responseType: CREATE.RESPONSE_TYPES.SUCCESS,
+                        responseMessage: result.message || result.ok || 'Success',
+                    });
+                } else {
+                    dispatch({
+                        type: CREATE.ACTION_TYPES.TYPE_GIT_GIST_CREATE_RESULT,
+                        responseType: CREATE.RESPONSE_TYPES.FAILURE,
+                        responseMessage: result.message || result.ok || 'Failed!',
+                    });
+                }
+                dispatch(CREATE.ACTION_CREATORS.getTypeGitGistCreatorIsProcessing(false));
+            };
+        },
+        getTypeGitGistCreatorIsProcessing: (state) => {
+            return (dispatch) => {
+                dispatch({
+                    type: CREATE.ACTION_TYPES.TYPE_GIT_GIST_CREATE_IS_PROCESSING,
+                    createIsProcessing: state,
+                });
+            };
+        },
+    },
+};
 
 export const GIST_DELETE_ACTION_TYPES = {
     TYPE_SET_MODE_DELETE_MENU_DISABLED: 'TYPE_SET_MODE_DELETE_MENU_DISABLED',
@@ -77,24 +128,6 @@ export function getTypeGistListNeedsRefresh(needsRefresh) {
         dispatch({
             type: TYPE_GIT_GIST_LIST_NEEDS_REFRESH,
             gistListNeedsRefresh: needsRefresh,
-        });
-    };
-}
-export function getTypeGitGistCreatorCreateGistResponse(newGist) {
-    return (dispatch) => {
-        dispatch({
-            type: TYPE_GIT_GIST_CREATE_GIST_RESPONSE,
-            selectedGist: newGist,
-            isProcessing: false,
-            gistListNeedsRefresh: true,
-        });
-    };
-}
-export function getTypeGitGistCreatorIsProcessing(state) {
-    return (dispatch) => {
-        dispatch({
-            type: TYPE_GIT_GIST_CREATE_IS_PROCESSING,
-            createIsProcessing: state,
         });
     };
 }
