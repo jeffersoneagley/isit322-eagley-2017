@@ -14,6 +14,12 @@ const GitGistEditorReducer = (state = initialState, action) => {
             };
             return newState;
         case TYPES.TYPE_EDITOR_UPDATE_RESPONSE_RESULT_SAVE_TO_STORE:
+            newState = {
+                ...state,
+                updateResult: action.updateResult,
+                status: action.status,
+                message: action.message,
+            };
             newState.updateResult = action.updateResult;
             newState.status = action.status;
             newState.message = action.message;
@@ -26,7 +32,10 @@ const GitGistEditorReducer = (state = initialState, action) => {
             return newState;
         case TYPES.TYPE_EDITOR_SET_MODE:
             console.log('hit set editor mode in reducer');
-            newState.editorEditMode = action.editorEditMode;
+            newState = {
+                ...state,
+                editorEditMode: action.editorEditMode,
+            };
             return newState;
         default:
             return state;

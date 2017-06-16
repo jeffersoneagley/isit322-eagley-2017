@@ -17,13 +17,13 @@ const mapDispatchToProps = (dispatch) => {
     let dispatchHandlers = {
         editorMode: {
             view: () => {
-                dispatch(TYPES.setEditorModeView());
+                dispatch(TYPES.setEditorMode(TYPES.EDITOR_MODES.VIEW));
             },
             edit: () => {
-                dispatch(TYPES.setEditorModeEdit());
+                dispatch(TYPES.setEditorMode(TYPES.EDITOR_MODES.EDIT));
             },
             final: () => {
-                dispatch(TYPES.setEditorModeFinal());
+                dispatch(TYPES.setEditorMode(TYPES.EDITOR_MODES.FINAL));
             },
         },
     };
@@ -37,6 +37,7 @@ const mergeProps = (state, dispatch, props) => {
         previous: () => {
             switch (state.Editor.editorEditMode) {
                 case TYPES.EDITOR_MODES.EDIT:
+                case TYPES.EDITOR_MODES.FINAL:
                     dispatch.editorMode.view();
                     break;
             }

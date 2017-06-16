@@ -87,13 +87,11 @@ export const GIST_EDIT_ACTION_TYPES = {
         CREATE: 'CREATE',
     },
     setEditorMode: (mode) => {
-        return () => {
-            return dispatch => {
-                dispatch({
-                    type: GIST_EDIT_ACTION_TYPES.TYPE_EDITOR_SET_MODE,
-                    editorEditMode: mode,
-                });
-            };
+        return dispatch => {
+            dispatch({
+                type: GIST_EDIT_ACTION_TYPES.TYPE_EDITOR_SET_MODE,
+                editorEditMode: mode,
+            });
         };
     },
 };
