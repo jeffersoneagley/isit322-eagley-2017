@@ -16,5 +16,6 @@
     "*.svg"
   ],
   "requireCamelCaseOrUpperCaseIdentifiers": false,
-  "maximumLineLength": 120
+  "maximumLineLength": 120,
+  ""
 }

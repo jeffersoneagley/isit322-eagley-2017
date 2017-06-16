@@ -138,9 +138,9 @@ class GistDetailsDisplay extends Component {
     };
 
     getHasGistData = () => {
-        if (this.props.Viewer.selectedGistData !== undefined &&
-            this.props.Viewer.selectedGistData.files !== undefined) {
-            return this.getPanelBody(this.props.Viewer.selectedGistData, this.props.Editor.editorEditMode);
+        if (this.props.Viewer.selectedGist !== undefined &&
+            this.props.Viewer.selectedGist.files !== undefined) {
+            return this.getPanelBody(this.props.Viewer.selectedGist, this.props.Editor.editorEditMode);
         } else {
             return <Panel>
                 <h3>No gist selected</h3>

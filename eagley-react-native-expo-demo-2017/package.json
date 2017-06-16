@@ -1,0 +1,8 @@
+{
+  "name": "eagley-react-native-expo-demo-2017",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "react-native-scripts": "0.0.31"
+  }
+}
