@@ -7,13 +7,17 @@
     "react/jsx-uses-vars": "error",
     "react/react-in-jsx-scope": "error",
     "no-console": "off",
-    "indent": "error",
+    "indent": [
+      "warn",
+      4
+    ],
     "no-invalid-this": "off",
     "valid-jsdoc": "off",
     "Require-jsdoc": "off",
+    //    "no-undef": "off",
     "max-len": [
       "warn",
-      120
+      150
     ],
     "quotes": [
       "error",
@@ -39,7 +43,8 @@
     "ecmaVersion": 6,
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "classes": true
     }
   },
   "extends": "react-app"

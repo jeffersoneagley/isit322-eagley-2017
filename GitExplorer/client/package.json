@@ -6,6 +6,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "bower": "^1.8.0",
+    "eslint-loader": "^1.8.0",
     "jquery": "^3.2.1",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",
@@ -25,7 +26,7 @@
   "devDependencies": {
     "autoprefixer": "6.7.2",
     "babel-core": "6.22.1",
-    "babel-eslint": "^7.1.1",
+    "babel-eslint": "^7.2.3",
     "babel-jest": "18.0.0",
     "babel-loader": "6.2.10",
     "babel-preset-react-app": "^2.2.0",
@@ -40,6 +41,8 @@
     "enzyme": "^2.8.1",
     "eslint": "^4.0.0",
     "eslint-config-google": "^0.8.0",
+    "eslint-config-react-app": "^1.0.4",
+    "eslint-plugin-flowtype": "^2.34.0",
     "eslint-plugin-react": "^7.1.0",
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.10.0",
@@ -64,7 +67,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "lint": "eslint ./src/* --ext .js --ext .jsx || true",
+    "lint-fix": "eslint ./src/* --ext .js --ext .jsx --fix"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -74,7 +79,8 @@
       "<rootDir>/config/polyfills.js"
     ],
     "testPathIgnorePatterns": [
-      "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
+      "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]",
+      "**/node_modules/**"
     ],
     "testEnvironment": "node",
     "testURL": "http://localhost",

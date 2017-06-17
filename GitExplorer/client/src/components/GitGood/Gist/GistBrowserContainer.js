@@ -1,4 +1,3 @@
-import React from 'react';
 import GistBrowserView from './views/GistBrowserView';
 import {connect} from 'react-redux';
 import BrowserActions from './actions/GistBrowserActions';
@@ -17,7 +16,9 @@ let mergeProps = (fromState, fromDispatch, fromProps) => {
     };
 
     let onClickModeCreateOpen = () => {
-        fromDispatch.dispatch(BrowserActions.getActionTypeSetBrowserMode(BrowserActions.BROWSER_MODES.CREATE));
+        fromDispatch.dispatch(
+            BrowserActions.getActionTypeSetBrowserMode(BrowserActions.BROWSER_MODES.CREATE),
+        );
     };
 
     return {

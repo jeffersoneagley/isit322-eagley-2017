@@ -21,12 +21,12 @@ class GistListRowDeleteSelectorDisplay extends Component {
 
     generateDisplay = (gist, isMarkedForDelete) => {
         switch (this.props.gistEditorDeleteMode) {
-            case TYPES_DEL.TYPE_SET_MODE_DELETE_MENU_STAGE_FIRST:
-                return this.generateDeleteInterfaceActive(gist, isMarkedForDelete);
-            case TYPES_DEL.TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND:
-                return this.generateDeleteInterfaceLocked(gist, isMarkedForDelete);
-            default:
-                return this.generateDeleteInterfaceInactive();
+        case TYPES_DEL.TYPE_SET_MODE_DELETE_MENU_STAGE_FIRST:
+            return this.generateDeleteInterfaceActive(gist, isMarkedForDelete);
+        case TYPES_DEL.TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND:
+            return this.generateDeleteInterfaceLocked(gist, isMarkedForDelete);
+        default:
+            return this.generateDeleteInterfaceInactive();
         }
     };
 
@@ -69,8 +69,6 @@ class GistListRowDeleteSelectorDisplay extends Component {
     }
 
     generateDeleteInterfaceLocked(gist, isGistMarkedForDeletion) {
-
-        let that = this;
         return <div
             className={this.getBootstrapContextClass(
                 'alert', 'danger', 'info', isGistMarkedForDeletion,
@@ -89,9 +87,9 @@ class GistListRowDeleteSelectorDisplay extends Component {
                 </span></h4>
                 <span>{isGistMarkedForDeletion ?
                     <span>Will be deleted
-                        <span className='glyphicon glyphicon-file'></span>
-                        <span className='glyphicon glyphicon-menu-right'></span>
-                        <span className='glyphicon glyphicon-trash'></span>
+                        <span className='glyphicon glyphicon-file'/>
+                        <span className='glyphicon glyphicon-menu-right'/>
+                        <span className='glyphicon glyphicon-trash'/>
                     </span> :
                     'Keep'}</span>
             </button>

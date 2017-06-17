@@ -70,6 +70,8 @@ const mergeProps = (state, dispatch, props) => {
             case TYPES.EDITOR_MODES.FINAL:
                 dispatchHandlers.editorMode.view();
                 break;
+            default:
+                break;
             }
         },
         next: () => {
@@ -87,6 +89,8 @@ const mergeProps = (state, dispatch, props) => {
                 break;
             case TYPES.EDITOR_MODES.FINAL:
                 dispatchHandlers.editorMode.view();
+                break;
+            default:
                 break;
             }
         },

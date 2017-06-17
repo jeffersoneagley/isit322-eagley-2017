@@ -105,7 +105,7 @@ class GistListDeleteMenuDisplay extends Component {
         return <div className='alert alert-info fade in col-xs-12'>
             <h4>Working, please wait</h4>
             <div className="progress-bar progress-bar-striped active col-xs-12" role="progressbar"
-                 aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                 processing...
             </div>
         </div>;
@@ -113,18 +113,18 @@ class GistListDeleteMenuDisplay extends Component {
 
     getCurrentMode = () => {
         switch (this.props.gistEditorDeleteMode) {
-            case GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_DISABLED:
-                return this.getModeOff();
-            case GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_FIRST:
-                return this.getModeStageFirst();
-            case GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND:
-                return this.getModeStageSecond();
-            case GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_FINAL:
-                return (this.props.deleteResultStatistics ) ?
-                    this.getModeStageFinalPostMortem(this.props.deleteResultStatistics) :
-                    this.getModeStageFinalProcessing();
-            default:
-                return this.getModeOff();
+        case GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_DISABLED:
+            return this.getModeOff();
+        case GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_FIRST:
+            return this.getModeStageFirst();
+        case GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND:
+            return this.getModeStageSecond();
+        case GIST_DELETE_ACTION_TYPES.TYPE_SET_MODE_DELETE_MENU_STAGE_FINAL:
+            return (this.props.deleteResultStatistics ) ?
+                this.getModeStageFinalPostMortem(this.props.deleteResultStatistics) :
+                this.getModeStageFinalProcessing();
+        default:
+            return this.getModeOff();
         }
     };
 

@@ -9,11 +9,11 @@ const initialState = {
 const GetFooReducer = (state = initialState, action) => {
     let newState = {...state};
     switch (action.type) {
-        case TYPE_GET_FOO:
-            newState = {...state, fooData: action.fooData};
-            return newState;
-        default:
-            return state;
+    case TYPE_GET_FOO:
+        newState = {...state, fooData: action.fooData};
+        return newState;
+    default:
+        return state;
     }
 };
 

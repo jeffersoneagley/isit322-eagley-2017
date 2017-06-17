@@ -38,20 +38,20 @@ class GistBrowser extends Component {
 
     getBodyFromMode = (mode) => {
         switch (mode) {
-            case Actions.BROWSER_MODES.BASE:
-                return this.getGistHomeScreen();
-            case Actions.BROWSER_MODES.VIEW:
-                return <div >
-                    {this.getMenuStripModeStandard()}
-                    <GistDetails/>
-                </div>;
-            case Actions.BROWSER_MODES.CREATE:
-                return <div >
-                    {this.getMenuStripModeStandard()}
-                    <GistCreator/>
-                </div>;
-            default :
-                return this.getGistHomeScreen();
+        case Actions.BROWSER_MODES.BASE:
+            return this.getGistHomeScreen();
+        case Actions.BROWSER_MODES.VIEW:
+            return <div >
+                {this.getMenuStripModeStandard()}
+                <GistDetails/>
+            </div>;
+        case Actions.BROWSER_MODES.CREATE:
+            return <div >
+                {this.getMenuStripModeStandard()}
+                <GistCreator/>
+            </div>;
+        default :
+            return this.getGistHomeScreen();
         }
     };
 

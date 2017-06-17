@@ -4,7 +4,6 @@
 
 
 function buildService(gh) {
-
     let express = require('express');
     let router = express.Router();
 
@@ -32,30 +31,29 @@ function buildService(gh) {
     let checkHasGistInBody = (req) => {
         console.log('checkHasGistInBody');
         let result = new Promise((resolve, reject) => {
-                console.log('promise built');
-                try {
-                    if (req.body !== undefined) {
-                        //check for strings
-                        let body = typeof (req.body) === 'string' ? JSON.parse(req.body) : req.body;
-                        console.log('has body is object');
-                        (body.gistId !== undefined) || reject('no gist ID supplied');
-                        (body.gist !== undefined) || reject('no gist body supplied');
-                        (body.gist.id !== undefined) || reject('improper gist body supplied');
-                        console.log('gist approved', body.gistId);
-                        resolve(body.gist);
-                    } else {
-                        console.log('no body');
-                        reject(
-                            'no body in request',
-                        );
-                    }
+            console.log('promise built');
+            try {
+                if (req.body !== undefined) {
+                    // check for strings
+                    let body = typeof (req.body) === 'string' ? JSON.parse(req.body) : req.body;
+                    console.log('has body is object');
+                    (body.gistId !== undefined) || reject('no gist ID supplied');
+                    (body.gist !== undefined) || reject('no gist body supplied');
+                    (body.gist.id !== undefined) || reject('improper gist body supplied');
+                    console.log('gist approved', body.gistId);
+                    resolve(body.gist);
+                } else {
+                    console.log('no body');
+                    reject(
+                        'no body in request',
+                    );
                 }
-                catch (exc) {
-                    console.log(exc);
-                    reject(exc.message);
-                }
-            },
-            )
+            } catch (exc) {
+                console.log(exc);
+                reject(exc.message);
+            }
+        },
+        )
         ;
         return result;
     };

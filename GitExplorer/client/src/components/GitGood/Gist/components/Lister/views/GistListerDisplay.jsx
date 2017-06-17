@@ -17,10 +17,10 @@ class GistList extends Component {
             gistMetaList.length > 0) {
             return gistMetaList.map((field, index) => {
                 return <GistListRow gistData={field}
-                                    index={index}
-                                    getGistById={this.props.getGistById}
+                    index={index}
+                    getGistById={this.props.getGistById}
                     // deleteGistsById={this.props.deleteGistsById}
-                                    key={'gistListRow_' + index}
+                    key={'gistListRow_' + index}
                 />;
             });
         } else {
@@ -47,7 +47,7 @@ class GistList extends Component {
                 <table className="table table-responsive table-striped">
                     {this.props.isGistListRefreshing ? <caption>loading..</caption> : true}
                     <tbody>
-                    {this.getList(this.props.gistListMetaData)}
+                        {this.getList(this.props.gistListMetaData)}
                     </tbody>
                 </table>
             </div>

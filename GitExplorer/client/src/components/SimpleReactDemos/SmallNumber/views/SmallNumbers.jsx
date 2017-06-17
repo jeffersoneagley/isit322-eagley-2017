@@ -11,14 +11,14 @@ class SmallNumbers extends Component {
         for (let i = 1; i < 10; i++) {
             buttonlist.push(
                 <Button bsStyle="primary"
-                        id={'button' + i}
-                        value={i}
-                        key={'button' + i}
-                        onClick={
-                            () => {
-                                this.props.getSmallNumber(i);
-                            }
-                        }>
+                    id={'button' + i}
+                    value={i}
+                    key={'button' + i}
+                    onClick={
+                        () => {
+                            this.props.getSmallNumber(i);
+                        }
+                    }>
                     Get {i}
                 </Button>);
         }
@@ -33,7 +33,7 @@ class SmallNumbers extends Component {
                 <div className="jumbotron col-sm-8">
                     <h1>Small Numbers</h1>
                     <Paragraph stator={this.props.numbers}
-                               nameList={Object.keys(this.props.numbers)}/>
+                        nameList={Object.keys(this.props.numbers)}/>
                     {this.getButtons()}
                 </div>
                 <div className="panel panel-info col-sm-4">

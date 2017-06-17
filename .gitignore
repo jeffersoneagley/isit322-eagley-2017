@@ -5,14 +5,13 @@ bower-components
 src/config/configSec.js
 
 .DS_STORE
-node_modules
-*~
 *.pyc
 static
 .grunt
 _SpecRunner.html
 __benchmarks__
 build/
+!/server/public/static
 coverage/
 .module-cache
 *.gem

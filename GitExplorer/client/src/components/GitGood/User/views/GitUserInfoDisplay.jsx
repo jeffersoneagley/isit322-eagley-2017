@@ -33,11 +33,11 @@ class GitUserInfo extends Component {
         return (
             <div className="ElfFormRow" key={field.id}>
                 <label className="ElfFormLabel"
-                       htmlFor={field.id}>{field.label}:</label>
+                    htmlFor={field.id}>{field.label}:</label>
                 <FishElement {...field}
-                             value={this.props.userData[field.id] || field.sample}
-                             onChange={this.props.onChange}
-                             key={'elfElement_' + field.id}/>
+                    value={this.props.userData[field.id] || field.sample}
+                    onChange={this.props.onChange}
+                    key={'elfElement_' + field.id}/>
 
             </div>
         );
