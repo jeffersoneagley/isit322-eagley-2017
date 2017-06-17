@@ -1,5 +1,4 @@
 class debug {
-
     constructor(noisy) {
         noisy = noisy || false;
         this.noisy = noisy;
@@ -19,7 +18,7 @@ class debug {
         this.noisy = true;
     };
 
-    //added for compatibility with Charlie code
+    // added for compatibility with Charlie code
     setQuiet = (newValue) => {
         this.noisy = !newValue;
     };

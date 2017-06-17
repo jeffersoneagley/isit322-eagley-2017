@@ -7,7 +7,6 @@ import {Panel} from 'react-bootstrap';
 import {EDIT} from '../../actions/GitGistActionTypes';
 
 class GistDetailsDisplay extends Component {
-
     getGistMetaFieldInterface(selectedGist, mode, isEditMode) {
         if (isEditMode) {
             return <div>
@@ -36,7 +35,7 @@ class GistDetailsDisplay extends Component {
             <div className='panel-heading'>
                 <h3 >{fileMetaData.filename || ''}</h3>
                 <input type='text'
-                       defaultValue={fileMetaData.type}
+                    defaultValue={fileMetaData.type}
                 />
             </div>
             <textarea
@@ -57,9 +56,8 @@ class GistDetailsDisplay extends Component {
                 }
             >
 
-                </textarea>
+            </textarea>
         </div>;
-
     };
 
     renderFileSingleView = (fileMetaData) => {
@@ -73,7 +71,6 @@ class GistDetailsDisplay extends Component {
 
     renderFileSingle = (fileMetaData, editorMode) => {
         if (editorMode) {
-
             return this.renderFileSingleEdit(fileMetaData);
         } else {
             return this.renderFileSingleView(fileMetaData);
@@ -92,52 +89,51 @@ class GistDetailsDisplay extends Component {
 
     getPanelButtonsPrevNext = (mode) => {
         switch (mode) {
-            case EDIT.EDITOR_MODES.EDIT:
-                return <div>
-                    <button
-                        className='btn btn-secondary'
-                        onClick={this.props.editorModeClickHandlers.previous}
-                    >
+        case EDIT.EDITOR_MODES.EDIT:
+            return <div>
+                <button
+                    className='btn btn-secondary'
+                    onClick={this.props.editorModeClickHandlers.previous}
+                >
                         Previous
-                    </button>
-                    <button
-                        className='btn btn-primary'
-                        onClick={this.props.editorModeClickHandlers.next}
-                    >
+                </button>
+                <button
+                    className='btn btn-primary'
+                    onClick={this.props.editorModeClickHandlers.next}
+                >
                         Save
-                    </button>
-                </div>;
-            case EDIT.EDITOR_MODES.COMPARE:
-                return <div className='btn-group btn-group-lg btn-group-vertical'>
-                    <button
-                        className='btn btn-info'
-                        onClick={this.props.editorModeClickHandlers.previous}
-                    >
-                        <span className='glyphicon glyphicon-chevron-left'/> Cancel, go back
-                    </button>
-                    <hr/>
-                    <button
-                        className='btn btn-warning '
-                        onClick={this.props.editorModeClickHandlers.next}
-                    >
+                </button>
+            </div>;
+        case EDIT.EDITOR_MODES.COMPARE:
+            return <div className='btn-group btn-group-lg btn-group-vertical'>
+                <button
+                    className='btn btn-info'
+                    onClick={this.props.editorModeClickHandlers.previous}
+                >
+                    <span className='glyphicon glyphicon-chevron-left'/> Cancel, go back
+                </button>
+                <hr/>
+                <button
+                    className='btn btn-warning '
+                    onClick={/**/this.props.editorModeClickHandlers.next}
+                >
                         Ok, Save changes to this gist <span className='glyphicon glyphicon-cloud-upload'/>
-                    </button>
-                </div>;
-            case EDIT.EDITOR_MODES.FINAL:
-                return <div>
+                </button>
+            </div>;
+        case EDIT.EDITOR_MODES.FINAL:
+            return <div>
                     processing...
-                </div>;
-            case EDIT.EDITOR_MODES.VIEW:
-            default:
-                return <div>
-                    <button
-                        className='btn btn-primary'
-                        onClick={this.props.editorModeClickHandlers.next}
-                    >
+            </div>;
+        case EDIT.EDITOR_MODES.VIEW:
+        default:
+            return <div>
+                <button
+                    className='btn btn-primary'
+                    onClick={this.props.editorModeClickHandlers.next}
+                >
                         Edit
-                    </button>
-                </div>;
-
+                </button>
+            </div>;
         }
     };
 
@@ -148,13 +144,13 @@ class GistDetailsDisplay extends Component {
                 selectedGist.html_url ?
                     (<span className='label label-info'>
                                 Friendly: {selectedGist.html_url || 'no url given'}
-                            </span>) : ''
+                    </span>) : ''
             }<br/>
             {
                 selectedGist.url ?
                     <span className='label label-info'>
                                 API: {selectedGist.url || 'no url given'}
-                            </span> : ''
+                    </span> : ''
             }
         </div>;
     };
@@ -237,7 +233,6 @@ class GistDetailsDisplay extends Component {
     };
 
     getPanelCompareChanges = (originalGist, changesGist, mode) => {
-
         return <div className='panel panel-default'>
             <div className='panel-heading'>
                 <h3>Compare changes</h3>
@@ -280,25 +275,25 @@ class GistDetailsDisplay extends Component {
             updated = this.props.Viewer.selectedGist;
         }
         switch (mode) {
-            case EDIT.EDITOR_MODES.COMPARE:
-                return this.getPanelCompareChanges(this.props.Viewer.selectedGist, updated, mode);
-            case EDIT.EDITOR_MODES.EDIT:
-                return this.getPanelViewDefaultWrapper(updated, mode, true);
-            case EDIT.EDITOR_MODES.VIEW:
-            default:
-                return this.getPanelViewDefaultWrapper(this.props.Viewer.selectedGist, mode, false);
+        case EDIT.EDITOR_MODES.COMPARE:
+            return this.getPanelCompareChanges(this.props.Viewer.selectedGist, updated, mode);
+        case EDIT.EDITOR_MODES.EDIT:
+            return this.getPanelViewDefaultWrapper(updated, mode, true);
+        case EDIT.EDITOR_MODES.VIEW:
+        default:
+            return this.getPanelViewDefaultWrapper(this.props.Viewer.selectedGist, mode, false);
         }
     };
 
     getPanelType = () => {
         switch (this.props.Editor.responseType) {
-            case EDIT.RESPONSE_TYPES.SUCCESS:
-                return this.getPanelResponseSuccess();
-            case EDIT.RESPONSE_TYPES.FAILURE:
-                return this.getPanelResponseFailure();
-            case EDIT.RESPONSE_TYPES.STARTUP:
-            default:
-                return this.getPanelCurrentMode();
+        case EDIT.RESPONSE_TYPES.SUCCESS:
+            return this.getPanelResponseSuccess();
+        case EDIT.RESPONSE_TYPES.FAILURE:
+            return this.getPanelResponseFailure();
+        case EDIT.RESPONSE_TYPES.STARTUP:
+        default:
+            return this.getPanelCurrentMode();
         }
     };
 

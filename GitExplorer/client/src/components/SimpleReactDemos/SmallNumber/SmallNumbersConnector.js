@@ -16,7 +16,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getSmallNumber: (number) => {
-
             dispatch(getSmallNumbersNumber(number));
         },
     };

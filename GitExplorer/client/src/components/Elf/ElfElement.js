@@ -18,39 +18,38 @@ class ElfElement extends Component {
         };
 
         switch (this.props.type) {
+        case 'year':
+            return (
+                <input
+                    {...common}
+                    type='number'
+                    value={this.props.value || new Date().getFullYear()}
+                />
+            );
 
-            case 'year':
-                return (
-                    <input
-                        {...common}
-                        type='number'
-                        value={this.props.value || new Date().getFullYear()}
-                    />
-                );
+        case 'paragraph':
+            return <p
+                className='ElfFormParagraph'
+                id={this.props.id}
 
-            case 'paragraph':
-                return <p
-                    className='ElfFormParagraph'
-                    id={this.props.id}
+                onChange={this.props.onChange}
+            >{this.props.value}</p>;
 
-                    onChange={this.props.onChange}
-                >{this.props.value}</p>;
+        case 'textarea':
+            return <textarea {...common} className='ElfFormInput' value={this.props.value}/>;
 
-            case 'textarea':
-                return <textarea {...common} className='ElfFormInput' value={this.props.value}/>;
+        case 'text': {
+            return <input
+                className='ElfFormInput'
+                id={this.props.id}
+                value={this.props.value}
+                type={this.props.type}
+                onChange={this.props.onChange}
+            />;
+        }
 
-            case 'text': {
-                return <input
-                    className='ElfFormInput'
-                    id={this.props.id}
-                    value={this.props.value}
-                    type={this.props.type}
-                    onChange={this.props.onChange}
-                />;
-            }
-
-            default:
-                return <input {...common} type='text'/>;
+        default:
+            return <input {...common} type='text'/>;
         }
     }
 }

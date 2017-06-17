@@ -10,7 +10,7 @@ import BsMenuBar from './Header/BsMenuBar';
 import FishLogo from './Header/FishLogo';
 import Home from './Home';
 
-/***
+/** *
  * This component used to be our state manager, hence the datamaven name
  * Now it ought to be renamed to something involving SPA routing and layout
  */

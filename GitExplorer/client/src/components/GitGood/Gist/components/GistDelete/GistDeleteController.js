@@ -8,16 +8,15 @@ import {
     getTypeGitGistDeleteMenuStageFinal,
     getTypeGitGistDeleteMenuStageFirst,
     getTypeGitGistDeleteMenuStageSecond,
-    GIST_DELETE_ACTION_TYPES as STAGES
+    GIST_DELETE_ACTION_TYPES as STAGES,
 } from '../actions/GitGistActionTypes';
-//I created this because I started having needs for these functions in multiple containers
+// I created this because I started having needs for these functions in multiple containers
 
 let GistDeleteController = {
     mapStateToProps: (state) => {
         return state.Git.Gist.Delete;
     },
     mapDispatchToProps: (dispatch) => {
-
         return {
             onCompletedDelete: (result) => {
                 dispatch(getTypeGitGistDeleteMenuFinalStatistics(result));
@@ -79,30 +78,30 @@ let GistDeleteController = {
 
         let onClickDeleteStage = () => {
             switch (propsFromState.gistEditorDeleteMode) {
-                case STAGES.TYPE_SET_MODE_DELETE_MENU_STAGE_FINAL:
-                    propsFromDispatch.dispatchStageDisabled();
-                    break;
-                case STAGES.TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND:
-                    SendDeleteCommand();
-                    break;
-                case STAGES.TYPE_SET_MODE_DELETE_MENU_STAGE_FIRST:
-                    propsFromDispatch.dispatchStageSecond();
-                    break;
-                case STAGES.TYPE_SET_MODE_DELETE_MENU_DISABLED:
-                default:
-                    propsFromDispatch.dispatchStageFirst();
-                    break;
+            case STAGES.TYPE_SET_MODE_DELETE_MENU_STAGE_FINAL:
+                propsFromDispatch.dispatchStageDisabled();
+                break;
+            case STAGES.TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND:
+                SendDeleteCommand();
+                break;
+            case STAGES.TYPE_SET_MODE_DELETE_MENU_STAGE_FIRST:
+                propsFromDispatch.dispatchStageSecond();
+                break;
+            case STAGES.TYPE_SET_MODE_DELETE_MENU_DISABLED:
+            default:
+                propsFromDispatch.dispatchStageFirst();
+                break;
             }
         };
         let onClickCancelStage = () => {
             switch (propsFromState.gistEditorDeleteMode) {
-                case STAGES.TYPE_SET_MODE_DELETE_MENU_STAGE_FIRST:
-                    propsFromDispatch.dispatchStageDisabled();
-                    break;
-                case STAGES.TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND:
-                default:
-                    propsFromDispatch.dispatchStageFirst();
-                    break;
+            case STAGES.TYPE_SET_MODE_DELETE_MENU_STAGE_FIRST:
+                propsFromDispatch.dispatchStageDisabled();
+                break;
+            case STAGES.TYPE_SET_MODE_DELETE_MENU_STAGE_SECOND:
+            default:
+                propsFromDispatch.dispatchStageFirst();
+                break;
             }
         };
 
@@ -115,7 +114,7 @@ let GistDeleteController = {
             onClickCancelStage,
             ...myProps,
             ...propsFromState,
-            ...propsFromDispatch
+            ...propsFromDispatch,
         };
     },
 };

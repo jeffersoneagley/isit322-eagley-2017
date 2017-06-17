@@ -5,7 +5,6 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
 class ElfHeaderMenu extends Component {
-
     render() {
         return (
             <ul className='elf-header-menu'>

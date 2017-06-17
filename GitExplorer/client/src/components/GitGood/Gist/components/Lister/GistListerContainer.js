@@ -18,11 +18,9 @@ import 'whatwg-fetch';
 
 const mapStateToProps = (state) => {
     return state.Git.Gist.Viewer;
-
 };
 
 const mapDispatchToProps = (dispatch) => {
-
     let getGistById = (gistId, event) => {
         if (event !== undefined) {
             event.preventDefault();
@@ -68,14 +66,13 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 let mergeProps = (propsFromState, propsFromDispatch, myProps) => {
-
     let getGistList = (event) => {
         if (event !== undefined) {
-            //if we're called from an eventhandler
+            // if we're called from an eventhandler
             event.preventDefault();
         }
         if (!propsFromState.isRefreshing) {
-            //activate refresh component for gistList
+            // activate refresh component for gistList
             propsFromDispatch.dispatchActions.getTypeGistListIsRefreshing(true);
             fetch('/api/git/gist/list').then(function(response) {
                 return response.json();
@@ -87,13 +84,12 @@ let mergeProps = (propsFromState, propsFromDispatch, myProps) => {
                 // DISPLAY WITH LOGGER
                 console.log(ex);
                 propsFromDispatch.dispatchActions.getTypeGistListIsRefreshing(false);
-
             });
         }
     };
 
     let checkGistList = () => {
-        //|| (Date.now() + 10000) > propsFromState.gistListUpdateTime
+        // || (Date.now() + 10000) > propsFromState.gistListUpdateTime
         if (propsFromState.gistListNeedsRefresh) {
             getGistList();
         }
@@ -102,7 +98,7 @@ let mergeProps = (propsFromState, propsFromDispatch, myProps) => {
     checkGistList();
 
     return {
-        ...propsFromState, ...propsFromDispatch, ...myProps
+        ...propsFromState, ...propsFromDispatch, ...myProps,
     };
 };
 

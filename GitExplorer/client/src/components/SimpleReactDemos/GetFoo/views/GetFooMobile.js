@@ -5,7 +5,6 @@ class GetFoo extends Component {
     constructor() {
         super();
         this.quiet = false;
-
     };
 
     render() {

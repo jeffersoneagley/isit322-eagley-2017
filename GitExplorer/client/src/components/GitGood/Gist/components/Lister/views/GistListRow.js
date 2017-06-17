@@ -8,7 +8,6 @@ import GistListRowDeleteSelectorContainer from '../../GistDelete/GistListRowDele
  * A component for display of a git user's info
  */
 class GistListRow extends Component {
-
     static DEFAULT_MESSAGES = {
         NOT_FOUND: {
             button: 'Gist ID missing',

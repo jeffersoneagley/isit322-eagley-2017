@@ -2,20 +2,19 @@ import Debug from 'debug';
 let debug = new Debug('git-field-Generator');
 
 class GitFieldGenerator {
-
     constructor() {
         this.getFields = this.getFields.bind(this);
     }
 
     handleInputDataType = (data) => {
         switch (typeof (data)) {
-            case 'string':
-                return JSON.parse(data);
-            case 'object':
-                return data;
-            default:
-                debug.log(
-                    'Invalid data of type ' + typeof (data) + ' on data ' + data);
+        case 'string':
+            return JSON.parse(data);
+        case 'object':
+            return data;
+        default:
+            debug.log(
+                'Invalid data of type ' + typeof (data) + ' on data ' + data);
         }
     };
 
@@ -41,11 +40,11 @@ class GitFieldGenerator {
             result.type = 'url';
         } else {
             switch (typeof (value)) {
-                case 'datetime':
-                    result.type = 'year';
-                    break;
-                default:
-                    result.type = 'paragraph';
+            case 'datetime':
+                result.type = 'year';
+                break;
+            default:
+                result.type = 'paragraph';
             }
         }
 

@@ -12,7 +12,6 @@ let mapDispatchToProps = (dispatch) => {
 };
 
 let mergeProps = (fromState, fromDispatch, fromProps) => {
-
     let onClickModeExitToBase = () => {
         fromDispatch.dispatch(BrowserActions.getActionTypeExitBrowserMode());
     };

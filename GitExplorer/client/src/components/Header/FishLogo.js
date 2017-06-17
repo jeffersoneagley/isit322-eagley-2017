@@ -7,7 +7,6 @@ import '../../css/Header/Header.css';
 // import '../../css/App.css';
 
 class FishLogo extends Component {
-
     render() {
         return (
             <div className='col-xs-2'>

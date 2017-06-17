@@ -19,37 +19,35 @@ class FishElement extends Component {
 
     render() {
         switch (this.props.type) {
-            case 'image': {
-                console.log('image type');
-                return <div className='media-left'>
-                    <img src={this.props.value}
-                         id={this.props.id}
-                         alt={this.props.label}
-                         className='media-object'/>
-                </div>;
+        case 'image': {
+            console.log('image type');
+            return <div className='media-left'>
+                <img src={this.props.value}
+                    id={this.props.id}
+                    alt={this.props.label}
+                    className='media-object'/>
+            </div>;
+        }
 
-            }
+        case 'url': {
+            return <a href={this.props.value} className='btn btn-info btn-block ellipses'
+                role='button'
+                target='_new'>
+                {this.props.value || 'no url given'}
+            </a>;
+        }
 
-            case 'url': {
-                return <a href={this.props.value} className='btn btn-info btn-block ellipses'
-                          role='button'
-                          target='_new'>
-                    {this.props.value || 'no url given'}
-                </a>;
+        case 'bool': {
+            return <ElfElement
+                {...this.props}
+                type='paragraph'
+                value={this.props.value === 'true' || this.props.value === true ?
+                    'Yes' : 'No'}
+            />;
+        }
 
-            }
-
-            case 'bool': {
-                return <ElfElement
-                    {...this.props}
-                    type='paragraph'
-                    value={this.props.value === 'true' || this.props.value === true ?
-                        'Yes' : 'No'}
-                />;
-            }
-
-            default:
-                return <ElfElement {...this.props} />;
+        default:
+            return <ElfElement {...this.props} />;
         }
     }
 }

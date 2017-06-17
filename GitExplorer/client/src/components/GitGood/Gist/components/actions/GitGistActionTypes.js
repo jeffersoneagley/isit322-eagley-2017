@@ -91,7 +91,7 @@ export const EDIT = {
                 });
         },
         getTypeSetEditorMode: (mode) => {
-            return dispatch => {
+            return (dispatch) => {
                 dispatch({
                     type: EDIT.ACTION_TYPES.TYPE_EDITOR_SET_MODE,
                     editorEditMode: mode,
@@ -99,7 +99,7 @@ export const EDIT = {
             };
         },
         getTypeStoreChanges: (gistId, changes) => {
-            return dispatch => {
+            return (dispatch) => {
                 dispatch({
                     type: EDIT.ACTION_TYPES.TYPE_EDITOR_SAVE_CHANGES_TO_STORE,
                     gistId: gistId,
@@ -108,7 +108,7 @@ export const EDIT = {
             };
         },
         getTypeServerResponseSave: (result, body) => {
-            return dispatch => {
+            return (dispatch) => {
                 console.log('successfully updated remote gist');
                 if (result.ok) {
                     dispatch({
@@ -129,7 +129,7 @@ export const EDIT = {
         },
 
         getTypeRevertChanges: (gistId) => {
-            return dispatch => {
+            return (dispatch) => {
                 dispatch({
                     type: EDIT.ACTION_TYPES.TYPE_REVERT_TO_ORIGINAL,
                     gistId: gistId,
@@ -226,7 +226,6 @@ export function getTypeGitGistDeleteMenuFinalStatistics(statistics) {
             deleteResultStatistics: statistics,
         });
     };
-
 }
 export function getTypeGitGistDeleteClearSelection() {
     return (dispatch) => {
@@ -235,15 +234,14 @@ export function getTypeGitGistDeleteClearSelection() {
         });
     };
 }
-/***
+/** *
  * Makes a contract for git gist delete list add/remove
  * @param gistId ID of gist to add or remove to the delete list
  * @param isAddToList defaults to false, to encourage the program to fail in a non-deleting state
  * @return {{type: string, gistId: *}} contract data type for gist list actions
  */
 function getTypeGitGistDeleteList(gistId, isAddToList = false) {
-    return dispatch => {
-
+    return (dispatch) => {
         let type = (isAddToList ?
             GIST_DELETE_ACTION_TYPES.TYPE_GIST_DELETE_LIST_ADD_GIST_ID :
             GIST_DELETE_ACTION_TYPES.TYPE_GIST_DELETE_LIST_REMOVE_GIST_ID);
@@ -253,7 +251,7 @@ function getTypeGitGistDeleteList(gistId, isAddToList = false) {
         });
     };
 }
-/***
+/** *
  * Makes a contract for git gist delete list add/remove
  * @param gistId
  * @return {{type: string, gistId: *}}
@@ -264,7 +262,7 @@ export function getTypeGitGistDeleteListAdd(gistId) {
     };
 }
 
-/***
+/** *
  * Makes a contract for git gist delete list add/remove
  * @param gistId
  * @return {{type: string, gistId: *}}

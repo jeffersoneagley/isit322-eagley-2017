@@ -10,7 +10,6 @@ let GetFoo = (process.env.BUILD_FOR_MOBILE === true) ?
 
 const mapStateToProps = (state) => {
     return state.GetFooReducer;
-
 };
 
 const mapDispatchToProps = (dispatch) => {

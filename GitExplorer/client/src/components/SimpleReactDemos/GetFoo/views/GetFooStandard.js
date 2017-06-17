@@ -3,7 +3,6 @@ import Paragraph from '../../../Paragraph/Paragraph';
 import {Button} from 'react-bootstrap';
 
 class GetFoo extends Component {
-
     render() {
         return (
             <div>

@@ -1,4 +1,4 @@
-/***
+/** *
  * Container object for a detailed view of a single gist
  */
 import GistDetailsDisplay from './views/GistDetailsDisplay';
@@ -14,7 +14,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-
     return {dispatch};
 };
 
@@ -64,43 +63,39 @@ const mergeProps = (state, dispatch, props) => {
     let editorModeClickHandlers = {
         previous: () => {
             switch (state.Editor.editorEditMode) {
-                case TYPES.EDITOR_MODES.COMPARE:
-                    dispatchHandlers.editorMode.edit();
-                    break;
-                case TYPES.EDITOR_MODES.EDIT:
-                case TYPES.EDITOR_MODES.FINAL:
-                    dispatchHandlers.editorMode.view();
-                    break;
+            case TYPES.EDITOR_MODES.COMPARE:
+                dispatchHandlers.editorMode.edit();
+                break;
+            case TYPES.EDITOR_MODES.EDIT:
+            case TYPES.EDITOR_MODES.FINAL:
+                dispatchHandlers.editorMode.view();
+                break;
             }
         },
         next: () => {
             console.log(state.Editor.editorEditMode);
             switch (state.Editor.editorEditMode) {
-                case TYPES.EDITOR_MODES.VIEW:
-                    dispatchHandlers.editorMode.edit();
-                    break;
-                case TYPES.EDITOR_MODES.EDIT:
-                    dispatchHandlers.editorMode.compare();
-                    break;
-                case TYPES.EDITOR_MODES.COMPARE:
-                    editorModeClickHandlers.save(state.Editor.gistLists[currentGist.id].changes);
-                    dispatchHandlers.editorMode.final();
-                    break;
-                case TYPES.EDITOR_MODES.FINAL:
-                    dispatchHandlers.editorMode.view();
-                    break;
+            case TYPES.EDITOR_MODES.VIEW:
+                dispatchHandlers.editorMode.edit();
+                break;
+            case TYPES.EDITOR_MODES.EDIT:
+                dispatchHandlers.editorMode.compare();
+                break;
+            case TYPES.EDITOR_MODES.COMPARE:
+                editorModeClickHandlers.save(state.Editor.gistLists[currentGist.id].changes);
+                dispatchHandlers.editorMode.final();
+                break;
+            case TYPES.EDITOR_MODES.FINAL:
+                dispatchHandlers.editorMode.view();
+                break;
             }
         },
         revert: () => {
             dispatchHandlers.revertChanges();
         },
         save: (gist) => {
-
             dispatch.dispatch(TYPES.ACTION_CREATORS.getTypeSetIsProcessing(true));
             console.log('onUpdateGist called');
-            if (event !== undefined) {
-                event.preventDefault();
-            }
             let body = {
                 gistId: currentGist.id,
                 gist: gist,

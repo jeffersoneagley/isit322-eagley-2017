@@ -1,7 +1,7 @@
 /**
  * Created by fish on 6/12/17.
  */
-/***
+/** *
  * Container object for a detailed view of a single gist
  */
 import {connect} from 'react-redux';
@@ -10,9 +10,7 @@ import {CREATE, getTypeGistListNeedsRefresh} from '../actions/GitGistActionTypes
 import 'whatwg-fetch';
 
 const mapStateToProps = (state) => {
-
     return state.Git.Gist.Viewer;
-
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -36,7 +34,6 @@ let mergeProps = (fromState, fromDispatch, fromProps) => {
 
         fromDispatch.dispatch(
             CREATE.ACTION_CREATORS.getTypeGitGistCreatorCreateGistResponse({ok: false, message: ex.message}));
-
     };
 
     const onCreateGist = (event, docs, desc) => {

@@ -13,7 +13,6 @@ import 'whatwg-fetch';
 
 const mapStateToProps = (state) => {
     return state.Git.UserInfo;
-
 };
 
 const mapDispatchToProps = (dispatch) => {

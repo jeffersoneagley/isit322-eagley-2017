@@ -8,7 +8,6 @@ import {connect} from 'react-redux';
 import GistDeleteController from './GistDeleteController';
 
 let mapDispatchToProps = (dispatch) => {
-
     let onDeleteListItemAddClicked = (gistId) => {
         dispatch(getTypeGitGistDeleteListAdd(gistId));
     };

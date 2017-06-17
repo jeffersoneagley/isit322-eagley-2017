@@ -30,12 +30,12 @@ class GistCreatorDisplay extends Component {
     lockButton = () => {
         if (this.props.createIsProcessing) {
             return <button className='btn btn-primary'
-                           disabled
+                disabled
             >
                 <div className='progress-bar progress-bar-striped active'
-                     onClick={this.clickMe}
-                     aria-valuenow='100' aria-valuemin='0' aria-valuemax='100'
-                     style={{width: '100%', height: '100%'}}
+                    onClick={this.clickMe}
+                    aria-valuenow='100' aria-valuemin='0' aria-valuemax='100'
+                    style={{width: '100%', height: '100%'}}
                 >
                     Creating Gist <span className="glyphicon glyphicon-cloud-upload"> </span>
                 </div>
@@ -56,30 +56,30 @@ class GistCreatorDisplay extends Component {
                 <div className="input-group">
                     <label htmlFor="#newGistTitle" className='control-label col-xs-12 col-sm-4'>Title</label>
                     <input id="#newGistTitle" type="text" className="form-control col-xs-12 col-xs-8"
-                           defaultValue={this.formElements.gistTitle}
-                           onChange={(event) => {
-                               this.formElements.gistTitle = event.target.value;
-                           }}
+                        defaultValue={this.formElements.gistTitle}
+                        onChange={(event) => {
+                            this.formElements.gistTitle = event.target.value;
+                        }}
                     />
                 </div>
                 <div className="input-group">
                     <label htmlFor="#newGistDescription"
-                           className='control-label col-xs-12'>Description</label>
+                        className='control-label col-xs-12'>Description</label>
                     <input id="#newGistDescription" type="text" className="form-control col-xs-12"
-                           defaultValue={this.formElements.gistDescription}
-                           onChange={(event) => {
-                               this.formElements.gistDescription = event.target.value;
-                           }}
+                        defaultValue={this.formElements.gistDescription}
+                        onChange={(event) => {
+                            this.formElements.gistDescription = event.target.value;
+                        }}
                     />
                 </div>
                 <div className="input-group">
                     <label htmlFor="#newGistContent"
-                           className='control-label col-xs-12 col-sm-4'>Content</label>
+                        className='control-label col-xs-12 col-sm-4'>Content</label>
                     <textarea id="#newGistContent" type="text" rows={5} className="form-control col-xs-12 col-xs-8"
-                              defaultValue={this.formElements.gistContent}
-                              onChange={(event) => {
-                                  this.formElements.gistContent = event.target.value;
-                              }}
+                        defaultValue={this.formElements.gistContent}
+                        onChange={(event) => {
+                            this.formElements.gistContent = event.target.value;
+                        }}
                     />
                 </div>
             </article>
@@ -136,13 +136,13 @@ class GistCreatorDisplay extends Component {
 
     getPanelType = () => {
         switch (this.props.create.responseType) {
-            case CREATE.RESPONSE_TYPES.SUCCESS:
-                return this.getPanelResponseSuccess();
-            case CREATE.RESPONSE_TYPES.FAILURE:
-                return this.getPanelResponseFailure();
-            case CREATE.RESPONSE_TYPES.STARTUP:
-            default:
-                return this.getPanelCreateGist();
+        case CREATE.RESPONSE_TYPES.SUCCESS:
+            return this.getPanelResponseSuccess();
+        case CREATE.RESPONSE_TYPES.FAILURE:
+            return this.getPanelResponseFailure();
+        case CREATE.RESPONSE_TYPES.STARTUP:
+        default:
+            return this.getPanelCreateGist();
         }
     };
 

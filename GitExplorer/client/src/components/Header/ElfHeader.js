@@ -3,7 +3,6 @@ import '../../css/Header/Header.css';
 // import '../../css/App.css';
 
 class ElfHeader extends Component {
-
     render() {
         return (
             <div className='col-xs-10'>
