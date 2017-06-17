@@ -53,7 +53,7 @@ export const CREATE = {
             return (dispatch) => {
                 dispatch({
                     type: CREATE.ACTION_TYPES.TYPE_GIT_GIST_CREATE_IS_PROCESSING,
-                    createIsProcessing: state,
+                    isProcessing: state,
                 });
             };
         },
@@ -71,10 +71,83 @@ export const GIST_DELETE_ACTION_TYPES = {
     TYPE_GIST_DELETE_LIST_REMOVE_GIST_ID: 'TYPE_GIST_DELETE_LIST_REMOVE_GIST_ID',
 };
 
-export const GIST_EDIT_ACTION_TYPES = {
-    TYPE_EDITOR_UPDATE_RESPONSE_RESULT_SAVE_TO_STORE: 'TYPE_EDITOR_UPDATE_RESPONSE_RESULT_SAVE_TO_STORE',
-    TYPE_EDITOR_SAVE_CHANGES_TO_STORE: 'TYPE_EDITOR_SAVE_CHANGES_TO_STORE',
-    TYPE_EDITOR_SET_MODE: 'TYPE_EDITOR_SET_MODE',
+export const EDIT = {
+    ACTION_TYPES: {
+        TYPE_REVERT_TO_ORIGINAL: 'TYPE_EDIT_REVERT_TO_ORIGINAL',
+        TYPE_EDITOR_UPDATE_RESPONSE_RESULT_SAVE_TO_STORE: 'TYPE_EDITOR_UPDATE_RESPONSE_RESULT_SAVE_TO_STORE',
+        TYPE_EDITOR_SAVE_CHANGES_TO_STORE: 'TYPE_EDITOR_SAVE_CHANGES_TO_STORE',
+        TYPE_EDITOR_SET_MODE: 'TYPE_EDITOR_SET_MODE',
+        TYPE_SET_IS_PROCESSING: 'TYPE_SET_IS_PROCESSING',
+        TYPE_EDITOR_OPEN_GIST: 'TYPE_EDITOR_OPEN_GIST',
+        TYPE_EDITOR_RESULT: 'TYPE_EDITOR_RESULT',
+    },
+    ACTION_CREATORS: {
+        getTypeGitGistConfirm: () => {
+            return (dispatch) =>
+                dispatch({
+                    type: EDIT.ACTION_TYPES.TYPE_EDITOR_RESULT,
+                    responseType: EDIT.RESPONSE_TYPES.STARTUP,
+                    responseMessage: '',
+                });
+        },
+        getTypeSetEditorMode: (mode) => {
+            return dispatch => {
+                dispatch({
+                    type: EDIT.ACTION_TYPES.TYPE_EDITOR_SET_MODE,
+                    editorEditMode: mode,
+                });
+            };
+        },
+        getTypeStoreChanges: (gistId, changes) => {
+            return dispatch => {
+                dispatch({
+                    type: EDIT.ACTION_TYPES.TYPE_EDITOR_SAVE_CHANGES_TO_STORE,
+                    gistId: gistId,
+                    changes: changes,
+                });
+            };
+        },
+        getTypeServerResponseSave: (result, body) => {
+            return dispatch => {
+                console.log('successfully updated remote gist');
+                if (result.ok) {
+                    // dispatch({
+                    //     type: EDIT.ACTION_TYPES.TYPE_EDITOR_UPDATE_RESPONSE_RESULT_SAVE_TO_STORE,
+                    //     selectedGist: body,
+                    // });
+                    dispatch({
+                        type: EDIT.ACTION_TYPES.TYPE_EDITOR_UPDATE_RESPONSE_RESULT_SAVE_TO_STORE,
+                        responseType: EDIT.RESPONSE_TYPES.SUCCESS,
+                        responseMessage: result.message || result.ok || 'Success',
+                    });
+                } else {
+                    dispatch({
+                        type: EDIT.ACTION_TYPES.TYPE_EDITOR_UPDATE_RESPONSE_RESULT_SAVE_TO_STORE,
+                        responseType: EDIT.RESPONSE_TYPES.FAILURE,
+                        responseMessage: result.message || result.ok || 'Failed!',
+                    });
+                }
+                dispatch(EDIT.ACTION_CREATORS.getTypeSetIsProcessing(false));
+            };
+        },
+
+        getTypeRevertChanges: (gistId) => {
+            return dispatch => {
+                dispatch({
+                    type: EDIT.ACTION_TYPES.TYPE_REVERT_TO_ORIGINAL,
+                    gistId: gistId,
+                });
+            };
+        },
+        getTypeSetIsProcessing: (state) => {
+            return (dispatch) => {
+                dispatch({
+                    type: EDIT.ACTION_TYPES.TYPE_SET_IS_PROCESSING,
+                    isProcessing: state,
+                });
+            };
+        },
+    },
     RESPONSE_TYPES: {
         SUCCESS: 'SUCCESS',
         FAILURE: 'FAILURE',
@@ -84,16 +157,9 @@ export const GIST_EDIT_ACTION_TYPES = {
         VIEW: 'VIEW',
         EDIT: 'EDIT',
         FINAL: 'FINAL',
-        CREATE: 'CREATE',
+        COMPARE: 'COMPARE',
     },
-    setEditorMode: (mode) => {
-        return dispatch => {
-            dispatch({
-                type: GIST_EDIT_ACTION_TYPES.TYPE_EDITOR_SET_MODE,
-                editorEditMode: mode,
-            });
-        };
-    },
+
 };
 
 export function getTypeGitGistMetaListResponse(gistMetaList) {
@@ -179,12 +245,15 @@ export function getTypeGitGistDeleteClearSelection() {
  * @return {{type: string, gistId: *}} contract data type for gist list actions
  */
 function getTypeGitGistDeleteList(gistId, isAddToList = false) {
-    let type = (isAddToList ?
-        GIST_DELETE_ACTION_TYPES.TYPE_GIST_DELETE_LIST_ADD_GIST_ID :
-        GIST_DELETE_ACTION_TYPES.TYPE_GIST_DELETE_LIST_REMOVE_GIST_ID);
-    return {
-        type: type,
-        gistId,
+    return dispatch => {
+
+        let type = (isAddToList ?
+            GIST_DELETE_ACTION_TYPES.TYPE_GIST_DELETE_LIST_ADD_GIST_ID :
+            GIST_DELETE_ACTION_TYPES.TYPE_GIST_DELETE_LIST_REMOVE_GIST_ID);
+        dispatch({
+            type: type,
+            gistId,
+        });
     };
 }
 /***

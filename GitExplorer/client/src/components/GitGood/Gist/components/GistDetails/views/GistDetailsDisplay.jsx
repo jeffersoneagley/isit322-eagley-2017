@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import './GistDetailsStylesheet.css';
-import {Panel} from 'react-bootstrap';
-import {GIST_EDIT_ACTION_TYPES as TYPES} from '../../actions/GitGistActionTypes';
-
 /**
  * A component for display of a single gist
  */
+import React, {Component} from 'react';
+import './GistDetailsStylesheet.css';
+import {Panel} from 'react-bootstrap';
+import {EDIT} from '../../actions/GitGistActionTypes';
+
 class GistDetailsDisplay extends Component {
 
     renderFileSingleEdit = (fileMetaData) => {
@@ -20,6 +20,17 @@ class GistDetailsDisplay extends Component {
                 rows={5}
                 id={'input_' + identifier + '_content'}
                 defaultValue={fileMetaData.content}
+                onInput={(evt) => {
+                    let result = {
+                        'files': {},
+                    };
+                    console.log(fileMetaData.filename);
+                    result.files[fileMetaData.filename] = {
+                        'content': evt.target.value,
+                    };
+                    this.props.onChange(result);
+                }
+                }
             >
 
                 </textarea>
@@ -37,20 +48,19 @@ class GistDetailsDisplay extends Component {
     };
 
     renderFileSingle = (fileMetaData, editorMode) => {
-        switch (editorMode) {
-            case TYPES.EDITOR_MODES.EDIT:
-                return this.renderFileSingleEdit(fileMetaData);
-            case TYPES.EDITOR_MODES.VIEW:
-            default:
-                return this.renderFileSingleView(fileMetaData);
+        if (editorMode) {
+
+            return this.renderFileSingleEdit(fileMetaData);
+        } else {
+            return this.renderFileSingleView(fileMetaData);
         }
     };
 
-    renderFiles(selectedGist, mode) {
+    renderFiles(selectedGist, isEditMode) {
         let result = [];
         for (let file in selectedGist.files) {
             if (selectedGist.files.hasOwnProperty(file)) {
-                result.push(this.renderFileSingle(selectedGist.files[file], mode));
+                result.push(this.renderFileSingle(selectedGist.files[file], isEditMode));
             }
         }
         return result;
@@ -58,16 +68,7 @@ class GistDetailsDisplay extends Component {
 
     getPanelButtonsPrevNext = (mode) => {
         switch (mode) {
-            case TYPES.EDITOR_MODES.FINAL:
-                return <div>
-                    <button
-                        className='btn btn-success'
-                        onClick={this.props.editorModeClickHandlers.next}
-                    >
-                        OK
-                    </button>
-                </div>;
-            case TYPES.EDITOR_MODES.EDIT:
+            case EDIT.EDITOR_MODES.EDIT:
                 return <div>
                     <button
                         className='btn btn-secondary'
@@ -82,7 +83,27 @@ class GistDetailsDisplay extends Component {
                         Save
                     </button>
                 </div>;
-            case TYPES.EDITOR_MODES.VIEW:
+            case EDIT.EDITOR_MODES.COMPARE:
+                return <div className='btn-group btn-group-lg btn-group-vertical'>
+                    <button
+                        className='btn btn-info'
+                        onClick={this.props.editorModeClickHandlers.previous}
+                    >
+                        <span className='glyphicon glyphicon-chevron-left'/> Cancel, go back
+                    </button>
+                    <hr/>
+                    <button
+                        className='btn btn-warning '
+                        onClick={this.props.editorModeClickHandlers.next}
+                    >
+                        Ok, Save changes to this gist <span className='glyphicon glyphicon-cloud-upload'/>
+                    </button>
+                </div>;
+            case EDIT.EDITOR_MODES.FINAL:
+                return <div>
+                    processing...
+                </div>;
+            case EDIT.EDITOR_MODES.VIEW:
             default:
                 return <div>
                     <button
@@ -114,21 +135,107 @@ class GistDetailsDisplay extends Component {
         </div>;
     };
 
-    getPanelBody = (selectedGist, mode) => {
-        console.log(mode);
-        return <div className='panel panel-info'>
+    getPanelViewDefaultWrapper = (selectedGist, mode, isEditMode) => {
+        return <div >
             <div className='panel-heading'>
                 <h3>Viewing Gist</h3>
                 <subtitle> {selectedGist.id}</subtitle>
                 <p>description: {selectedGist.description || ''}</p>
             </div>
             <div className='panel-body'>
+                {this.getPanelViewGistBody(selectedGist, mode, isEditMode)}
+            </div>
+            <div className='panel-footer text-right'>
+                {this.getPanelButtonsPrevNext(mode)}
+            </div>
+        </div>;
+    };
 
-                <div className=''>
-                    <h4>Files</h4>
-                    <ul>
-                        {this.renderFiles(selectedGist, mode)}
-                    </ul>
+    /**
+     * core gist viewer panel body object
+     * @param selectedGist
+     * @param mode
+     * @param isEditMode
+     * @return {XML}
+     */
+    getPanelViewGistBody = (selectedGist, mode, isEditMode) => {
+        return <div className=''>
+            <h4>Files</h4>
+            {this.renderFiles(selectedGist, isEditMode)}
+        </div>;
+    };
+
+    getPanelFooterResponseConfirm = (panelType) => {
+        return <div className='panel-footer'>
+            <button
+                className={'btn ' + (panelType !== undefined ? 'btn-' + panelType : '') + ' btn-block'}
+                onClick={this.props.onConfirmPromptOk}
+            >
+                Ok!
+            </button>
+        </div>;
+    };
+
+    getPanelResponseSuccess = () => {
+        return <section className='panel panel-success'>
+            <div className='panel-heading'>
+                <h3>Your new gist was updated!!</h3>
+                <subtitle>{this.props.Viewer.selectedGist.id}</subtitle>
+            </div>
+            <div className='panel-body'>
+                <div className='col-xs-12 col-sm-6'>
+                    Gist description:
+                    {this.props.Viewer.selectedGist.description}
+                </div>
+                <div className='col-xs-12 col-sm-6'>
+                    <a href={this.props.Viewer.selectedGist.html_url} target="_blank">Link to Github</a>
+                </div>
+            </div>
+            {this.getPanelFooterResponseConfirm('success')}
+        </section>;
+    };
+
+    getPanelResponseFailure = () => {
+        return <section className='panel panel-danger'>
+            <div className='panel-heading'>
+                <h3>Oh no!</h3>
+                <subtitle>Something went wrong</subtitle>
+            </div>
+            <article>
+
+                Response:
+                {this.props.Editor.responseMessage}
+            </article>
+            {this.getPanelFooterResponseConfirm('danger')}
+        </section >;
+    };
+
+    getPanelCompareChanges = (originalGist, changesGist, mode) => {
+
+        return <div className='panel panel-default'>
+            <div className='panel-heading'>
+                <h3>Compare changes</h3>
+            </div >
+            <div className='col-xs-12 col-sm-6 panel panel-info'>
+
+                <div className='panel-heading'>
+                    <h3>Original</h3>
+                    <subtitle> {originalGist.id}</subtitle>
+                    <p>description: {originalGist.description || ''}</p>
+                </div>
+                <div className='panel-body'>
+                    {this.getPanelViewGistBody(originalGist, mode, false)}
+                </div>
+            </div>
+            <div className='col-xs-12 col-sm-6 panel panel-primary'>
+
+                <div className='panel-heading'>
+                    <h3>Your changes</h3>
+                    <subtitle> {changesGist.id}</subtitle>
+                    <p>description: {changesGist.description || ''}</p>
+                </div>
+                <div className='panel-body'>
+                    {this.getPanelViewGistBody(changesGist, mode, false)}
                 </div>
             </div>
             <div className='panel-footer text-right'>
@@ -137,10 +244,42 @@ class GistDetailsDisplay extends Component {
         </div>;
     };
 
+    getPanelCurrentMode = () => {
+        let mode = this.props.Editor.editorEditMode;
+        let original = this.props.Viewer.selectedGist;
+        let updated;
+        try {
+            updated = this.props.Editor.gistLists[original.id].changes;
+        } catch (ex) {
+            updated = this.props.Viewer.selectedGist;
+        }
+        switch (mode) {
+            case EDIT.EDITOR_MODES.COMPARE:
+                return this.getPanelCompareChanges(this.props.Viewer.selectedGist, updated, mode);
+            case EDIT.EDITOR_MODES.EDIT:
+                return this.getPanelViewDefaultWrapper(updated, mode, true);
+            case EDIT.EDITOR_MODES.VIEW:
+            default:
+                return this.getPanelViewDefaultWrapper(this.props.Viewer.selectedGist, mode, false);
+        }
+    };
+
+    getPanelType = () => {
+        switch (this.props.Editor.responseType) {
+            case EDIT.RESPONSE_TYPES.SUCCESS:
+                return this.getPanelResponseSuccess();
+            case EDIT.RESPONSE_TYPES.FAILURE:
+                return this.getPanelResponseFailure();
+            case EDIT.RESPONSE_TYPES.STARTUP:
+            default:
+                return this.getPanelCurrentMode();
+        }
+    };
+
     getHasGistData = () => {
         if (this.props.Viewer.selectedGist !== undefined &&
             this.props.Viewer.selectedGist.files !== undefined) {
-            return this.getPanelBody(this.props.Viewer.selectedGist, this.props.Editor.editorEditMode);
+            return this.getPanelType();
         } else {
             return <Panel>
                 <h3>No gist selected</h3>
