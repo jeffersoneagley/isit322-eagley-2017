@@ -8,12 +8,36 @@ import {EDIT} from '../../actions/GitGistActionTypes';
 
 class GistDetailsDisplay extends Component {
 
+    getGistMetaFieldInterface(selectedGist, mode, isEditMode) {
+        if (isEditMode) {
+            return <div>
+                <textarea
+                    className='form-control'
+                    rows={3}
+                    id={'input_' + selectedGist.id + '_content'}
+                    defaultValue={selectedGist.description}
+                    onInput={(evt) => {
+                        let result = {
+                            'description': evt.target.value,
+                        };
+                        this.props.onChange(result);
+                    }
+                    }
+                />
+            </div>;
+        } else {
+            return <p>description: {selectedGist.description || ''}</p>;
+        }
+    }
+
     renderFileSingleEdit = (fileMetaData) => {
         let identifier = 'gistFile_' + fileMetaData.filename;
         return <div key={'keyGistViewFile' + identifier} className='panel panel-info'>
             <div className='panel-heading'>
                 <h3 >{fileMetaData.filename || ''}</h3>
-                <subtitle>{fileMetaData.type || ''}</subtitle>
+                <input type='text'
+                       defaultValue={fileMetaData.type}
+                />
             </div>
             <textarea
                 className='form-control'
@@ -41,9 +65,9 @@ class GistDetailsDisplay extends Component {
     renderFileSingleView = (fileMetaData) => {
         return <li key={'keyGistViewFile' + fileMetaData.filename}>
             {fileMetaData.filename || ''} - {fileMetaData.type || ''}<br/>
-            <p>
+            <pre>
                 {fileMetaData.content || 'contents cannot be displayed'}
-            </p>
+            </pre>
         </li>;
     };
 
@@ -140,7 +164,7 @@ class GistDetailsDisplay extends Component {
             <div className='panel-heading'>
                 <h3>Viewing Gist</h3>
                 <subtitle> {selectedGist.id}</subtitle>
-                <p>description: {selectedGist.description || ''}</p>
+                {this.getGistMetaFieldInterface(selectedGist, mode, isEditMode)}
             </div>
             <div className='panel-body'>
                 {this.getPanelViewGistBody(selectedGist, mode, isEditMode)}
@@ -177,19 +201,21 @@ class GistDetailsDisplay extends Component {
     };
 
     getPanelResponseSuccess = () => {
+        let responseGist = this.props.Editor.responseGist;
         return <section className='panel panel-success'>
             <div className='panel-heading'>
                 <h3>Your new gist was updated!!</h3>
-                <subtitle>{this.props.Viewer.selectedGist.id}</subtitle>
+                <subtitle>{responseGist.id}</subtitle>
             </div>
             <div className='panel-body'>
                 <div className='col-xs-12 col-sm-6'>
                     Gist description:
-                    {this.props.Viewer.selectedGist.description}
+                    {responseGist.description}
                 </div>
                 <div className='col-xs-12 col-sm-6'>
-                    <a href={this.props.Viewer.selectedGist.html_url} target="_blank">Link to Github</a>
+                    <a href={responseGist.html_url} target="_blank">Link to Github</a>
                 </div>
+                {this.renderFiles(responseGist, false)}
             </div>
             {this.getPanelFooterResponseConfirm('success')}
         </section>;

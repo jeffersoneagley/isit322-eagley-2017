@@ -85,7 +85,7 @@ export const EDIT = {
         getTypeGitGistConfirm: () => {
             return (dispatch) =>
                 dispatch({
-                    type: EDIT.ACTION_TYPES.TYPE_EDITOR_RESULT,
+                    type: EDIT.ACTION_TYPES.TYPE_EDITOR_UPDATE_RESPONSE_RESULT_SAVE_TO_STORE,
                     responseType: EDIT.RESPONSE_TYPES.STARTUP,
                     responseMessage: '',
                 });
@@ -111,14 +111,11 @@ export const EDIT = {
             return dispatch => {
                 console.log('successfully updated remote gist');
                 if (result.ok) {
-                    // dispatch({
-                    //     type: EDIT.ACTION_TYPES.TYPE_EDITOR_UPDATE_RESPONSE_RESULT_SAVE_TO_STORE,
-                    //     selectedGist: body,
-                    // });
                     dispatch({
                         type: EDIT.ACTION_TYPES.TYPE_EDITOR_UPDATE_RESPONSE_RESULT_SAVE_TO_STORE,
                         responseType: EDIT.RESPONSE_TYPES.SUCCESS,
                         responseMessage: result.message || result.ok || 'Success',
+                        responseGist: body,
                     });
                 } else {
                     dispatch({

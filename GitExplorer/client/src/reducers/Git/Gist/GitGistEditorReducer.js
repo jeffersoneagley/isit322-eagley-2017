@@ -30,6 +30,7 @@ const GitGistEditorReducer = (state = initialState, action) => {
                 ...state,
                 responseType: action.responseType,
                 responseMessage: action.responseMessage,
+                responseGist: action.responseGist || '',
             };
             return newState;
         case TYPES.ACTION_TYPES.TYPE_EDITOR_SAVE_CHANGES_TO_STORE:
